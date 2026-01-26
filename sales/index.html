@@ -450,6 +450,113 @@
       setTimeout(() => alert.remove(), 5000);
     };
 
+    // Generic modal function (copied from admin_interface.html for consistent UX)
+    window.showModal = (title, content, buttons = []) => {
+      const modalId = `modal-${Date.now()}`;
+      let buttonHtml = '';
+      if (buttons.length === 0) {
+        buttonHtml = `<button class="btn-secondary" onclick="document.getElementById('${modalId}').remove()">Close</button>`;
+      } else {
+        buttonHtml = buttons.map((btn, idx) => {
+          const btnClass = btn.type === 'primary' ? 'btn-primary' : btn.type === 'danger' ? 'btn-danger' : 'btn-secondary';
+          const btnId = `btn-${modalId}-${idx}`;
+          return `<button id="${btnId}" class="${btnClass}">${btn.label}</button>`;
+        }).join('');
+      }
+
+      const html = `<div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px);" id="${modalId}" onclick="if(event.target.id === '${modalId}') this.remove()">
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; max-width: 500px; width: 90%; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); max-height: 80vh; overflow-y: auto;">
+          <h2 style="margin-top: 0; margin-bottom: 1rem;">${title}</h2>
+          <div id="modal-content-${Date.now()}">${content}</div>
+          <div style="display: flex; gap: 8px; margin-top: 1.5rem;">
+            ${buttonHtml}
+          </div>
+        </div>
+      </div>`;
+      document.body.insertAdjacentHTML('beforeend', html);
+
+      // Attach click handlers (scope lookup to the created modal element)
+      const modalElem = document.getElementById(modalId);
+      buttons.forEach((btn, idx) => {
+        const btnId = `btn-${modalId}-${idx}`;
+        const btnElement = modalElem ? modalElem.querySelector(`#${btnId}`) : document.getElementById(btnId);
+        console.log('Attaching modal button', btnId, 'found=', !!btnElement);
+        if (btnElement && btn.onclick) {
+          btnElement.onclick = (e) => {
+            e.preventDefault();
+            const modal = document.getElementById(modalId);
+            if (modal) modal.remove();
+            try {
+              if (typeof btn.onclick === 'function') {
+                btn.onclick();
+              } else {
+                eval(btn.onclick);
+              }
+            } catch (err) {
+              console.error('Modal button handler error', err);
+            }
+          };
+        }
+      });
+
+      return modalId;
+    };
+
+    // Confirm before leaving sales page (save prompt)
+    window.confirmLeaveAdmin = (event, targetUrl = null) => {
+      if (event && event.preventDefault) event.preventDefault();
+
+      // Derive targetUrl from clicked anchor if not provided
+      if (!targetUrl && event) {
+        const a = event.currentTarget || (event.target && event.target.closest && event.target.closest('a'));
+        targetUrl = a ? a.getAttribute('href') : null;
+      }
+
+      const hasUnsaved = (currentQuote.lineItems && currentQuote.lineItems.length > 0) || (document.getElementById('customer-name').value.trim() !== '') || ((parseFloat(document.getElementById('sales-uplift').value) || 0) !== 0);
+      if (!hasUnsaved) {
+        if (targetUrl) window.location.href = targetUrl;
+        return;
+      }
+
+      showModal('Leave Sales Page?', '<p>Do you want to save the current quote before leaving the sales page?</p>', [
+        { label: 'Save & Leave', type: 'primary', onclick: () => { window._suppressBeforeUnload = true; saveQuote(); if (targetUrl) window.location.href = targetUrl; } },
+        { label: 'Leave Without Saving', type: 'danger', onclick: () => { window._suppressBeforeUnload = true; if (targetUrl) window.location.href = targetUrl; } },
+        { label: 'Cancel', type: 'secondary', onclick: () => { window._suppressBeforeUnload = false; } }
+      ]);
+    };
+
+    // Prompt using native dialog on reload/close/navigation events
+    window._suppressBeforeUnload = window._suppressBeforeUnload || false;
+    window.addEventListener('beforeunload', (e) => {
+      if (window._suppressBeforeUnload) return undefined;
+      const hasUnsaved = (currentQuote.lineItems && currentQuote.lineItems.length > 0) || (document.getElementById('customer-name').value.trim() !== '') || ((parseFloat(document.getElementById('sales-uplift').value) || 0) !== 0);
+      if (hasUnsaved) {
+        e.preventDefault();
+        e.returnValue = '';
+        return '';
+      }
+      return undefined;
+    });
+
+    // Intercept anchor clicks to present the save modal for in-app navigation
+    document.addEventListener('click', (e) => {
+      const a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+
+      // If the anchor already has an inline onclick handler, skip interception to avoid duplicates
+      if (a.hasAttribute && a.hasAttribute('onclick')) return;
+
+      const href = a.getAttribute('href');
+      if (!href) return;
+
+      // Ignore anchors that are purely hash/navigation within page or explicitly opted-out
+      if (href.startsWith('#') || href.startsWith('javascript:') || a.target === '_blank' || (a.dataset && a.dataset.noPrompt === 'true')) return;
+
+      // Intercept navigation and show modal
+      e.preventDefault();
+      confirmLeaveAdmin(e, href);
+    });
+
     window.newQuote = () => {
       if (currentQuote.lineItems.length > 0) {
         if (!confirm('Start a new quote? Current quote will be lost if not saved.')) return;
@@ -807,6 +914,7 @@
           <table>
             <thead>
               <tr>
+                <th style="width:48px;">#</th>
                 <th>Room</th>
                 <th>Product</th>
                 <th>Size</th>
@@ -839,6 +947,7 @@
                 
                 return `
                   <tr>
+                    <td>${index + 1}</td>
                     <td>${item.roomLabel}</td>
                     <td>${productCode} - ${productName}</td>
                     <td>${item.width}" × ${item.height}"</td>
@@ -1001,11 +1110,25 @@
       
       updateQuoteDisplay();
 
+      // Clean up any leftover modal overlays (can persist when navigating back via bfcache)
+      try {
+        document.querySelectorAll('[id^="modal-"]').forEach(m => m.remove());
+      } catch (err) {
+        console.warn('Modal cleanup failed', err);
+      }
+
       // Refresh product data when page becomes visible (returns from admin panel)
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) {
           updateProductLineOptions();
+          // Remove any stray modal overlays that might block input when returning
+          document.querySelectorAll('[id^="modal-"]').forEach(m => m.remove());
         }
+      });
+
+      // pageshow can fire when returning from bfcache; ensure overlays are removed
+      window.addEventListener('pageshow', () => {
+        document.querySelectorAll('[id^="modal-"]').forEach(m => m.remove());
       });
     }
 

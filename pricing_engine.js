@@ -12,17 +12,17 @@ export const PricingEngine = {
    * @returns {boolean} True if addon is allowed for this product
    */
   isAddonAllowed(addon, product, ui) {
-    // Check product type restrictions (e.g., "Tempered Glass" only for "Window")
+    // Check product type restrictions (match against `productType` or fallback fields)
     if (addon.allowedProductTypes && addon.allowedProductTypes.length > 0) {
-      const productType = product.type || product.productTypeCode;
+      const productType = product.productType || product.type || product.productTypeCode;
       if (!productType || !addon.allowedProductTypes.includes(productType)) {
         return false;
       }
     }
 
-    // Check product line restrictions (e.g., addon only for "Premium" line)
+    // Check product line restrictions (match against `productLineId` or `productLine`)
     if (addon.allowedProductLines && addon.allowedProductLines.length > 0) {
-      const productLine = product.productLine;
+      const productLine = product.productLineId || product.productLine;
       if (!productLine || !addon.allowedProductLines.includes(productLine)) {
         return false;
       }
