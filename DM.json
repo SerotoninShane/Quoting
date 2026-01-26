@@ -1,7 +1,1338 @@
 {
+  "addons": {
+    "addon_admin_fee": {
+      "allowedProductLines": null,
+      "allowedProductTypes": null,
+      "exclusiveGroup": null,
+      "flatPrice": 346,
+      "hiddenFromCustomer": true,
+      "id": "addon_admin_fee",
+      "isJobBased": true,
+      "mandatory": true,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Admin Fee",
+      "pricingModel": "FLAT"
+    },
+    "addon_black_black": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "exterior_color",
+      "hiddenFromCustomer": false,
+      "id": "addon_black_black",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Black/Black Desert Mountain",
+      "pricingModel": "UI",
+      "uiRate": 8.59
+    },
+    "addon_curved_picture_windows": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": null,
+      "hiddenFromCustomer": false,
+      "id": "addon_curved_picture_windows",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Curved Picture Windows (1/2 Circle, Eyebrow, etc.)",
+      "pricingModel": "UI",
+      "uiRate": 9.14
+    },
+    "addon_diamond_grill": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "grill_type",
+      "flatPrice": 457.31,
+      "hiddenFromCustomer": false,
+      "id": "addon_diamond_grill",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Diamond Grill Patterns (Flat Grill Only)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_deduct_nonvent": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": -1171.95,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_deduct_nonvent",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Deduction for Each Non-Venting Sidelite",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_doggie": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 2101.33,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_doggie",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Doggie Door (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_flat_grills": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "dm_french_grill",
+      "flatPrice": 239.98,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_flat_grills",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Flat Grills (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_impact": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 720.30,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_impact",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Safeguard Impact Glass (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_keyed_alike": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 50.90,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_keyed_alike",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Keyed Alike (Per Door System)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_obscure": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "dm_french_glass",
+      "flatPrice": 821.79,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_obscure",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Obscure (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_painted": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 2412.02,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_painted",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Painted Exterior Color (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_rain_glue": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "dm_french_glass",
+      "flatPrice": 1112.67,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_rain_glue",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Rain Glass, Glue Chip, Etch Matte, Delta Frost, Reed or Flemish (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_sculpted_grills": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "dm_french_grill",
+      "flatPrice": 366.03,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_sculpted_grills",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Sculpted Grills (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_dm_french_stc": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 198.78,
+      "hiddenFromCustomer": false,
+      "id": "addon_dm_french_stc",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "STC Glass (Per Door Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_blackstone_half": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_blackstone_type",
+      "flatPrice": 753.28,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_blackstone_half",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Blackstone Glass - Half Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_blackstone_more": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_blackstone_type",
+      "flatPrice": 1016.52,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_blackstone_more",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Blackstone Glass - More Than Half Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_blackstone_top": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_blackstone_type",
+      "flatPrice": 276.28,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_blackstone_top",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Blackstone Glass - Top Glass Only",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_blinds_btg": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_grid_type",
+      "flatPrice": 621.41,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_blinds_btg",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Blinds Between The Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_clavos": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 500.47,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_clavos",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Clavos Any Size",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_dentil_shelf": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 487.41,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_dentil_shelf",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Dentil Shelf",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_doggy_door": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 299.73,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_doggy_door",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Cut Doggy Door Into Slab",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_dummy_emtek_lever": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_lock_system",
+      "flatPrice": 362.24,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_dummy_emtek_lever",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Dummy for Emtek Lever & Knob Handles",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_dummy_emtek_long": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_lock_system",
+      "flatPrice": 680.78,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_dummy_emtek_long",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Dummy for Emtek Long Handles",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_dummy_multipoint": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_lock_system",
+      "flatPrice": 680.79,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_dummy_multipoint",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Dummy for Multipoint",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_emtek_long": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_lock_system",
+      "flatPrice": 331.41,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_emtek_long",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Emtek Long Handles",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_eyeviewer": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 145.96,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_eyeviewer",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Eyeviewer (Peep Hole)",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_grids_btg": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_grid_type",
+      "flatPrice": 148.57,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_grids_btg",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Grids Between The Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_hvhz_mesh": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 1112.97,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_hvhz_mesh",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "HVHZ Hurricane Steel Mesh Inside",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_impact_stc_half": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_impact_type",
+      "flatPrice": 1282.37,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_impact_stc_half",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Impact & STC Glass - Half Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_impact_stc_more": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_impact_type",
+      "flatPrice": 1965.26,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_impact_stc_more",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Impact Glass & STC - More Than Half Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_louver_vent": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 362.28,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_louver_vent",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Louver Vent",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_outswing": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 20.84,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_outswing",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Outswing",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_prospect_forte": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_lock_system",
+      "flatPrice": 2214.52,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_prospect_forte",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Prospect & Forte Multipoints",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_rustic_straps": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 450.42,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_rustic_straps",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "3 Metal Rustic Straps",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_sdl_bars": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_grid_type",
+      "flatPrice": 375.52,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_sdl_bars",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "SDL Bars Outside the Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_sdl_bars_wide": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 763.76,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_sdl_bars_wide",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "SDL Bars Over 1 1/4\" Wide",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_self_closing": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 93.83,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_self_closing",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Self Closing Hinges",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_speak_easy": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 2344.46,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_speak_easy",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Speak Easy Insert",
+      "pricingModel": "FLAT"
+    },
+    "addon_door_thermatru_multipoint": {
+      "allowedProductLines": [
+        "line_smooth_star",
+        "line_fiberclassic",
+        "line_classic_craft",
+        "line_pulse_ari"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "door_lock_system",
+      "flatPrice": 1307.02,
+      "hiddenFromCustomer": false,
+      "id": "addon_door_thermatru_multipoint",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Therma-Tru Multipoint Locks",
+      "pricingModel": "FLAT"
+    },
+    "addon_flat_grills": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "grill_type",
+      "flatPrice": 165.08,
+      "hiddenFromCustomer": false,
+      "id": "addon_flat_grills",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "5/8\" Flat Grills - Rectangular",
+      "pricingModel": "FLAT"
+    },
+    "addon_glue_chip_flemish": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "glass_treatment",
+      "hiddenFromCustomer": false,
+      "id": "addon_glue_chip_flemish",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Glue Chip, Flemish, Reed, Delta Frost or Etch Matte",
+      "pricingModel": "UI",
+      "uiRate": 3.66
+    },
+    "addon_non_square_windows": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": null,
+      "hiddenFromCustomer": false,
+      "id": "addon_non_square_windows",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Non-Square Windows (Octagons, Triangles, Trapezoids, Pentagons)",
+      "pricingModel": "UI",
+      "uiRate": 7.17
+    },
+    "addon_obscure": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "glass_treatment",
+      "hiddenFromCustomer": false,
+      "id": "addon_obscure",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Obscure",
+      "pricingModel": "UI",
+      "uiRate": 2.32
+    },
+    "addon_painted_exterior": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "exterior_color",
+      "hiddenFromCustomer": false,
+      "id": "addon_painted_exterior",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Painted Exterior (No Black or Bronze) / White or Tan Interior Only",
+      "pricingModel": "UI",
+      "uiRate": 6.13
+    },
+    "addon_pet_solar_screens": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": null,
+      "flatPrice": 171.53,
+      "hiddenFromCustomer": false,
+      "id": "addon_pet_solar_screens",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Pet or Solar Screens",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_cherry_mahogany": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "wood_type",
+      "flatPrice": 2501.01,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_cherry_mahogany",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Cherry or Mahogany French (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_flat_grills": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "premium_grill",
+      "flatPrice": 149.69,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_flat_grills",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Flat Grills (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_glue_chip": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "premium_glass",
+      "flatPrice": 1080.46,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_glue_chip",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Glue Chip",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_keyed_alike": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 48.92,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_keyed_alike",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Keyed Alike (Per Door System)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_oak_maple": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "wood_type",
+      "flatPrice": 1235.57,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_oak_maple",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Oak or Maple French (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_obscure": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "premium_glass",
+      "flatPrice": 617.78,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_obscure",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Obscure (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_outswing": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 506.22,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_outswing",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Outswing Charge (Single or Double Doors)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_rain_glass": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "premium_glass",
+      "flatPrice": 789.25,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_rain_glass",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Rain Glass",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_sculpted_grills": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "premium_grill",
+      "flatPrice": 302.10,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_sculpted_grills",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Sculpted Grills (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_sdl": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": "premium_grill",
+      "flatPrice": 623.23,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_sdl",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Simulated Divided Light (Per Panel)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_self_closing": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 252.17,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_self_closing",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Self Closing Hinges (Single or Double Doors)",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_windor_ladder_pull": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 832.05,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_windor_ladder_pull",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Windor 48\" or 72\" Ladder Pull Handle with Roller Catches",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_windor_oversize": {
+      "allowedProductLines": [
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 1079.75,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_windor_oversize",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Oversize Upcharge for Windor 4750 - 10' Tall OR Over 38\" Wide",
+      "pricingModel": "FLAT"
+    },
+    "addon_premium_zo_e_safeguard": {
+      "allowedProductLines": [
+        "line_premium_series",
+        "line_contemporary_series",
+        "line_vue"
+      ],
+      "allowedProductTypes": [
+        "Door"
+      ],
+      "exclusiveGroup": null,
+      "flatPrice": 478.99,
+      "hiddenFromCustomer": false,
+      "id": "addon_premium_zo_e_safeguard",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Zo E Safeguard",
+      "pricingModel": "FLAT"
+    },
+    "addon_push_out_coronado": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": null,
+      "hiddenFromCustomer": false,
+      "id": "addon_push_out_coronado",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Push Out Coronado Casement or Awning",
+      "pricingModel": "UI",
+      "uiRate": 4.75
+    },
+    "addon_rain_satin_etch": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "glass_treatment",
+      "hiddenFromCustomer": false,
+      "id": "addon_rain_satin_etch",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Rain, Satin Etch",
+      "pricingModel": "UI",
+      "uiRate": 3.66
+    },
+    "addon_safeguard_impact": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": null,
+      "hiddenFromCustomer": false,
+      "id": "addon_safeguard_impact",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": 21,
+      "minSize": null,
+      "name": "Safeguard Impact Glass (No Glass Over 21 sq ft)",
+      "pricingModel": "UI",
+      "uiRate": 7.69
+    },
+    "addon_sculpted_grills": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "grill_type",
+      "flatPrice": 247.66,
+      "hiddenFromCustomer": false,
+      "id": "addon_sculpted_grills",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Sculpted Grills (No Diamonds or Curved Bars)",
+      "pricingModel": "FLAT"
+    },
+    "addon_sh_oriel_half_circle_eyebrow": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": "oriel_type",
+      "flatPrice": 379.15,
+      "hiddenFromCustomer": false,
+      "id": "addon_sh_oriel_half_circle_eyebrow",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Single Hung Oriel Half Circle or Eyebrow",
+      "pricingModel": "FLAT"
+    },
+    "addon_sh_oriels": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": "oriel_type",
+      "flatPrice": 38.93,
+      "hiddenFromCustomer": false,
+      "id": "addon_sh_oriels",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Single Hung Oriels",
+      "pricingModel": "FLAT"
+    },
+    "addon_single_slider_oriel": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": "oriel_type",
+      "flatPrice": 38.93,
+      "hiddenFromCustomer": false,
+      "id": "addon_single_slider_oriel",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Single Slider Oriel",
+      "pricingModel": "FLAT"
+    },
+    "addon_sound_package": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": null,
+      "hiddenFromCustomer": false,
+      "id": "addon_sound_package",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Sound Package STC Glass For Sound",
+      "pricingModel": "UI",
+      "uiRate": 1.69
+    },
+    "addon_starburst_no_radius": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "grill_type",
+      "flatPrice": 262.0,
+      "hiddenFromCustomer": false,
+      "id": "addon_starburst_no_radius",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Starburst NO Radius (Flat Grill Only)",
+      "pricingModel": "FLAT"
+    },
+    "addon_sunburst_radius": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": null,
+      "exclusiveGroup": "grill_type",
+      "flatPrice": 466.61,
+      "hiddenFromCustomer": false,
+      "id": "addon_sunburst_radius",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Sunburst Radius (Flat Grill Only)",
+      "pricingModel": "FLAT"
+    },
+    "addon_tempered_glass": {
+      "allowedProductLines": [
+        "line_desert_mountain"
+      ],
+      "allowedProductTypes": [
+        "Window"
+      ],
+      "exclusiveGroup": "glass_type",
+      "hiddenFromCustomer": false,
+      "id": "addon_tempered_glass",
+      "isJobBased": false,
+      "mandatory": false,
+      "maxSize": null,
+      "minSize": null,
+      "name": "Tempered Glass (Windows Only)",
+      "pricingModel": "UI",
+      "uiRate": 6.34
+    }
+  },
   "id": "pricing_v1769393655082",
-  "timestamp": "2026-01-26T02:14:15.082Z",
-  "notes": "Desert Mountain complete product line with fiberglass doors",
   "manufacturers": {
     "mfg_anlin": {
       "id": "mfg_anlin",
@@ -12,1678 +1343,1431 @@
       "name": "Therma-Tru"
     }
   },
+  "name": "Complete Product Line - Desert Mountain Windows & Fiberglass Doors - 1/26/2026",
+  "notes": "Desert Mountain complete product line with fiberglass doors",
   "productLines": {
+    "line_classic_craft": {
+      "id": "line_classic_craft",
+      "manufacturerId": "mfg_thermatru",
+      "name": "Classic Craft"
+    },
+    "line_contemporary_series": {
+      "id": "line_contemporary_series",
+      "manufacturerId": "mfg_anlin",
+      "name": "Contemporary Series"
+    },
     "line_desert_mountain": {
       "id": "line_desert_mountain",
       "manufacturerId": "mfg_anlin",
       "name": "Desert Mountain"
-    },
-    "line_smooth_star": {
-      "id": "line_smooth_star",
-      "manufacturerId": "mfg_thermatru",
-      "name": "Smooth Star"
     },
     "line_fiberclassic": {
       "id": "line_fiberclassic",
       "manufacturerId": "mfg_thermatru",
       "name": "Fiberclassic"
     },
-    "line_classic_craft": {
-      "id": "line_classic_craft",
-      "manufacturerId": "mfg_thermatru",
-      "name": "Classic Craft"
+    "line_premium_series": {
+      "id": "line_premium_series",
+      "manufacturerId": "mfg_anlin",
+      "name": "Premium Series"
     },
     "line_pulse_ari": {
       "id": "line_pulse_ari",
       "manufacturerId": "mfg_thermatru",
       "name": "Pulse & ARI"
+    },
+    "line_smooth_star": {
+      "id": "line_smooth_star",
+      "manufacturerId": "mfg_thermatru",
+      "name": "Smooth Star"
+    },
+    "line_vue": {
+      "id": "line_vue",
+      "manufacturerId": "mfg_anlin",
+      "name": "Vue (Windor 4750)"
     }
   },
   "products": {
-    "prod_single_slider": {
-      "id": "prod_single_slider",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "SS",
-      "name": "Single Slider",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
+    "prod_awning": {
       "allowedAddons": [],
-      "uiRate": 27.31
+      "id": "prod_awning",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Awning",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "AW",
+      "uiRate": 27.8
     },
-    "prod_single_hung": {
-      "id": "prod_single_hung",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "SH",
-      "name": "Single Hung",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
+    "prod_bay_window": {
       "allowedAddons": [],
-      "uiRate": 27.31
+      "id": "prod_bay_window",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Bay Window",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "BAY",
+      "uiRate": 126.44
     },
-    "prod_xox": {
-      "id": "prod_xox",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "XOX",
-      "name": "XOX",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
+    "prod_bifolding": {
       "allowedAddons": [],
-      "uiRate": 27.03
-    },
-    "prod_picture": {
-      "id": "prod_picture",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "PIC",
-      "name": "Picture",
-      "pricingModel": "UI",
-      "minimumUI": 0,
+      "id": "prod_bifolding",
       "maximumUI": null,
-      "allowedAddons": [],
+      "minimumUI": 0,
+      "name": "Bifolding",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "BF",
       "uiRate": 24.6
+    },
+    "prod_bow_window": {
+      "allowedAddons": [],
+      "id": "prod_bow_window",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Bow Window",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "BOW",
+      "uiRate": 131.61
+    },
+    "prod_casement": {
+      "allowedAddons": [],
+      "id": "prod_casement",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Casement",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "CS",
+      "uiRate": 27.8
+    },
+    "prod_classic_craft_canvas_clear": {
+      "allowedAddons": [],
+      "flatPrice": 8210,
+      "id": "prod_classic_craft_canvas_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_CLR"
+    },
+    "prod_classic_craft_canvas_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 13219,
+      "id": "prod_classic_craft_canvas_decorative_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas Decorative Glass (Half Length/Arch/Small Oval)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_DEC_H"
+    },
+    "prod_classic_craft_canvas_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 10341,
+      "id": "prod_classic_craft_canvas_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_DEC_M"
+    },
+    "prod_classic_craft_canvas_decorative_small": {
+      "allowedAddons": [],
+      "flatPrice": 8956,
+      "id": "prod_classic_craft_canvas_decorative_small",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas Decorative Glass (Small Top Only)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_DEC_SM"
+    },
+    "prod_classic_craft_canvas_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 6506,
+      "id": "prod_classic_craft_canvas_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_NG"
+    },
+    "prod_classic_craft_canvas_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 10216,
+      "id": "prod_classic_craft_canvas_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_PH"
+    },
+    "prod_classic_craft_canvas_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 7985,
+      "id": "prod_classic_craft_canvas_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Canvas Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_CAN_PM"
+    },
+    "prod_classic_craft_fir_clear": {
+      "allowedAddons": [],
+      "flatPrice": 7358,
+      "id": "prod_classic_craft_fir_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_CLR"
+    },
+    "prod_classic_craft_fir_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 12473,
+      "id": "prod_classic_craft_fir_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_DEC_M"
+    },
+    "prod_classic_craft_fir_decorative_small": {
+      "allowedAddons": [],
+      "flatPrice": 9798,
+      "id": "prod_classic_craft_fir_decorative_small",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir Decorative Glass (Small Top Only)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_DEC_SM"
+    },
+    "prod_classic_craft_fir_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 9112,
+      "id": "prod_classic_craft_fir_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_NG"
+    },
+    "prod_classic_craft_fir_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 9206,
+      "id": "prod_classic_craft_fir_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_PH"
+    },
+    "prod_classic_craft_fir_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 12144,
+      "id": "prod_classic_craft_fir_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_PM"
+    },
+    "prod_classic_craft_fir_privacy_sdl": {
+      "allowedAddons": [],
+      "flatPrice": 16059,
+      "id": "prod_classic_craft_fir_privacy_sdl",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Fir Privacy Glass (More Than Half w/Large SDL)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_FIR_SDL"
+    },
+    "prod_classic_craft_mahogany_clear": {
+      "allowedAddons": [],
+      "flatPrice": 8042,
+      "id": "prod_classic_craft_mahogany_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Mahogany Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_MAH_CLR"
+    },
+    "prod_classic_craft_mahogany_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 12621,
+      "id": "prod_classic_craft_mahogany_decorative_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Mahogany Decorative Glass (Half Length/Arch/Small Oval)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_MAH_DEC_H"
+    },
+    "prod_classic_craft_mahogany_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 15435,
+      "id": "prod_classic_craft_mahogany_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Mahogany Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_MAH_DEC_M"
+    },
+    "prod_classic_craft_mahogany_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 6255,
+      "id": "prod_classic_craft_mahogany_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Mahogany (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_MAH_NG"
+    },
+    "prod_classic_craft_mahogany_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 10603,
+      "id": "prod_classic_craft_mahogany_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Mahogany Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_MAH_PH"
+    },
+    "prod_classic_craft_mahogany_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 10754,
+      "id": "prod_classic_craft_mahogany_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Mahogany Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_MAH_PM"
+    },
+    "prod_classic_craft_oak_clear": {
+      "allowedAddons": [],
+      "flatPrice": 8623,
+      "id": "prod_classic_craft_oak_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_CLR"
+    },
+    "prod_classic_craft_oak_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 13798,
+      "id": "prod_classic_craft_oak_decorative_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak Decorative Glass (Half Length/Arch/Small Oval)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_DEC_H"
+    },
+    "prod_classic_craft_oak_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 16091,
+      "id": "prod_classic_craft_oak_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_DEC_M"
+    },
+    "prod_classic_craft_oak_decorative_small": {
+      "allowedAddons": [],
+      "flatPrice": 8201,
+      "id": "prod_classic_craft_oak_decorative_small",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak Decorative Glass (Small Top Only)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_DEC_SM"
+    },
+    "prod_classic_craft_oak_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 6731,
+      "id": "prod_classic_craft_oak_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_NG"
+    },
+    "prod_classic_craft_oak_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 10603,
+      "id": "prod_classic_craft_oak_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_PH"
+    },
+    "prod_classic_craft_oak_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 8908,
+      "id": "prod_classic_craft_oak_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Oak Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_OAK_PM"
+    },
+    "prod_classic_craft_walnut_clear": {
+      "allowedAddons": [],
+      "flatPrice": 7839,
+      "id": "prod_classic_craft_walnut_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Walnut Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_WAL_CLR"
+    },
+    "prod_classic_craft_walnut_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 10873,
+      "id": "prod_classic_craft_walnut_decorative_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Walnut Decorative Glass (Half Length/Arch/Small Oval)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_WAL_DEC_H"
+    },
+    "prod_classic_craft_walnut_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 14537,
+      "id": "prod_classic_craft_walnut_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Walnut Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_WAL_DEC_M"
+    },
+    "prod_classic_craft_walnut_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 6989,
+      "id": "prod_classic_craft_walnut_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Walnut (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_WAL_NG"
+    },
+    "prod_classic_craft_walnut_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 9171,
+      "id": "prod_classic_craft_walnut_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Walnut Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_WAL_PH"
+    },
+    "prod_classic_craft_walnut_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 9810,
+      "id": "prod_classic_craft_walnut_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Classic Craft Walnut Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_classic_craft",
+      "productType": "Door",
+      "productTypeCode": "CC_WAL_PM"
+    },
+    "prod_dm_hinged_french_double_68": {
+      "allowedAddons": [],
+      "flatPrice": 13691,
+      "id": "prod_dm_hinged_french_double_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel French 6-8 High",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_D68"
+    },
+    "prod_dm_hinged_french_double_68_2vent": {
+      "allowedAddons": [],
+      "flatPrice": 21826,
+      "id": "prod_dm_hinged_french_double_68_2vent",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel 6-8 w/ 2 Venting Sidelites",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_D68_2V"
+    },
+    "prod_dm_hinged_french_double_80": {
+      "allowedAddons": [],
+      "flatPrice": 14696,
+      "id": "prod_dm_hinged_french_double_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel French 8-0 High",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_D80"
+    },
+    "prod_dm_hinged_french_double_80_2vent": {
+      "allowedAddons": [],
+      "flatPrice": 22703,
+      "id": "prod_dm_hinged_french_double_80_2vent",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel 8-0 w/ 2 Venting Sidelites",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_D80_2V"
+    },
+    "prod_dm_hinged_french_single_68": {
+      "allowedAddons": [],
+      "flatPrice": 8986,
+      "id": "prod_dm_hinged_french_single_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel French 6-8 High",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_S68"
+    },
+    "prod_dm_hinged_french_single_68_1vent": {
+      "allowedAddons": [],
+      "flatPrice": 13372,
+      "id": "prod_dm_hinged_french_single_68_1vent",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 6-8 w/ One Venting Sidelite",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_S68_1V"
+    },
+    "prod_dm_hinged_french_single_68_2vent": {
+      "allowedAddons": [],
+      "flatPrice": 16941,
+      "id": "prod_dm_hinged_french_single_68_2vent",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 6-8 w/ 2 Venting Sidelites",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_S68_2V"
+    },
+    "prod_dm_hinged_french_single_80": {
+      "allowedAddons": [],
+      "flatPrice": 9390,
+      "id": "prod_dm_hinged_french_single_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel French 8-0 High",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_S80"
+    },
+    "prod_dm_hinged_french_single_80_1vent": {
+      "allowedAddons": [],
+      "flatPrice": 14535,
+      "id": "prod_dm_hinged_french_single_80_1vent",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 8-0 w/ One Venting Sidelite",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_S80_1V"
+    },
+    "prod_dm_hinged_french_single_80_2vent": {
+      "allowedAddons": [],
+      "flatPrice": 18261,
+      "id": "prod_dm_hinged_french_single_80_2vent",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 8-0 w/ 2 Venting Sidelites",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_S80_2V"
+    },
+    "prod_dm_hinged_french_triple_68": {
+      "allowedAddons": [],
+      "flatPrice": 18809,
+      "id": "prod_dm_hinged_french_triple_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Triple Panel French 6-8 Any Width",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_T68"
+    },
+    "prod_dm_hinged_french_triple_80": {
+      "allowedAddons": [],
+      "flatPrice": 20126,
+      "id": "prod_dm_hinged_french_triple_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Triple Panel French 8-0 Any Width",
+      "pricingModel": "FLAT",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "HF_T80"
+    },
+    "prod_double_hung": {
+      "allowedAddons": [],
+      "id": "prod_double_hung",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Double Hung",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "DH",
+      "uiRate": 27.31
+    },
+    "prod_double_slider": {
+      "allowedAddons": [],
+      "id": "prod_double_slider",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Double Slider",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "DS",
+      "uiRate": 27.31
+    },
+    "prod_fiberclassic_mahogany_clear": {
+      "allowedAddons": [],
+      "flatPrice": 6607,
+      "id": "prod_fiberclassic_mahogany_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_CLR"
+    },
+    "prod_fiberclassic_mahogany_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 7293,
+      "id": "prod_fiberclassic_mahogany_decorative_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Decorative Glass (Half Length/Arch/Small Oval)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_DEC_H"
+    },
+    "prod_fiberclassic_mahogany_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 8103,
+      "id": "prod_fiberclassic_mahogany_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_DEC_M"
+    },
+    "prod_fiberclassic_mahogany_decorative_small": {
+      "allowedAddons": [],
+      "flatPrice": 7182,
+      "id": "prod_fiberclassic_mahogany_decorative_small",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Decorative Glass (Small Top Only)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_DEC_SM"
+    },
+    "prod_fiberclassic_mahogany_fire": {
+      "allowedAddons": [],
+      "flatPrice": 5669,
+      "id": "prod_fiberclassic_mahogany_fire",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Fire Door",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_FIRE"
+    },
+    "prod_fiberclassic_mahogany_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 6071,
+      "id": "prod_fiberclassic_mahogany_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_NG"
+    },
+    "prod_fiberclassic_mahogany_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 6605,
+      "id": "prod_fiberclassic_mahogany_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_PH"
+    },
+    "prod_fiberclassic_mahogany_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 6831,
+      "id": "prod_fiberclassic_mahogany_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Mahogany Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_MAH_PM"
+    },
+    "prod_fiberclassic_oak_clear": {
+      "allowedAddons": [],
+      "flatPrice": 6602,
+      "id": "prod_fiberclassic_oak_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Clear/Low-E Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_CLR"
+    },
+    "prod_fiberclassic_oak_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 7227,
+      "id": "prod_fiberclassic_oak_decorative_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Decorative Glass (Half Length/Arch/Small Oval)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_DEC_H"
+    },
+    "prod_fiberclassic_oak_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 7873,
+      "id": "prod_fiberclassic_oak_decorative_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Decorative Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_DEC_M"
+    },
+    "prod_fiberclassic_oak_decorative_small": {
+      "allowedAddons": [],
+      "flatPrice": 6625,
+      "id": "prod_fiberclassic_oak_decorative_small",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Decorative Glass (Small Top Only)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_DEC_SM"
+    },
+    "prod_fiberclassic_oak_fire": {
+      "allowedAddons": [],
+      "flatPrice": 5669,
+      "id": "prod_fiberclassic_oak_fire",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Fire Door",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_FIRE"
+    },
+    "prod_fiberclassic_oak_no_glass": {
+      "allowedAddons": [],
+      "flatPrice": 5560,
+      "id": "prod_fiberclassic_oak_no_glass",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak (No Glass)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_NG"
+    },
+    "prod_fiberclassic_oak_privacy_half": {
+      "allowedAddons": [],
+      "flatPrice": 6391,
+      "id": "prod_fiberclassic_oak_privacy_half",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Privacy Glass (Half Length or Less)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_PH"
+    },
+    "prod_fiberclassic_oak_privacy_more": {
+      "allowedAddons": [],
+      "flatPrice": 6792,
+      "id": "prod_fiberclassic_oak_privacy_more",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Privacy Glass (More Than Half)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_PM"
+    },
+    "prod_fiberclassic_oak_privacy_sdl": {
+      "allowedAddons": [],
+      "flatPrice": 8729,
+      "id": "prod_fiberclassic_oak_privacy_sdl",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Fiberclassic Oak Privacy Glass (More Than Half w/Large SDL)",
+      "pricingModel": "FLAT",
+      "productLineId": "line_fiberclassic",
+      "productType": "Door",
+      "productTypeCode": "FC_OAK_SDL"
+    },
+    "prod_fold_up": {
+      "allowedAddons": [],
+      "id": "prod_fold_up",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Fold Up",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "FU",
+      "uiRate": 24.6
+    },
+    "prod_gas_piston_awning": {
+      "allowedAddons": [],
+      "id": "prod_gas_piston_awning",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Gas-Piston Awning",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "GPA",
+      "uiRate": 27.8
     },
     "prod_glass_pack": {
+      "allowedAddons": [],
       "id": "prod_glass_pack",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "GP",
+      "maximumUI": null,
+      "minimumUI": 0,
       "name": "Glass Pack",
       "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 24.6
-    },
-    "prod_sliding_door": {
-      "id": "prod_sliding_door",
-      "productType": "Door",
       "productLineId": "line_desert_mountain",
-      "productTypeCode": "SD",
-      "name": "Sliding Door",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
+      "productType": "Window",
+      "productTypeCode": "GP",
       "uiRate": 24.6
     },
     "prod_hinged_door": {
+      "allowedAddons": [],
       "id": "prod_hinged_door",
-      "productType": "Door",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "HD",
+      "maximumUI": null,
+      "minimumUI": 0,
       "name": "Hinged Door",
       "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 24.6
-    },
-    "prod_casement": {
-      "id": "prod_casement",
-      "productType": "Window",
       "productLineId": "line_desert_mountain",
-      "productTypeCode": "CS",
-      "name": "Casement",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 27.8
-    },
-    "prod_awning": {
-      "id": "prod_awning",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "AW",
-      "name": "Awning",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 27.8
-    },
-    "prod_double_slider": {
-      "id": "prod_double_slider",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "DS",
-      "name": "Double Slider",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 27.31
-    },
-    "prod_double_hung": {
-      "id": "prod_double_hung",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "DH",
-      "name": "Double Hung",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 27.31
-    },
-    "prod_bifolding": {
-      "id": "prod_bifolding",
       "productType": "Door",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "BF",
-      "name": "Bifolding",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
+      "productTypeCode": "HD",
       "uiRate": 24.6
+    },
+    "prod_picture": {
+      "allowedAddons": [],
+      "id": "prod_picture",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Picture",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "PIC",
+      "uiRate": 24.6
+    },
+    "prod_premium_french_double_68": {
+      "allowedAddons": [],
+      "flatPrice": 18637,
+      "id": "prod_premium_french_double_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel French 6-8",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_D68"
+    },
+    "prod_premium_french_double_68_2cas": {
+      "allowedAddons": [],
+      "flatPrice": 33658,
+      "id": "prod_premium_french_double_68_2cas",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel 6-8 w/ 2 Casements",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_D68_2C"
+    },
+    "prod_premium_french_double_80": {
+      "allowedAddons": [],
+      "flatPrice": 20908,
+      "id": "prod_premium_french_double_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel French 8-0 High",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_D80"
+    },
+    "prod_premium_french_double_80_2cas": {
+      "allowedAddons": [],
+      "flatPrice": 35878,
+      "id": "prod_premium_french_double_80_2cas",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Double Panel 8-0 w/ 2 Casements",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_D80_2C"
+    },
+    "prod_premium_french_four_68": {
+      "allowedAddons": [],
+      "flatPrice": 34265,
+      "id": "prod_premium_french_four_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Four Panel 6-8 Height",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_F68"
+    },
+    "prod_premium_french_four_80": {
+      "allowedAddons": [],
+      "flatPrice": 39655,
+      "id": "prod_premium_french_four_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Four Panel 8-0 Height",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_F80"
+    },
+    "prod_premium_french_single_68": {
+      "allowedAddons": [],
+      "flatPrice": 11419,
+      "id": "prod_premium_french_single_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel French 6-8",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_S68"
+    },
+    "prod_premium_french_single_68_1cas": {
+      "allowedAddons": [],
+      "flatPrice": 18270,
+      "id": "prod_premium_french_single_68_1cas",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 6-8 w/ One Casement",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_S68_1C"
+    },
+    "prod_premium_french_single_68_2cas": {
+      "allowedAddons": [],
+      "flatPrice": 21501,
+      "id": "prod_premium_french_single_68_2cas",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 6-8 w/ 2 Casements",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_S68_2C"
+    },
+    "prod_premium_french_single_80": {
+      "allowedAddons": [],
+      "flatPrice": 12844,
+      "id": "prod_premium_french_single_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel French 8-0 High",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_S80"
+    },
+    "prod_premium_french_single_80_1cas": {
+      "allowedAddons": [],
+      "flatPrice": 18735,
+      "id": "prod_premium_french_single_80_1cas",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 8-0 w/ One Casement",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_S80_1C"
+    },
+    "prod_premium_french_single_80_2cas": {
+      "allowedAddons": [],
+      "flatPrice": 24893,
+      "id": "prod_premium_french_single_80_2cas",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Single Panel 8-0 w/ 2 Casements",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_S80_2C"
+    },
+    "prod_premium_french_triple_68": {
+      "allowedAddons": [],
+      "flatPrice": 26856,
+      "id": "prod_premium_french_triple_68",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Triple Panel 6-8 Height",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_T68"
+    },
+    "prod_premium_french_triple_80": {
+      "allowedAddons": [],
+      "flatPrice": 33149,
+      "id": "prod_premium_french_triple_80",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Triple Panel 8-0 Height",
+      "pricingModel": "FLAT",
+      "productLineId": "line_premium_series",
+      "productType": "Door",
+      "productTypeCode": "PF_T80"
+    },
+    "prod_pulse_smooth_clear": {
+      "allowedAddons": [],
+      "flatPrice": 6101,
+      "id": "prod_pulse_smooth_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Pulse/ARI Smooth Clear Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_pulse_ari",
+      "productType": "Door",
+      "productTypeCode": "PULSE_SM_CLR"
+    },
+    "prod_pulse_smooth_decorative": {
+      "allowedAddons": [],
+      "flatPrice": 7842,
+      "id": "prod_pulse_smooth_decorative",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Pulse/ARI Smooth Decorative Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_pulse_ari",
+      "productType": "Door",
+      "productTypeCode": "PULSE_SM_DEC"
+    },
+    "prod_pulse_smooth_privacy": {
+      "allowedAddons": [],
+      "flatPrice": 6982,
+      "id": "prod_pulse_smooth_privacy",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Pulse/ARI Smooth Privacy Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_pulse_ari",
+      "productType": "Door",
+      "productTypeCode": "PULSE_SM_PRIV"
+    },
+    "prod_pulse_textured_clear": {
+      "allowedAddons": [],
+      "flatPrice": 6506,
+      "id": "prod_pulse_textured_clear",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Pulse/ARI Textured Clear Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_pulse_ari",
+      "productType": "Door",
+      "productTypeCode": "PULSE_TEX_CLR"
+    },
+    "prod_pulse_textured_decorative": {
+      "allowedAddons": [],
+      "flatPrice": 8516,
+      "id": "prod_pulse_textured_decorative",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Pulse/ARI Textured Decorative Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_pulse_ari",
+      "productType": "Door",
+      "productTypeCode": "PULSE_TEX_DEC"
+    },
+    "prod_pulse_textured_privacy": {
+      "allowedAddons": [],
+      "flatPrice": 7663,
+      "id": "prod_pulse_textured_privacy",
+      "maximumUI": null,
+      "minimumUI": null,
+      "name": "Pulse/ARI Textured Privacy Glass",
+      "pricingModel": "FLAT",
+      "productLineId": "line_pulse_ari",
+      "productType": "Door",
+      "productTypeCode": "PULSE_TEX_PRIV"
     },
     "prod_push_out_french_casement": {
+      "allowedAddons": [],
       "id": "prod_push_out_french_casement",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "POFC",
+      "maximumUI": null,
+      "minimumUI": 0,
       "name": "Push-Out French Casement",
       "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "POFC",
       "uiRate": 27.8
     },
-    "prod_gas_piston_awning": {
-      "id": "prod_gas_piston_awning",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "GPA",
-      "name": "Gas-Piston Awning",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
+    "prod_single_hung": {
       "allowedAddons": [],
-      "uiRate": 27.8
+      "id": "prod_single_hung",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Single Hung",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "SH",
+      "uiRate": 27.31
     },
-    "prod_fold_up": {
-      "id": "prod_fold_up",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "FU",
-      "name": "Fold Up",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
+    "prod_single_slider": {
       "allowedAddons": [],
+      "id": "prod_single_slider",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Single Slider",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "SS",
+      "uiRate": 27.31
+    },
+    "prod_sliding_door": {
+      "allowedAddons": [],
+      "id": "prod_sliding_door",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "Sliding Door",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Door",
+      "productTypeCode": "SD",
       "uiRate": 24.6
     },
-    "prod_bay_window": {
-      "id": "prod_bay_window",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "BAY",
-      "name": "Bay Window",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 126.44
-    },
-    "prod_bow_window": {
-      "id": "prod_bow_window",
-      "productType": "Window",
-      "productLineId": "line_desert_mountain",
-      "productTypeCode": "BOW",
-      "name": "Bow Window",
-      "pricingModel": "UI",
-      "minimumUI": 0,
-      "maximumUI": null,
-      "allowedAddons": [],
-      "uiRate": 131.61
-    },
-    "prod_smooth_star_flat_slab": {
-      "id": "prod_smooth_star_flat_slab",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_FLAT",
-      "name": "Smooth Star Flat Slab (No Glass)",
-      "pricingModel": "FLAT",
-      "flatPrice": 4911,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_smooth_star_no_glass": {
-      "id": "prod_smooth_star_no_glass",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_NG",
-      "name": "Smooth Star (No Glass)",
-      "pricingModel": "FLAT",
-      "flatPrice": 5183,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_smooth_star_fire": {
-      "id": "prod_smooth_star_fire",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_FIRE",
-      "name": "Smooth Star Fire Door",
-      "pricingModel": "FLAT",
-      "flatPrice": 5183,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
     "prod_smooth_star_clear": {
+      "allowedAddons": [],
+      "flatPrice": 5574,
       "id": "prod_smooth_star_clear",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_CLR",
+      "maximumUI": null,
+      "minimumUI": null,
       "name": "Smooth Star Clear/Low-E Glass",
       "pricingModel": "FLAT",
-      "flatPrice": 5574,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_smooth_star_privacy_half": {
-      "id": "prod_smooth_star_privacy_half",
-      "productType": "Door",
       "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_PH",
-      "name": "Smooth Star Privacy Glass (Half Length or Less)",
-      "pricingModel": "FLAT",
-      "flatPrice": 5702,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_smooth_star_privacy_more": {
-      "id": "prod_smooth_star_privacy_more",
       "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_PM",
-      "name": "Smooth Star Privacy Glass (More Than Half)",
-      "pricingModel": "FLAT",
-      "flatPrice": 6143,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_smooth_star_privacy_sdl": {
-      "id": "prod_smooth_star_privacy_sdl",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_SDL",
-      "name": "Smooth Star Privacy Glass (More Than Half w/Large SDL)",
-      "pricingModel": "FLAT",
-      "flatPrice": 7555,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_smooth_star_decorative_small": {
-      "id": "prod_smooth_star_decorative_small",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_DEC_SM",
-      "name": "Smooth Star Decorative Glass (Small Top Only)",
-      "pricingModel": "FLAT",
-      "flatPrice": 5978,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
+      "productTypeCode": "SS_CLR"
     },
     "prod_smooth_star_decorative_half": {
+      "allowedAddons": [],
+      "flatPrice": 6392,
       "id": "prod_smooth_star_decorative_half",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_DEC_H",
+      "maximumUI": null,
+      "minimumUI": null,
       "name": "Smooth Star Decorative Glass (Half Length/Arch/Small Oval)",
       "pricingModel": "FLAT",
-      "flatPrice": 6392,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_DEC_H"
     },
     "prod_smooth_star_decorative_more": {
+      "allowedAddons": [],
+      "flatPrice": 7531,
       "id": "prod_smooth_star_decorative_more",
-      "productType": "Door",
-      "productLineId": "line_smooth_star",
-      "productTypeCode": "SS_DEC_M",
+      "maximumUI": null,
+      "minimumUI": null,
       "name": "Smooth Star Decorative Glass (More Than Half)",
       "pricingModel": "FLAT",
-      "flatPrice": 7531,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_no_glass": {
-      "id": "prod_fiberclassic_oak_no_glass",
+      "productLineId": "line_smooth_star",
       "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_NG",
-      "name": "Fiberclassic Oak (No Glass)",
-      "pricingModel": "FLAT",
-      "flatPrice": 5560,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
+      "productTypeCode": "SS_DEC_M"
     },
-    "prod_fiberclassic_oak_fire": {
-      "id": "prod_fiberclassic_oak_fire",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_FIRE",
-      "name": "Fiberclassic Oak Fire Door",
-      "pricingModel": "FLAT",
-      "flatPrice": 5669,
+    "prod_smooth_star_decorative_small": {
       "allowedAddons": [],
+      "flatPrice": 5978,
+      "id": "prod_smooth_star_decorative_small",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_clear": {
-      "id": "prod_fiberclassic_oak_clear",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_CLR",
-      "name": "Fiberclassic Oak Clear/Low-E Glass",
+      "name": "Smooth Star Decorative Glass (Small Top Only)",
       "pricingModel": "FLAT",
-      "flatPrice": 6602,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_DEC_SM"
+    },
+    "prod_smooth_star_fire": {
       "allowedAddons": [],
+      "flatPrice": 5183,
+      "id": "prod_smooth_star_fire",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_privacy_half": {
-      "id": "prod_fiberclassic_oak_privacy_half",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_PH",
-      "name": "Fiberclassic Oak Privacy Glass (Half Length or Less)",
+      "name": "Smooth Star Fire Door",
       "pricingModel": "FLAT",
-      "flatPrice": 6391,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_FIRE"
+    },
+    "prod_smooth_star_flat_slab": {
       "allowedAddons": [],
+      "flatPrice": 4911,
+      "id": "prod_smooth_star_flat_slab",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_privacy_more": {
-      "id": "prod_fiberclassic_oak_privacy_more",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_PM",
-      "name": "Fiberclassic Oak Privacy Glass (More Than Half)",
+      "name": "Smooth Star Flat Slab (No Glass)",
       "pricingModel": "FLAT",
-      "flatPrice": 6792,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_FLAT"
+    },
+    "prod_smooth_star_no_glass": {
       "allowedAddons": [],
+      "flatPrice": 5183,
+      "id": "prod_smooth_star_no_glass",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_privacy_sdl": {
-      "id": "prod_fiberclassic_oak_privacy_sdl",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_SDL",
-      "name": "Fiberclassic Oak Privacy Glass (More Than Half w/Large SDL)",
+      "name": "Smooth Star (No Glass)",
       "pricingModel": "FLAT",
-      "flatPrice": 8729,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_NG"
+    },
+    "prod_smooth_star_privacy_half": {
       "allowedAddons": [],
+      "flatPrice": 5702,
+      "id": "prod_smooth_star_privacy_half",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_decorative_small": {
-      "id": "prod_fiberclassic_oak_decorative_small",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_DEC_SM",
-      "name": "Fiberclassic Oak Decorative Glass (Small Top Only)",
+      "name": "Smooth Star Privacy Glass (Half Length or Less)",
       "pricingModel": "FLAT",
-      "flatPrice": 6625,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_PH"
+    },
+    "prod_smooth_star_privacy_more": {
       "allowedAddons": [],
+      "flatPrice": 6143,
+      "id": "prod_smooth_star_privacy_more",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_decorative_half": {
-      "id": "prod_fiberclassic_oak_decorative_half",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_DEC_H",
-      "name": "Fiberclassic Oak Decorative Glass (Half Length/Arch/Small Oval)",
+      "name": "Smooth Star Privacy Glass (More Than Half)",
       "pricingModel": "FLAT",
-      "flatPrice": 7227,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_PM"
+    },
+    "prod_smooth_star_privacy_sdl": {
       "allowedAddons": [],
+      "flatPrice": 7555,
+      "id": "prod_smooth_star_privacy_sdl",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_oak_decorative_more": {
-      "id": "prod_fiberclassic_oak_decorative_more",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_OAK_DEC_M",
-      "name": "Fiberclassic Oak Decorative Glass (More Than Half)",
+      "name": "Smooth Star Privacy Glass (More Than Half w/Large SDL)",
       "pricingModel": "FLAT",
-      "flatPrice": 7873,
+      "productLineId": "line_smooth_star",
+      "productType": "Door",
+      "productTypeCode": "SS_SDL"
+    },
+    "prod_windor_french_double_68": {
       "allowedAddons": [],
+      "flatPrice": 19054,
+      "id": "prod_windor_french_double_68",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_no_glass": {
-      "id": "prod_fiberclassic_mahogany_no_glass",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_NG",
-      "name": "Fiberclassic Mahogany (No Glass)",
+      "name": "Double Panel French 6-8",
       "pricingModel": "FLAT",
-      "flatPrice": 6071,
+      "productLineId": "line_vue",
+      "productType": "Door",
+      "productTypeCode": "WF_D68"
+    },
+    "prod_windor_french_double_80": {
       "allowedAddons": [],
+      "flatPrice": 20833,
+      "id": "prod_windor_french_double_80",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_fire": {
-      "id": "prod_fiberclassic_mahogany_fire",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_FIRE",
-      "name": "Fiberclassic Mahogany Fire Door",
+      "name": "Double Panel French 8-0 High",
       "pricingModel": "FLAT",
-      "flatPrice": 5669,
+      "productLineId": "line_vue",
+      "productType": "Door",
+      "productTypeCode": "WF_D80"
+    },
+    "prod_windor_french_double_90": {
       "allowedAddons": [],
+      "flatPrice": 22483,
+      "id": "prod_windor_french_double_90",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_clear": {
-      "id": "prod_fiberclassic_mahogany_clear",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_CLR",
-      "name": "Fiberclassic Mahogany Clear/Low-E Glass",
+      "name": "Double Panel French 9-0 High",
       "pricingModel": "FLAT",
-      "flatPrice": 6607,
+      "productLineId": "line_vue",
+      "productType": "Door",
+      "productTypeCode": "WF_D90"
+    },
+    "prod_windor_french_single_68": {
       "allowedAddons": [],
+      "flatPrice": 10599,
+      "id": "prod_windor_french_single_68",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_privacy_half": {
-      "id": "prod_fiberclassic_mahogany_privacy_half",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_PH",
-      "name": "Fiberclassic Mahogany Privacy Glass (Half Length or Less)",
+      "name": "Single Panel French 6-8",
       "pricingModel": "FLAT",
-      "flatPrice": 6605,
+      "productLineId": "line_vue",
+      "productType": "Door",
+      "productTypeCode": "WF_S68"
+    },
+    "prod_windor_french_single_80": {
       "allowedAddons": [],
+      "flatPrice": 11491,
+      "id": "prod_windor_french_single_80",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_privacy_more": {
-      "id": "prod_fiberclassic_mahogany_privacy_more",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_PM",
-      "name": "Fiberclassic Mahogany Privacy Glass (More Than Half)",
+      "name": "Single Panel French 8-0 High",
       "pricingModel": "FLAT",
-      "flatPrice": 6831,
+      "productLineId": "line_vue",
+      "productType": "Door",
+      "productTypeCode": "WF_S80"
+    },
+    "prod_windor_french_single_90": {
       "allowedAddons": [],
+      "flatPrice": 12498,
+      "id": "prod_windor_french_single_90",
+      "maximumUI": null,
       "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_decorative_small": {
-      "id": "prod_fiberclassic_mahogany_decorative_small",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_DEC_SM",
-      "name": "Fiberclassic Mahogany Decorative Glass (Small Top Only)",
+      "name": "Single Panel French 9-0 High",
       "pricingModel": "FLAT",
-      "flatPrice": 7182,
+      "productLineId": "line_vue",
+      "productType": "Door",
+      "productTypeCode": "WF_S90"
+    },
+    "prod_xox": {
       "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_decorative_half": {
-      "id": "prod_fiberclassic_mahogany_decorative_half",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_DEC_H",
-      "name": "Fiberclassic Mahogany Decorative Glass (Half Length/Arch/Small Oval)",
-      "pricingModel": "FLAT",
-      "flatPrice": 7293,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_fiberclassic_mahogany_decorative_more": {
-      "id": "prod_fiberclassic_mahogany_decorative_more",
-      "productType": "Door",
-      "productLineId": "line_fiberclassic",
-      "productTypeCode": "FC_MAH_DEC_M",
-      "name": "Fiberclassic Mahogany Decorative Glass (More Than Half)",
-      "pricingModel": "FLAT",
-      "flatPrice": 8103,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_no_glass": {
-      "id": "prod_classic_craft_oak_no_glass",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_NG",
-      "name": "Classic Craft Oak (No Glass)",
-      "pricingModel": "FLAT",
-      "flatPrice": 6731,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_clear": {
-      "id": "prod_classic_craft_oak_clear",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_CLR",
-      "name": "Classic Craft Oak Clear/Low-E Glass",
-      "pricingModel": "FLAT",
-      "flatPrice": 8623,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_privacy_half": {
-      "id": "prod_classic_craft_oak_privacy_half",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_PH",
-      "name": "Classic Craft Oak Privacy Glass (Half Length or Less)",
-      "pricingModel": "FLAT",
-      "flatPrice": 10603,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_privacy_more": {
-      "id": "prod_classic_craft_oak_privacy_more",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_PM",
-      "name": "Classic Craft Oak Privacy Glass (More Than Half)",
-      "pricingModel": "FLAT",
-      "flatPrice": 8908,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_decorative_small": {
-      "id": "prod_classic_craft_oak_decorative_small",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_DEC_SM",
-      "name": "Classic Craft Oak Decorative Glass (Small Top Only)",
-      "pricingModel": "FLAT",
-      "flatPrice": 8201,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_decorative_half": {
-      "id": "prod_classic_craft_oak_decorative_half",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_DEC_H",
-      "name": "Classic Craft Oak Decorative Glass (Half Length/Arch/Small Oval)",
-      "pricingModel": "FLAT",
-      "flatPrice": 13798,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_oak_decorative_more": {
-      "id": "prod_classic_craft_oak_decorative_more",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_OAK_DEC_M",
-      "name": "Classic Craft Oak Decorative Glass (More Than Half)",
-      "pricingModel": "FLAT",
-      "flatPrice": 16091,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_mahogany_no_glass": {
-      "id": "prod_classic_craft_mahogany_no_glass",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_MAH_NG",
-      "name": "Classic Craft Mahogany (No Glass)",
-      "pricingModel": "FLAT",
-      "flatPrice": 6255,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_mahogany_clear": {
-      "id": "prod_classic_craft_mahogany_clear",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_MAH_CLR",
-      "name": "Classic Craft Mahogany Clear/Low-E Glass",
-      "pricingModel": "FLAT",
-      "flatPrice": 8042,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_mahogany_privacy_half": {
-      "id": "prod_classic_craft_mahogany_privacy_half",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_MAH_PH",
-      "name": "Classic Craft Mahogany Privacy Glass (Half Length or Less)",
-      "pricingModel": "FLAT",
-      "flatPrice": 10603,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_mahogany_privacy_more": {
-      "id": "prod_classic_craft_mahogany_privacy_more",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_MAH_PM",
-      "name": "Classic Craft Mahogany Privacy Glass (More Than Half)",
-      "pricingModel": "FLAT",
-      "flatPrice": 10754,
-      "allowedAddons": [],
-      "minimumUI": null,
-      "maximumUI": null
-    },
-    "prod_classic_craft_mahogany_decorative_half": {
-      "id": "prod_classic_craft_mahogany_decorative_half",
-      "productType": "Door",
-      "productLineId": "line_classic_craft",
-      "productTypeCode": "CC_MAH_DEC_H",
-      "name": "Classic Craft Mahogany Decorative Glass (Half Length/Arch/Small Oval)",
-      
-
-      "pricingModel": "FLAT",
-"flatPrice": 12621,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_mahogany_decorative_more": {
-"id": "prod_classic_craft_mahogany_decorative_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_MAH_DEC_M",
-"name": "Classic Craft Mahogany Decorative Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 15435,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_walnut_no_glass": {
-"id": "prod_classic_craft_walnut_no_glass",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_WAL_NG",
-"name": "Classic Craft Walnut (No Glass)",
-"pricingModel": "FLAT",
-"flatPrice": 6989,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_walnut_clear": {
-"id": "prod_classic_craft_walnut_clear",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_WAL_CLR",
-"name": "Classic Craft Walnut Clear/Low-E Glass",
-"pricingModel": "FLAT",
-"flatPrice": 7839,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_walnut_privacy_half": {
-"id": "prod_classic_craft_walnut_privacy_half",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_WAL_PH",
-"name": "Classic Craft Walnut Privacy Glass (Half Length or Less)",
-"pricingModel": "FLAT",
-"flatPrice": 9171,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_walnut_privacy_more": {
-"id": "prod_classic_craft_walnut_privacy_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_WAL_PM",
-"name": "Classic Craft Walnut Privacy Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 9810,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_walnut_decorative_half": {
-"id": "prod_classic_craft_walnut_decorative_half",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_WAL_DEC_H",
-"name": "Classic Craft Walnut Decorative Glass (Half Length/Arch/Small Oval)",
-"pricingModel": "FLAT",
-"flatPrice": 10873,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_walnut_decorative_more": {
-"id": "prod_classic_craft_walnut_decorative_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_WAL_DEC_M",
-"name": "Classic Craft Walnut Decorative Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 14537,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_no_glass": {
-"id": "prod_classic_craft_fir_no_glass",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_NG",
-"name": "Classic Craft Fir (No Glass)",
-"pricingModel": "FLAT",
-"flatPrice": 9112,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_clear": {
-"id": "prod_classic_craft_fir_clear",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_CLR",
-"name": "Classic Craft Fir Clear/Low-E Glass",
-"pricingModel": "FLAT",
-"flatPrice": 7358,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_privacy_half": {
-"id": "prod_classic_craft_fir_privacy_half",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_PH",
-"name": "Classic Craft Fir Privacy Glass (Half Length or Less)",
-"pricingModel": "FLAT",
-"flatPrice": 9206,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_privacy_more": {
-"id": "prod_classic_craft_fir_privacy_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_PM",
-"name": "Classic Craft Fir Privacy Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 12144,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_privacy_sdl": {
-"id": "prod_classic_craft_fir_privacy_sdl",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_SDL",
-"name": "Classic Craft Fir Privacy Glass (More Than Half w/Large SDL)",
-"pricingModel": "FLAT",
-"flatPrice": 16059,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_decorative_small": {
-"id": "prod_classic_craft_fir_decorative_small",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_DEC_SM",
-"name": "Classic Craft Fir Decorative Glass (Small Top Only)",
-"pricingModel": "FLAT",
-"flatPrice": 9798,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_fir_decorative_more": {
-"id": "prod_classic_craft_fir_decorative_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_FIR_DEC_M",
-"name": "Classic Craft Fir Decorative Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 12473,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_no_glass": {
-"id": "prod_classic_craft_canvas_no_glass",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_NG",
-"name": "Classic Craft Canvas (No Glass)",
-"pricingModel": "FLAT",
-"flatPrice": 6506,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_clear": {
-"id": "prod_classic_craft_canvas_clear",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_CLR",
-"name": "Classic Craft Canvas Clear/Low-E Glass",
-"pricingModel": "FLAT",
-"flatPrice": 8210,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_privacy_half": {
-"id": "prod_classic_craft_canvas_privacy_half",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_PH",
-"name": "Classic Craft Canvas Privacy Glass (Half Length or Less)",
-"pricingModel": "FLAT",
-"flatPrice": 10216,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_privacy_more": {
-"id": "prod_classic_craft_canvas_privacy_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_PM",
-"name": "Classic Craft Canvas Privacy Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 7985,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_decorative_small": {
-"id": "prod_classic_craft_canvas_decorative_small",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_DEC_SM",
-"name": "Classic Craft Canvas Decorative Glass (Small Top Only)",
-"pricingModel": "FLAT",
-"flatPrice": 8956,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_decorative_half": {
-"id": "prod_classic_craft_canvas_decorative_half",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_DEC_H",
-"name": "Classic Craft Canvas Decorative Glass (Half Length/Arch/Small Oval)",
-"pricingModel": "FLAT",
-"flatPrice": 13219,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_classic_craft_canvas_decorative_more": {
-"id": "prod_classic_craft_canvas_decorative_more",
-"productType": "Door",
-"productLineId": "line_classic_craft",
-"productTypeCode": "CC_CAN_DEC_M",
-"name": "Classic Craft Canvas Decorative Glass (More Than Half)",
-"pricingModel": "FLAT",
-"flatPrice": 10341,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_pulse_smooth_clear": {
-"id": "prod_pulse_smooth_clear",
-"productType": "Door",
-"productLineId": "line_pulse_ari",
-"productTypeCode": "PULSE_SM_CLR",
-"name": "Pulse/ARI Smooth Clear Glass",
-"pricingModel": "FLAT",
-"flatPrice": 6101,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_pulse_smooth_privacy": {
-"id": "prod_pulse_smooth_privacy",
-"productType": "Door",
-"productLineId": "line_pulse_ari",
-"productTypeCode": "PULSE_SM_PRIV",
-"name": "Pulse/ARI Smooth Privacy Glass",
-"pricingModel": "FLAT",
-"flatPrice": 6982,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_pulse_smooth_decorative": {
-"id": "prod_pulse_smooth_decorative",
-"productType": "Door",
-"productLineId": "line_pulse_ari",
-"productTypeCode": "PULSE_SM_DEC",
-"name": "Pulse/ARI Smooth Decorative Glass",
-"pricingModel": "FLAT",
-"flatPrice": 7842,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_pulse_textured_clear": {
-"id": "prod_pulse_textured_clear",
-"productType": "Door",
-"productLineId": "line_pulse_ari",
-"productTypeCode": "PULSE_TEX_CLR",
-"name": "Pulse/ARI Textured Clear Glass",
-"pricingModel": "FLAT",
-"flatPrice": 6506,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_pulse_textured_privacy": {
-"id": "prod_pulse_textured_privacy",
-"productType": "Door",
-"productLineId": "line_pulse_ari",
-"productTypeCode": "PULSE_TEX_PRIV",
-"name": "Pulse/ARI Textured Privacy Glass",
-"pricingModel": "FLAT",
-"flatPrice": 7663,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-},
-"prod_pulse_textured_decorative": {
-"id": "prod_pulse_textured_decorative",
-"productType": "Door",
-"productLineId": "line_pulse_ari",
-"productTypeCode": "PULSE_TEX_DEC",
-"name": "Pulse/ARI Textured Decorative Glass",
-"pricingModel": "FLAT",
-"flatPrice": 8516,
-"allowedAddons": [],
-"minimumUI": null,
-"maximumUI": null
-}
-},
-"addons": {
-"addon_admin_fee": {
-"id": "addon_admin_fee",
-"name": "Admin Fee",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": true,
-"hiddenFromCustomer": true,
-"isJobBased": true,
-"flatPrice": 346,
-"allowedProductTypes": null,
-"allowedProductLines": null,
-"maxSize": null,
-"minSize": null
-},
-"addon_sh_oriel_half_circle_eyebrow": {
-"id": "addon_sh_oriel_half_circle_eyebrow",
-"name": "Single Hung Oriel Half Circle or Eyebrow",
-"pricingModel": "FLAT",
-"exclusiveGroup": "oriel_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 379.15,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_sh_oriels": {
-"id": "addon_sh_oriels",
-"name": "Single Hung Oriels",
-"pricingModel": "FLAT",
-"exclusiveGroup": "oriel_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 38.93,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_single_slider_oriel": {
-"id": "addon_single_slider_oriel",
-"name": "Single Slider Oriel",
-"pricingModel": "FLAT",
-"exclusiveGroup": "oriel_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 38.93,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_non_square_windows": {
-"id": "addon_non_square_windows",
-"name": "Non-Square Windows (Octagons, Triangles, Trapezoids, Pentagons)",
-"pricingModel": "UI",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 7.17,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_curved_picture_windows": {
-"id": "addon_curved_picture_windows",
-"name": "Curved Picture Windows (1/2 Circle, Eyebrow, etc.)",
-"pricingModel": "UI",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 9.14,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_tempered_glass": {
-"id": "addon_tempered_glass",
-"name": "Tempered Glass (Windows Only)",
-"pricingModel": "UI",
-"exclusiveGroup": "glass_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 6.34,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_flat_grills": {
-"id": "addon_flat_grills",
-"name": "5/8\" Flat Grills - Rectangular",
-"pricingModel": "FLAT",
-"exclusiveGroup": "grill_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 165.08,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_sculpted_grills": {
-"id": "addon_sculpted_grills",
-"name": "Sculpted Grills (No Diamonds or Curved Bars)",
-"pricingModel": "FLAT",
-"exclusiveGroup": "grill_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 247.66,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_starburst_no_radius": {
-"id": "addon_starburst_no_radius",
-"name": "Starburst NO Radius (Flat Grill Only)",
-"pricingModel": "FLAT",
-"exclusiveGroup": "grill_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 262.0,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_sunburst_radius": {
-"id": "addon_sunburst_radius",
-"name": "Sunburst Radius (Flat Grill Only)",
-"pricingModel": "FLAT",
-"exclusiveGroup": "grill_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 466.61,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_diamond_grill": {
-"id": "addon_diamond_grill",
-"name": "Diamond Grill Patterns (Flat Grill Only)",
-"pricingModel": "FLAT",
-"exclusiveGroup": "grill_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 457.31,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_obscure": {
-"id": "addon_obscure",
-"name": "Obscure",
-"pricingModel": "UI",
-"exclusiveGroup": "glass_treatment",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 2.32,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_rain_satin_etch": {
-"id": "addon_rain_satin_etch",
-"name": "Rain, Satin Etch",
-"pricingModel": "UI",
-"exclusiveGroup": "glass_treatment",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 3.66,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_glue_chip_flemish": {
-"id": "addon_glue_chip_flemish",
-"name": "Glue Chip, Flemish, Reed, Delta Frost or Etch Matte",
-"pricingModel": "UI",
-"exclusiveGroup": "glass_treatment",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 3.66,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_safeguard_impact": {
-"id": "addon_safeguard_impact",
-"name": "Safeguard Impact Glass (No Glass Over 21 sq ft)",
-"pricingModel": "UI",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 7.69,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": 21,
-"minSize": null
-},
-"addon_painted_exterior": {
-"id": "addon_painted_exterior",
-"name": "Painted Exterior (No Black or Bronze) / White or Tan Interior Only",
-"pricingModel": "UI",
-"exclusiveGroup": "exterior_color",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 6.13,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_black_black": {
-"id": "addon_black_black",
-"name": "Black/Black Desert Mountain",
-"pricingModel": "UI",
-"exclusiveGroup": "exterior_color",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 8.59,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_sound_package": {
-"id": "addon_sound_package",
-"name": "Sound Package STC Glass For Sound",
-"pricingModel": "UI",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 1.69,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_push_out_coronado": {
-"id": "addon_push_out_coronado",
-"name": "Push Out Coronado Casement or Awning",
-"pricingModel": "UI",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"uiRate": 4.75,
-"allowedProductTypes": ["Window"],
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_pet_solar_screens": {
-"id": "addon_pet_solar_screens",
-"name": "Pet or Solar Screens",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 171.53,
-"allowedProductTypes": null,
-"allowedProductLines": ["line_desert_mountain"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_blinds_btg": {
-"id": "addon_door_blinds_btg",
-"name": "Blinds Between The Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_grid_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 621.41,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_grids_btg": {
-"id": "addon_door_grids_btg",
-"name": "Grids Between The Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_grid_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 148.57,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_sdl_bars": {
-"id": "addon_door_sdl_bars",
-"name": "SDL Bars Outside the Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_grid_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 375.52,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_sdl_bars_wide": {
-"id": "addon_door_sdl_bars_wide",
-"name": "SDL Bars Over 1 1/4\" Wide",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 763.76,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_eyeviewer": {
-"id": "addon_door_eyeviewer",
-"name": "Eyeviewer (Peep Hole)",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 145.96,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_outswing": {
-"id": "addon_door_outswing",
-"name": "Outswing",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 20.84,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_self_closing": {
-"id": "addon_door_self_closing",
-"name": "Self Closing Hinges",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 93.83,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_louver_vent": {
-"id": "addon_door_louver_vent",
-"name": "Louver Vent",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 362.28,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_rustic_straps": {
-"id": "addon_door_rustic_straps",
-"name": "3 Metal Rustic Straps",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 450.42,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_dentil_shelf": {
-"id": "addon_door_dentil_shelf",
-"name": "Dentil Shelf",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 487.41,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_impact_stc_more": {
-"id": "addon_door_impact_stc_more",
-"name": "Impact Glass & STC - More Than Half Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_impact_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 1965.26,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_impact_stc_half": {
-"id": "addon_door_impact_stc_half",
-"name": "Impact & STC Glass - Half Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_impact_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 1282.37,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_blackstone_top": {
-"id": "addon_door_blackstone_top",
-"name": "Blackstone Glass - Top Glass Only",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_blackstone_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 276.28,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_blackstone_half": {
-"id": "addon_door_blackstone_half",
-"name": "Blackstone Glass - Half Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_blackstone_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 753.28,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_blackstone_more": {
-"id": "addon_door_blackstone_more",
-"name": "Blackstone Glass - More Than Half Glass",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_blackstone_type",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 1016.52,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_doggy_door": {
-"id": "addon_door_doggy_door",
-"name": "Cut Doggy Door Into Slab",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 299.73,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_speak_easy": {
-"id": "addon_door_speak_easy",
-"name": "Speak Easy Insert",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 2344.46,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_hvhz_mesh": {
-"id": "addon_door_hvhz_mesh",
-"name": "HVHZ Hurricane Steel Mesh Inside",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 1112.97,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_clavos": {
-"id": "addon_door_clavos",
-"name": "Clavos Any Size",
-"pricingModel": "FLAT",
-"exclusiveGroup": null,
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 500.47,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_emtek_long": {
-"id": "addon_door_emtek_long",
-"name": "Emtek Long Handles",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_lock_system",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 331.41,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_thermatru_multipoint": {
-"id": "addon_door_thermatru_multipoint",
-"name": "Therma-Tru Multipoint Locks",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_lock_system",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 1307.02,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_prospect_forte": {
-"id": "addon_door_prospect_forte",
-"name": "Prospect & Forte Multipoints",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_lock_system",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 2214.52,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_dummy_multipoint": {
-"id": "addon_door_dummy_multipoint",
-"name": "Dummy for Multipoint",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_lock_system",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 680.79,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_dummy_emtek_lever": {
-"id": "addon_door_dummy_emtek_lever",
-"name": "Dummy for Emtek Lever & Knob Handles",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_lock_system",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 362.24,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-},
-"addon_door_dummy_emtek_long": {
-"id": "addon_door_dummy_emtek_long",
-"name": "Dummy for Emtek Long Handles",
-"pricingModel": "FLAT",
-"exclusiveGroup": "door_lock_system",
-"mandatory": false,
-"hiddenFromCustomer": false,
-"isJobBased": false,
-"flatPrice": 680.78,
-"allowedProductTypes": ["Door"],
-"allowedProductLines": ["line_smooth_star", "line_fiberclassic", "line_classic_craft", "line_pulse_ari"],
-"maxSize": null,
-"minSize": null
-}
-},
-"name": "Complete Product Line - Desert Mountain Windows & Fiberglass Doors - 1/26/2026"
+      "id": "prod_xox",
+      "maximumUI": null,
+      "minimumUI": 0,
+      "name": "XOX",
+      "pricingModel": "UI",
+      "productLineId": "line_desert_mountain",
+      "productType": "Window",
+      "productTypeCode": "XOX",
+      "uiRate": 27.03
+    }
+  },
+  "timestamp": "2026-01-26T02:14:15.082Z"
 }
