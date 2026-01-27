@@ -305,6 +305,48 @@
       font-size: 12px;
       color: var(--text-secondary);
     }
+
+    /* Visualizer embed */
+    .window-visualizer {
+      background: var(--bg-surface);
+      padding: 1rem;
+      border: var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-top: 0.5rem;
+    }
+
+    .visualizer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .visualizer-grid { grid-template-columns: 1fr; }
+    }
+
+    .visualizer-canvas {
+      background: var(--bg-header);
+      border-radius: 6px;
+      padding: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 210px;
+      border: var(--border);
+    }
+
+    .dimension-label {
+      font-size: 11px;
+      font-weight: 600;
+      fill: var(--text-primary);
+    }
+
+    .window-description {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -377,23 +419,42 @@
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label>Mulling Type</label>
-          <select id="mull-type">
-            <option value="">None</option>
-            <option value="left">Left</option>
-            <option value="right">Right</option>
-            <option value="center">Center</option>
-            <option value="above">Above</option>
-            <option value="below">Below</option>
-          </select>
-        </div>
-      </div>
+      <div class="window-visualizer">
+        <div class="visualizer-grid">
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; justify-content: flex-start;">
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <button class="btn-secondary" type="button" onclick="openAddonModal()">+ Add-Ons</button>
+              <button class="btn-secondary" type="button" onclick="toggleStructural()" id="structural-toggle">⧉ Structural</button>
+              <button class="btn-secondary" type="button" onclick="toggleExtras()" id="extras-toggle">Show Notes</button>
+            </div>
 
-      <div id="addons-section" style="display: none; margin-bottom: 1.5rem;">
-        <h3 style="margin-top: 1rem; margin-bottom: 1rem; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Available Addons</h3>
-        <div id="addons-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px;"></div>
+            <div id="structural-section" style="display: none; margin-top: 0.25rem;">
+              <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block;">Structural / Mulling</label>
+              <select id="mull-type" style="margin-top: 4px;">
+                <option value="">None</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+                <option value="center">Center</option>
+                <option value="above">Above</option>
+                <option value="below">Below</option>
+              </select>
+            </div>
+
+            <div id="extras-section" style="display: none; margin-top: 0.25rem;">
+              <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block;">Notes / Site Adjustments</label>
+              <textarea id="extra-notes" rows="3" style="width: 100%; padding: 10px 12px; border: var(--border); border-radius: 6px; background: var(--bg-input); font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: vertical;"></textarea>
+            </div>
+
+            <div id="addons-section" style="display: none; margin: 0;">
+              <div id="addons-list" style="display: none;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="visualizer-canvas">
+              <div id="viz-svg-container"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <button class="btn-primary" onclick="addLineItem()">+ Add Item</button>
@@ -439,6 +500,20 @@
       lineItems: [],
       salesUplift: 0,
       selectedJobAddonIds: []
+    };
+
+    // Visualizer state
+    let vizWidth = 36;
+    let vizHeight = 60;
+    let vizWindowType = 'single';
+    const vizScale = 5; // pixels per inch
+    const vizDescriptions = {
+      single: 'Bottom sash slides up',
+      double: 'Both sashes slide vertically',
+      slider: 'Left panel slides right',
+      casement: 'Swings out from left hinge',
+      awning: 'Tilts out from top hinge',
+      fixed: 'No opening mechanism'
     };
 
     window.showAlert = (message, type = 'error') => {
@@ -537,6 +612,229 @@
       }
       return undefined;
     });
+
+    // Visualizer helpers
+    function buildVisualizerSvgString(widthVal, heightVal, type = 'single', maxDim = 240) {
+      const scaledWidth = widthVal * vizScale;
+      const scaledHeight = heightVal * vizScale;
+      const maxWidth = maxDim;
+      const maxHeight = maxDim;
+
+      let displayScale = 1;
+      if (scaledWidth > maxWidth || scaledHeight > maxHeight) {
+        const widthScale = maxWidth / scaledWidth;
+        const heightScale = maxHeight / scaledHeight;
+        displayScale = Math.min(widthScale, heightScale);
+      }
+
+      const displayWidth = scaledWidth * displayScale;
+      const displayHeight = scaledHeight * displayScale;
+      const svgWidth = displayWidth + 60;
+      const svgHeight = displayHeight + 60;
+
+      const halfHeight = displayHeight / 2;
+      const halfWidth = displayWidth / 2;
+
+      const typeMarkup = (() => {
+        switch (type) {
+          case 'single':
+          case 'double':
+            return `
+              <line x1="30" y1="${30 + halfHeight}" x2="${30 + displayWidth}" y2="${30 + halfHeight}"
+                    stroke="black" stroke-width="3" />
+            `;
+          case 'slider':
+            return `
+              <line x1="${30 + halfWidth}" y1="30" x2="${30 + halfWidth}" y2="${30 + displayHeight}"
+                    stroke="black" stroke-width="3" />
+            `;
+          case 'casement':
+            return `
+              <line x1="30" y1="30" x2="30" y2="${30 + displayHeight}"
+                    stroke="black" stroke-width="4" />
+            `;
+          case 'awning':
+            return `
+              <line x1="30" y1="30" x2="${30 + displayWidth}" y2="30"
+                    stroke="black" stroke-width="4" />
+            `;
+          case 'fixed':
+            return `
+              <line x1="30" y1="${30 + halfHeight}" x2="${30 + displayWidth}" y2="${30 + halfHeight}"
+                    stroke="black" stroke-width="2" stroke-dasharray="5,5" />
+              <line x1="${30 + halfWidth}" y1="30" x2="${30 + halfWidth}" y2="${30 + displayHeight}"
+                    stroke="black" stroke-width="2" stroke-dasharray="5,5" />
+            `;
+          default:
+            return '';
+        }
+      })();
+
+      return `
+        <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}">
+          <defs>
+            <marker id="vizArrowStart" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+              <polygon points="8,5 2,2 2,8" fill="#666" />
+            </marker>
+            <marker id="vizArrowEnd" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+              <polygon points="2,5 8,2 8,8" fill="#666" />
+            </marker>
+          </defs>
+
+          <line x1="30" y1="15" x2="${displayWidth + 30}" y2="15"
+                stroke="#666" stroke-width="1"
+                marker-start="url(#vizArrowStart)" marker-end="url(#vizArrowEnd)" />
+          <text x="${displayWidth / 2 + 30}" y="10"
+                text-anchor="middle" class="dimension-label">${widthVal}"</text>
+
+          <line x1="15" y1="30" x2="15" y2="${displayHeight + 30}"
+                stroke="#666" stroke-width="1"
+                marker-start="url(#vizArrowStart)" marker-end="url(#vizArrowEnd)" />
+          <text x="10" y="${displayHeight / 2 + 30}"
+                text-anchor="middle" class="dimension-label"
+                transform="rotate(-90, 10, ${displayHeight / 2 + 30})">${heightVal}"</text>
+
+          <rect x="30" y="30" width="${displayWidth}" height="${displayHeight}"
+                fill="white" stroke="black" stroke-width="4" />
+
+          ${typeMarkup}
+
+          <g opacity="0.3">
+            <line x1="34" y1="34" x2="${26 + displayWidth}" y2="${26 + displayHeight}" stroke="lightblue" stroke-width="1" />
+            <line x1="${26 + displayWidth}" y1="34" x2="34" y2="${26 + displayHeight}" stroke="lightblue" stroke-width="1" />
+          </g>
+        </svg>
+      `;
+    }
+
+    function renderVisualizer() {
+      const svgContainer = document.getElementById('viz-svg-container');
+      if (!svgContainer) return;
+      const svg = buildVisualizerSvgString(vizWidth, vizHeight, vizWindowType, 240);
+      svgContainer.innerHTML = svg;
+    }
+
+    function syncVisualizerFromInputs() {
+      const widthField = document.getElementById('width');
+      const heightField = document.getElementById('height');
+      vizWidth = parseFloat(widthField.value) || vizWidth || 36;
+      vizHeight = parseFloat(heightField.value) || vizHeight || 60;
+      renderVisualizer();
+    }
+
+    function svgToDataUrl(svgString) {
+      return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+    }
+
+    function buildAddonModalList() {
+      const sourceNodes = Array.from(document.querySelectorAll('#addons-list .addon-checkbox'));
+      if (sourceNodes.length === 0) return '<p style="margin:0; color: var(--text-secondary); font-size: 13px;">No addons available for this product.</p>';
+      return sourceNodes.map(node => {
+        const input = node.querySelector('input');
+        const label = node.querySelector('label');
+        const checked = input && input.checked ? 'checked' : '';
+        const id = input ? input.id : '';
+        const value = input ? input.value : '';
+        const text = label ? label.innerHTML : '';
+        const dataLabel = node.dataset.label || '';
+        return `
+          <div class="addon-checkbox" data-label="${dataLabel}">
+            <input type="checkbox" id="modal-${id}" data-sync-id="${id}" value="${value}" ${checked}>
+            <label for="modal-${id}" style="margin: 0; flex: 1; font-weight: 500; text-transform: none;">${text}</label>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openAddonModal() {
+      const modalHtml = `
+        <div style="display:flex; flex-direction:column; gap:12px; max-height:60vh;">
+          <input type="text" id="addon-search" placeholder="Search addons..." style="padding:10px 12px; border: var(--border); border-radius:6px; font-size:14px; background: var(--bg-input);">
+          <div id="addon-modal-list" style="max-height:48vh; overflow-y:auto; border: var(--border); border-radius:6px; padding:8px; background: var(--bg-surface);">
+            ${buildAddonModalList()}
+          </div>
+        </div>
+      `;
+
+      const modalId = showModal('Select Addons', modalHtml, [
+        { label: 'Done', type: 'primary', onclick: () => {} }
+      ]);
+
+      // Wire syncing and filtering once modal is in DOM
+      setTimeout(() => {
+        const modalEl = document.getElementById(modalId);
+        if (!modalEl) return;
+        const modalList = modalEl.querySelector('#addon-modal-list');
+        const searchInput = modalEl.querySelector('#addon-search');
+
+        // Sync checkboxes back to hidden list
+        modalList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener('change', () => {
+            const targetId = cb.dataset.syncId;
+            const original = document.getElementById(targetId);
+            if (original) {
+              original.checked = cb.checked;
+            }
+          });
+        });
+
+        // Filter by label text
+        if (searchInput) {
+          searchInput.addEventListener('input', () => {
+            const term = searchInput.value.trim().toLowerCase();
+            modalList.querySelectorAll('.addon-checkbox').forEach(item => {
+              const label = item.dataset.label || '';
+              item.style.display = term === '' || label.includes(term) ? 'flex' : 'none';
+            });
+          });
+        }
+      }, 0);
+    }
+
+    function toggleExtras() {
+      const extras = document.getElementById('extras-section');
+      const toggle = document.getElementById('extras-toggle');
+      if (!extras || !toggle) return;
+      const isHidden = extras.style.display === 'none' || extras.style.display === '';
+      extras.style.display = isHidden ? 'block' : 'none';
+      toggle.textContent = isHidden ? 'Hide Notes' : 'Show Notes';
+    }
+
+    function toggleStructural() {
+      const structural = document.getElementById('structural-section');
+      const toggle = document.getElementById('structural-toggle');
+      if (!structural || !toggle) return;
+      const isHidden = structural.style.display === 'none' || structural.style.display === '';
+      structural.style.display = isHidden ? 'block' : 'none';
+      toggle.textContent = isHidden ? '⧉ Structural (Shown)' : '⧉ Structural';
+    }
+
+    // Expose UI toggles to inline handlers
+    window.openAddonModal = openAddonModal;
+    window.toggleExtras = toggleExtras;
+    window.toggleStructural = toggleStructural;
+
+    function deriveVisualizerType(product) {
+      if (!product) return vizWindowType;
+      const productLines = DataStorage.getProductLines();
+      const line = productLines[product.productLineId];
+      const code = (product.productTypeCode || '').toUpperCase();
+      const name = (product.name || '').toUpperCase();
+      const lineName = (line && line.name ? line.name : '').toUpperCase();
+      const haystack = `${code} ${name} ${lineName}`;
+
+      const contains = (s) => haystack.includes(s);
+
+      if (contains('SLIDER') || code === 'SL' || code.startsWith('SL')) return 'slider';
+      if (contains('DOUBLE') || code === 'DH' || code.startsWith('DH')) return 'double';
+      if (contains('SINGLE') || code === 'SH' || code.startsWith('SH')) return 'single';
+      if (contains('CASE') || contains('CAS') || code === 'CS' || code.startsWith('CA')) return 'casement';
+      if (contains('AWNING') || code === 'AW' || code.startsWith('AW')) return 'awning';
+      if (contains('PICTURE') || contains('FIX') || contains('FX') || code === 'PW' || code === 'FX') return 'fixed';
+      if (contains('BAY') || contains('BOW')) return 'fixed';
+
+      return vizWindowType;
+    }
 
     // Intercept anchor clicks to present the save modal for in-app navigation
     document.addEventListener('click', (e) => {
@@ -778,6 +1076,13 @@
       const products = DataStorage.getProducts();
       const product = products[productId];
       const allAddons = DataStorage.getAddons();
+
+      // Auto-map visualizer type based on product
+      const derivedViz = deriveVisualizerType(product);
+      if (derivedViz && derivedViz !== vizWindowType) {
+        vizWindowType = derivedViz;
+        renderVisualizer();
+      }
       
       // Calculate total UI from width + height
       const width = parseFloat(document.getElementById('width').value) || 0;
@@ -795,7 +1100,7 @@
         return;
       }
       
-      // Display addon checkboxes
+      // Build addon checkboxes (kept hidden; surfaced via modal)
       const addonHtml = availableAddonIds.map(addonId => {
         const addon = allAddons[addonId];
         const price = addon.pricingModel === 'UI' 
@@ -803,7 +1108,7 @@
           : `$${addon.flatPrice.toFixed(2)}`;
         
         return `
-          <div class="addon-checkbox">
+          <div class="addon-checkbox" data-label="${addon.name.toLowerCase()}">
             <input type="checkbox" id="addon-${addonId}" class="product-addon" value="${addonId}">
             <label for="addon-${addonId}" style="margin: 0; flex: 1; font-weight: 500; text-transform: none;">
               ${addon.name} <span style="color: var(--text-secondary); font-size: 12px;">${price}</span>
@@ -860,6 +1165,10 @@
           allAddons
         });
 
+        // Capture a downsized visualizer snapshot for the line item
+        const vizSvg = buildVisualizerSvgString(width, height, vizWindowType, 160);
+        const vizDataUrl = svgToDataUrl(vizSvg);
+
         // Add to quote
         currentQuote.lineItems.push({
           id: `item_${Date.now()}`,
@@ -869,6 +1178,8 @@
           height,
           ui,
           mullType,
+          vizType: vizWindowType,
+          vizDataUrl,
           ...lineItemCalc
         });
 
@@ -880,6 +1191,13 @@
         document.getElementById('height').value = '';
         document.getElementById('total-ui').value = '';
         document.getElementById('mull-type').value = '';
+        document.getElementById('extra-notes').value = '';
+        document.getElementById('extras-section').style.display = 'none';
+        document.getElementById('extras-toggle').textContent = 'Show Notes';
+        const structuralSection = document.getElementById('structural-section');
+        if (structuralSection) structuralSection.style.display = 'none';
+        const structuralToggle = document.getElementById('structural-toggle');
+        if (structuralToggle) structuralToggle.textContent = '⧉ Structural';
         document.getElementById('addons-list').innerHTML = '';
         document.getElementById('addons-section').style.display = 'none';
 
@@ -919,6 +1237,7 @@
                 <th>Product</th>
                 <th>Size</th>
                 <th>UI</th>
+                <th>Preview</th>
                 <th>Mulling</th>
                 <th>Addons</th>
                 <th>Price</th>
@@ -944,6 +1263,7 @@
                 const addonsText = visibleAddons.length > 0 
                   ? visibleAddons.map(a => a.name).join(', ')
                   : 'None';
+                const previewImg = item.vizDataUrl ? `<img src="${item.vizDataUrl}" alt="Preview" style="width: 120px; max-width: 120px; height: auto; display: block; border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; background: #fafafa;">` : '<span style="color: #9ca3af; font-size: 11px;">No preview</span>';
                 
                 return `
                   <tr>
@@ -952,6 +1272,7 @@
                     <td>${productCode} - ${productName}</td>
                     <td>${item.width}" × ${item.height}"</td>
                     <td>${item.ui}</td>
+                    <td>${previewImg}</td>
                     <td>${mullText}</td>
                     <td><small>${addonsText}</small></td>
                     <td>$${item.lineItemParTotal.toFixed(2)}</td>
@@ -1105,8 +1426,16 @@
       updateProductLineOptions();
       
       // Add event listeners to width/height to update UI
-      document.getElementById('width').addEventListener('input', updateProductInfo);
-      document.getElementById('height').addEventListener('input', updateProductInfo);
+      const widthField = document.getElementById('width');
+      const heightField = document.getElementById('height');
+      widthField.addEventListener('input', () => { updateProductInfo(); syncVisualizerFromInputs(); });
+      heightField.addEventListener('input', () => { updateProductInfo(); syncVisualizerFromInputs(); });
+
+      // Initialize width/height defaults for visualizer if empty
+      if (!widthField.value) widthField.value = vizWidth;
+      if (!heightField.value) heightField.value = vizHeight;
+
+      renderVisualizer();
       
       updateQuoteDisplay();
 

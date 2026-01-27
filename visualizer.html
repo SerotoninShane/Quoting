@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Window Visualizer</title>
+  <style>
+    :root {
+      --gap: 0.5rem;
+      --border: 1px solid rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      --shadow: var(--shadow-sm), var(--shadow-md);
+      --bg-surface: #ffffff;
+      --bg-input: #f4f4f5;
+      --bg-header: #fafafa;
+      --color-primary: #27272a;
+      --color-danger: #dc2626;
+      --color-success: #27272a;
+      --text-primary: #18181b;
+      --text-secondary: #71717a;
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    .window-visualizer {
+      background: var(--bg-surface);
+      padding: 1.5rem;
+      border: var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .visualizer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .visualizer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .visualizer-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    select, input[type="number"] {
+      padding: 10px 12px;
+      border: var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-input);
+      color: var(--text-primary);
+      transition: all var(--transition);
+      width: 100%;
+    }
+
+    select:hover, input[type="number"]:hover {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    select:focus, input[type="number"]:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 0 3px rgba(39, 39, 42, 0.1);
+    }
+
+    .visualizer-canvas {
+      background: var(--bg-header);
+      border-radius: 6px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      border: var(--border);
+    }
+
+    .dimension-label {
+      font-size: 12px;
+      font-weight: 600;
+      fill: var(--text-primary);
+    }
+
+    .window-description {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="window-visualizer">
+    <h2 style="margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary);">Window Visualizer</h2>
+    
+    <div class="visualizer-grid">
+      <!-- Controls -->
+      <div class="visualizer-controls">
+        <div class="form-group">
+          <label>Window Type</label>
+          <select id="window-type">
+            <option value="single">Single Hung</option>
+            <option value="double">Double Hung</option>
+            <option value="slider">Slider</option>
+            <option value="casement">Casement</option>
+            <option value="awning">Awning</option>
+            <option value="fixed">Fixed (No Opening)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Width (inches)</label>
+          <input type="number" id="width-input" min="24" max="96" value="48" step="0.125">
+        </div>
+
+        <div class="form-group">
+          <label>Height (inches)</label>
+          <input type="number" id="height-input" min="24" max="96" value="60" step="0.125">
+        </div>
+      </div>
+
+      <!-- Visualization -->
+      <div>
+        <div class="visualizer-canvas">
+          <div id="svg-container"></div>
+        </div>
+        <div class="window-description" id="window-description">
+          Bottom sash slides up
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let width = 48;
+    let height = 60;
+    let windowType = 'single';
+    const scale = 5; // pixels per inch (increased from 3 for larger display)
+
+    // Elements
+    const widthInput = document.getElementById('width-input');
+    const heightInput = document.getElementById('height-input');
+    const windowTypeSelect = document.getElementById('window-type');
+    const svgContainer = document.getElementById('svg-container');
+    const windowDescription = document.getElementById('window-description');
+
+    // Window type descriptions
+    const descriptions = {
+      single: 'Bottom sash slides up',
+      double: 'Both sashes slide vertically',
+      slider: 'Left panel slides right',
+      casement: 'Swings out from left hinge',
+      awning: 'Tilts out from top hinge',
+      fixed: 'No opening mechanism'
+    };
+
+    // Event listeners
+    widthInput.addEventListener('input', function() {
+      width = parseFloat(this.value) || 48;
+      renderWindow();
+    });
+
+    heightInput.addEventListener('input', function() {
+      height = parseFloat(this.value) || 60;
+      renderWindow();
+    });
+
+    windowTypeSelect.addEventListener('change', function() {
+      windowType = this.value;
+      windowDescription.textContent = descriptions[windowType];
+      renderWindow();
+    });
+
+    // Render window
+    function renderWindow() {
+      const scaledWidth = width * scale;
+      const scaledHeight = height * scale;
+      
+      // Calculate max dimensions to fit in container (leaving room for dimensions)
+      // Scaled to show 36x60 windows at full size, larger windows scale down
+      const maxWidth = 350;
+      const maxHeight = 350;
+      
+      // Calculate if we need to scale down
+      let displayScale = 1;
+      if (scaledWidth > maxWidth || scaledHeight > maxHeight) {
+        const widthScale = maxWidth / scaledWidth;
+        const heightScale = maxHeight / scaledHeight;
+        displayScale = Math.min(widthScale, heightScale);
+      }
+      
+      const displayWidth = scaledWidth * displayScale;
+      const displayHeight = scaledHeight * displayScale;
+      const svgWidth = displayWidth + 60;
+      const svgHeight = displayHeight + 60;
+
+      let svg = `
+        <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}">
+          <!-- Arrow markers for dimension lines -->
+          <defs>
+            <marker id="arrowStart" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+              <polygon points="8,5 2,2 2,8" fill="#666" />
+            </marker>
+            <marker id="arrowEnd" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+              <polygon points="2,5 8,2 8,8" fill="#666" />
+            </marker>
+          </defs>
+
+          <!-- Width dimension line -->
+          <line x1="30" y1="15" x2="${displayWidth + 30}" y2="15" 
+                stroke="#666" stroke-width="1" 
+                marker-start="url(#arrowStart)" marker-end="url(#arrowEnd)" />
+          <text x="${displayWidth / 2 + 30}" y="10" 
+                text-anchor="middle" class="dimension-label">${width}"</text>
+
+          <!-- Height dimension line -->
+          <line x1="15" y1="30" x2="15" y2="${displayHeight + 30}" 
+                stroke="#666" stroke-width="1" 
+                marker-start="url(#arrowStart)" marker-end="url(#arrowEnd)" />
+          <text x="10" y="${displayHeight / 2 + 30}" 
+                text-anchor="middle" class="dimension-label"
+                transform="rotate(-90, 10, ${displayHeight / 2 + 30})">${height}"</text>
+
+          <!-- Window frame -->
+          <rect x="30" y="30" width="${displayWidth}" height="${displayHeight}" 
+                fill="white" stroke="black" stroke-width="4" />
+
+          ${renderWindowType(displayWidth, displayHeight)}
+
+          <!-- Glass panes indicator -->
+          <g opacity="0.3">
+            <line x1="34" y1="34" x2="${26 + displayWidth}" y2="${26 + displayHeight}" 
+                  stroke="lightblue" stroke-width="1" />
+            <line x1="${26 + displayWidth}" y1="34" x2="34" y2="${26 + displayHeight}" 
+                  stroke="lightblue" stroke-width="1" />
+          </g>
+        </svg>
+      `;
+
+      svgContainer.innerHTML = svg;
+    }
+
+    // Render window type specific elements
+    function renderWindowType(scaledWidth, scaledHeight) {
+      const halfHeight = scaledHeight / 2;
+      const halfWidth = scaledWidth / 2;
+
+      switch (windowType) {
+        case 'single':
+        case 'double':
+          return `
+            <line x1="30" y1="${30 + halfHeight}" x2="${30 + scaledWidth}" y2="${30 + halfHeight}" 
+                  stroke="black" stroke-width="3" />
+          `;
+
+        case 'slider':
+          return `
+            <line x1="${30 + halfWidth}" y1="30" x2="${30 + halfWidth}" y2="${30 + scaledHeight}" 
+                  stroke="black" stroke-width="3" />
+          `;
+
+        case 'casement':
+          return `
+            <line x1="30" y1="30" x2="30" y2="${30 + scaledHeight}" 
+                  stroke="black" stroke-width="4" />
+          `;
+
+        case 'awning':
+          return `
+            <line x1="30" y1="30" x2="${30 + scaledWidth}" y2="30" 
+                  stroke="black" stroke-width="4" />
+          `;
+
+        case 'fixed':
+          return `
+            <line x1="30" y1="${30 + halfHeight}" x2="${30 + scaledWidth}" y2="${30 + halfHeight}" 
+                  stroke="black" stroke-width="2" stroke-dasharray="5,5" />
+            <line x1="${30 + halfWidth}" y1="30" x2="${30 + halfWidth}" y2="${30 + scaledHeight}" 
+                  stroke="black" stroke-width="2" stroke-dasharray="5,5" />
+          `;
+
+        default:
+          return '';
+      }
+    }
+
+    // Initial render
+    renderWindow();
+  </script>
+</body>
+</html>
