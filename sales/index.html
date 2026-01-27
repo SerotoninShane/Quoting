@@ -253,17 +253,72 @@
       cursor: pointer;
     }
 
+    .color-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.08);
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
     .alert {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      max-width: 600px;
       padding: 12px 16px;
       border-radius: 6px;
-      margin-bottom: 1rem;
       border: var(--border);
       font-size: 13px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 10000;
+      animation: slideDown 0.3s ease-out;
+      pointer-events: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .alert-close {
+      pointer-events: auto;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      padding: 0;
+      min-width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .alert-close:hover { opacity: 1; }
+
+    .alert-content { flex: 1; }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .alert-success {
+      background: rgba(240, 253, 244, 0.9);
+      color: var(--text-primary);
+      border: 1px solid rgba(34, 197, 94, 0.2);
     }
 
     .alert-error {
-      background: #fef2f2;
+      background: rgba(254, 242, 242, 0.9);
       color: var(--text-primary);
       border: 1px solid rgba(220, 38, 38, 0.2);
     }
@@ -334,8 +389,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 210px;
+      min-height: 420px;
+      height: 420px;
       border: var(--border);
+      overflow: hidden; /* no scrolling; SVG will scale inside */
     }
 
     .dimension-label {
@@ -346,6 +403,26 @@
 
     .window-description {
       display: none;
+    }
+
+    /* Prevent addons list and selected addons from stretching layout; make them scrollable */
+    #addons-list {
+      max-height: 180px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    #selected-addons {
+      max-height: 160px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    /* Ensure embedded SVGs don't force container resizing */
+    #viz-svg-container svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
   </style>
 </head>
@@ -376,8 +453,28 @@
           <input type="text" id="quote-id" readonly>
         </div>
         <div class="form-group">
-          <label>Customer Name</label>
+          <label>Date</label>
+          <input type="date" id="quote-date">
+        </div>
+        <div class="form-group">
+          <label>Customer Name <span style="color:#dc2626;">*</span></label>
           <input type="text" id="customer-name" placeholder="Enter customer name">
+        </div>
+        <div class="form-group">
+          <label>Spouse / Co-Owner</label>
+          <input type="text" id="spouse-name" placeholder="Optional">
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <textarea id="customer-address" rows="2" style="padding:10px 12px; border: var(--border); border-radius:6px; background: var(--bg-input);"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="customer-phone" placeholder="Primary phone">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="customer-email" placeholder="Primary email">
         </div>
       </div>
     </div>
@@ -387,7 +484,7 @@
       
       <div class="form-row">
         <div class="form-group">
-          <label>Room Location</label>
+          <label>Room Location <span style="color:#dc2626;">*</span></label>
           <input type="text" id="room-label" placeholder="e.g., Master Bedroom, Living Room">
         </div>
         <div class="form-group">
@@ -397,7 +494,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Product</label>
+          <label>Product <span style="color:#dc2626;">*</span></label>
           <select id="product" onchange="updateProductInfo()">
             <option value="">Select product...</option>
           </select>
@@ -406,11 +503,11 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label>Width (inches)</label>
+          <label>Width (inches) <span style="color:#dc2626;">*</span></label>
           <input type="number" id="width" step="0.125" placeholder="36">
         </div>
         <div class="form-group">
-          <label>Height (inches)</label>
+          <label>Height (inches) <span style="color:#dc2626;">*</span></label>
           <input type="number" id="height" step="0.125" placeholder="60">
         </div>
         <div class="form-group">
@@ -422,10 +519,28 @@
       <div class="window-visualizer">
         <div class="visualizer-grid">
           <div style="display: flex; flex-direction: column; gap: 0.75rem; justify-content: flex-start;">
-            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-              <button class="btn-secondary" type="button" onclick="openAddonModal()">+ Add-Ons</button>
+            <div id="extras-section" style="display: block; margin-top: 0.25rem;">
+              <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block;">Notes / Site Adjustments</label>
+              <textarea id="extra-notes" rows="3" style="width: 100%; padding: 10px 12px; border: var(--border); border-radius: 6px; background: var(--bg-input); font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: vertical;"></textarea>
+              <div id="selected-addons" style="margin-top:8px; font-size:13px; color: var(--text-secondary);"></div>
+            </div>
+          </div>
+          <div>
+            <div class="visualizer-canvas">
+              <div id="viz-svg-container"></div>
+            </div>
+
+            <div style="display: flex; gap: 8px; align-items: center; margin-top: 0.75rem;">
+              <button class="btn-secondary" type="button" onclick="openAddonModal()" id="addons-button">+ Add-Ons</button>
               <button class="btn-secondary" type="button" onclick="toggleStructural()" id="structural-toggle">⧉ Structural</button>
-              <button class="btn-secondary" type="button" onclick="toggleExtras()" id="extras-toggle">Show Notes</button>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <button id="frame-color-button" class="btn-secondary" type="button" onclick="openColorModal()" style="display:flex; align-items:center; gap:8px;">
+                  <span id="frame-color-swatch" class="color-swatch" style="background:#ffffff;"></span>
+                  <span id="frame-color-label">White</span>
+                  <span style="margin-left:6px; opacity:0.7;">▾</span>
+                </button>
+                <input type="hidden" id="frame-color" value="white">
+              </div>
             </div>
 
             <div id="structural-section" style="display: none; margin-top: 0.25rem;">
@@ -438,20 +553,28 @@
                 <option value="above">Above</option>
                 <option value="below">Below</option>
               </select>
-            </div>
-
-            <div id="extras-section" style="display: none; margin-top: 0.25rem;">
-              <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block;">Notes / Site Adjustments</label>
-              <textarea id="extra-notes" rows="3" style="width: 100%; padding: 10px 12px; border: var(--border); border-radius: 6px; background: var(--bg-input); font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: vertical;"></textarea>
+              <div style="display:flex; gap:8px; margin-top:8px;">
+                <div style="flex:1;">
+                  <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block;">Hinge Side</label>
+                  <select id="hinge-side" style="margin-top:4px; width:100%;">
+                    <option value="">Not Applicable</option>
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                  </select>
+                </div>
+                <div style="flex:1;">
+                  <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block;">Swing</label>
+                  <select id="swing-type" style="margin-top:4px; width:100%;">
+                    <option value="">Not Applicable</option>
+                    <option value="inswing">Inswing</option>
+                    <option value="outswing">Outswing</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
             <div id="addons-section" style="display: none; margin: 0;">
               <div id="addons-list" style="display: none;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="visualizer-canvas">
-              <div id="viz-svg-container"></div>
             </div>
           </div>
         </div>
@@ -469,6 +592,12 @@
       <h2>Job Addons</h2>
       <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 1rem;">Apply to the entire job</p>
       <div id="job-addons-section"></div>
+    </div>
+
+    <div class="card">
+      <h2>Job Notes</h2>
+      <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 1rem;">Notes that apply to the entire job (not per-item)</p>
+      <textarea id="job-notes" rows="4" style="width:100%; padding:10px 12px; border: var(--border); border-radius:6px; background: var(--bg-input);"></textarea>
     </div>
 
     <div class="card">
@@ -517,12 +646,44 @@
     };
 
     window.showAlert = (message, type = 'error') => {
-      const alerts = document.getElementById('alerts');
+      // Respect global setting if present
+      try {
+        const settings = DataStorage.getGlobalSettings();
+        if (settings && settings.alertsEnabled === false) return;
+      } catch (e) {
+        // ignore if DataStorage not available
+      }
+
       const alert = document.createElement('div');
       alert.className = `alert alert-${type}`;
-      alert.textContent = message;
-      alerts.appendChild(alert);
-      setTimeout(() => alert.remove(), 5000);
+
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'alert-content';
+      contentDiv.textContent = message;
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'alert-close';
+      closeBtn.innerHTML = '✕';
+      closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        alert.style.animation = 'slideDown 0.3s ease-out reverse';
+        setTimeout(() => alert.remove(), 300);
+      };
+
+      alert.appendChild(contentDiv);
+      alert.appendChild(closeBtn);
+
+      // Stack alerts by increasing z-index so newer ones appear above
+      const existingAlerts = document.querySelectorAll('.alert').length;
+      alert.style.zIndex = 10000 + existingAlerts;
+
+      document.body.appendChild(alert);
+
+      // Auto-dismiss after 5s with reverse animation
+      setTimeout(() => {
+        alert.style.animation = 'slideDown 0.3s ease-out reverse';
+        setTimeout(() => alert.remove(), 300);
+      }, 5000);
     };
 
     // Generic modal function (copied from admin_interface.html for consistent UX)
@@ -629,41 +790,45 @@
 
       const displayWidth = scaledWidth * displayScale;
       const displayHeight = scaledHeight * displayScale;
-      const svgWidth = displayWidth + 60;
-      const svgHeight = displayHeight + 60;
+      const margin = 40; // space around the drawn window
+      const svgWidth = displayWidth + margin * 2;
+      const svgHeight = displayHeight + margin * 2;
 
       const halfHeight = displayHeight / 2;
       const halfWidth = displayWidth / 2;
+
+      const measureOffset = 15; // distance from rect to measurement line
+      const measureLabelOffset = 5; // additional offset for the label text
 
       const typeMarkup = (() => {
         switch (type) {
           case 'single':
           case 'double':
             return `
-              <line x1="30" y1="${30 + halfHeight}" x2="${30 + displayWidth}" y2="${30 + halfHeight}"
+              <line x1="${margin}" y1="${margin + halfHeight}" x2="${margin + displayWidth}" y2="${margin + halfHeight}"
                     stroke="black" stroke-width="3" />
             `;
           case 'slider':
             return `
-              <line x1="${30 + halfWidth}" y1="30" x2="${30 + halfWidth}" y2="${30 + displayHeight}"
+              <line x1="${margin + halfWidth}" y1="${margin}" x2="${margin + halfWidth}" y2="${margin + displayHeight}"
                     stroke="black" stroke-width="3" />
             `;
           case 'casement':
             return `
-              <line x1="30" y1="30" x2="30" y2="${30 + displayHeight}"
+              <line x1="${margin}" y1="${margin}" x2="${margin}" y2="${margin + displayHeight}"
                     stroke="black" stroke-width="4" />
             `;
           case 'awning':
             return `
-              <line x1="30" y1="30" x2="${30 + displayWidth}" y2="30"
+              <line x1="${margin}" y1="${margin}" x2="${margin + displayWidth}" y2="${margin}"
                     stroke="black" stroke-width="4" />
             `;
           case 'fixed':
             return `
-              <line x1="30" y1="${30 + halfHeight}" x2="${30 + displayWidth}" y2="${30 + halfHeight}"
-                    stroke="black" stroke-width="2" stroke-dasharray="5,5" />
-              <line x1="${30 + halfWidth}" y1="30" x2="${30 + halfWidth}" y2="${30 + displayHeight}"
-                    stroke="black" stroke-width="2" stroke-dasharray="5,5" />
+                <line x1="${margin}" y1="${margin + halfHeight}" x2="${margin + displayWidth}" y2="${margin + halfHeight}"
+                  stroke="black" stroke-width="2" stroke-dasharray="5,5" />
+                <line x1="${margin + halfWidth}" y1="${margin}" x2="${margin + halfWidth}" y2="${margin + displayHeight}"
+                  stroke="black" stroke-width="2" stroke-dasharray="5,5" />
             `;
           default:
             return '';
@@ -681,20 +846,20 @@
             </marker>
           </defs>
 
-          <line x1="30" y1="15" x2="${displayWidth + 30}" y2="15"
+              <line x1="${margin}" y1="${margin - measureOffset}" x2="${margin + displayWidth}" y2="${margin - measureOffset}"
                 stroke="#666" stroke-width="1"
                 marker-start="url(#vizArrowStart)" marker-end="url(#vizArrowEnd)" />
-          <text x="${displayWidth / 2 + 30}" y="10"
+              <text x="${displayWidth / 2 + margin}" y="${margin - (measureOffset + measureLabelOffset)}"
                 text-anchor="middle" class="dimension-label">${widthVal}"</text>
 
-          <line x1="15" y1="30" x2="15" y2="${displayHeight + 30}"
+              <line x1="${margin - measureOffset}" y1="${margin}" x2="${margin - measureOffset}" y2="${margin + displayHeight}"
                 stroke="#666" stroke-width="1"
                 marker-start="url(#vizArrowStart)" marker-end="url(#vizArrowEnd)" />
-          <text x="10" y="${displayHeight / 2 + 30}"
+              <text x="${margin - (measureOffset + measureLabelOffset)}" y="${displayHeight / 2 + margin}"
                 text-anchor="middle" class="dimension-label"
-                transform="rotate(-90, 10, ${displayHeight / 2 + 30})">${heightVal}"</text>
+                transform="rotate(-90, ${margin - (measureOffset + measureLabelOffset)}, ${displayHeight / 2 + margin})">${heightVal}"</text>
 
-          <rect x="30" y="30" width="${displayWidth}" height="${displayHeight}"
+              <rect x="${margin}" y="${margin}" width="${displayWidth}" height="${displayHeight}"
                 fill="white" stroke="black" stroke-width="4" />
 
           ${typeMarkup}
@@ -710,7 +875,9 @@
     function renderVisualizer() {
       const svgContainer = document.getElementById('viz-svg-container');
       if (!svgContainer) return;
-      const svg = buildVisualizerSvgString(vizWidth, vizHeight, vizWindowType, 240);
+      // Use a max dimension slightly smaller than the canvas to ensure padding fits
+      // Reduce slightly so measurement labels never get cropped for tall windows
+      const svg = buildVisualizerSvgString(vizWidth, vizHeight, vizWindowType, 340);
       svgContainer.innerHTML = svg;
     }
 
@@ -767,13 +934,14 @@
         const modalList = modalEl.querySelector('#addon-modal-list');
         const searchInput = modalEl.querySelector('#addon-search');
 
-        // Sync checkboxes back to hidden list
+        // Sync checkboxes back to hidden list and trigger change events
         modalList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
           cb.addEventListener('change', () => {
             const targetId = cb.dataset.syncId;
             const original = document.getElementById(targetId);
             if (original) {
               original.checked = cb.checked;
+              try { original.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) { /* ignore */ }
             }
           });
         });
@@ -791,6 +959,86 @@
       }, 0);
     }
 
+    function openColorModal() {
+      const colors = [
+        { id: 'white', name: 'White', hex: '#ffffff' },
+        { id: 'tan', name: 'Tan', hex: '#d6c3a6' },
+        { id: 'adobe', name: 'Adobe', hex: '#c58b68' },
+        { id: 'black', name: 'Black', hex: '#222222' }
+      ];
+
+      const items = colors.map(c => `
+        <button class="btn-secondary" data-color="${c.id}" style="display:flex; align-items:center; gap:8px; padding:8px;">
+          <span class="color-swatch" style="background:${c.hex}; width:20px; height:20px; border-radius:4px;"></span>
+          <span style="font-weight:600;">${c.name}</span>
+        </button>
+      `).join('');
+
+      const modalHtml = `<div style="display:flex; gap:8px; flex-wrap:wrap;">${items}</div>`;
+      const modalId = showModal('Select Frame Color', modalHtml, [ { label: 'Done', type: 'primary', onclick: () => {} } ]);
+
+      // Wire selection
+      setTimeout(() => {
+        const modalEl = document.getElementById(modalId);
+        if (!modalEl) return;
+        modalEl.querySelectorAll('button[data-color]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const color = btn.dataset.color;
+            const map = { white: '#ffffff', tan: '#d6c3a6', adobe: '#c58b68', black: '#222222' };
+            const hidden = document.getElementById('frame-color');
+            if (hidden) hidden.value = color;
+            updateColorPreview();
+            // Visual feedback inside modal
+            modalEl.querySelectorAll('button[data-color]').forEach(b => b.style.boxShadow = 'none');
+            btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.08)';
+          });
+        });
+      }, 0);
+    }
+
+    function updateColorPreview() {
+      const hidden = document.getElementById('frame-color');
+      const swatch = document.getElementById('frame-color-swatch');
+      const label = document.getElementById('frame-color-label');
+      if (!hidden || !swatch || !label) return;
+      const v = hidden.value || 'white';
+      const map = { white: '#ffffff', tan: '#d6c3a6', adobe: '#c58b68', black: '#222222' };
+      swatch.style.background = map[v] || v;
+      label.textContent = v.charAt(0).toUpperCase() + v.slice(1);
+      // keep button text color unchanged to remain readable on all swatches
+    }
+
+    // Render selected product addons under the notes area
+    window.renderSelectedAddons = () => {
+      const container = document.getElementById('selected-addons');
+      if (!container) return;
+      const checked = Array.from(document.querySelectorAll('.product-addon:checked'))
+        .map(cb => cb.value);
+
+      if (checked.length === 0) {
+        container.innerHTML = '<p style="margin:0; color: var(--text-secondary); font-size: 13px;">No selected addons</p>';
+        return;
+      }
+
+      const allAddons = DataStorage.getAddons();
+      const ui = parseInt(document.getElementById('total-ui').value) || 0;
+
+      const html = checked.map(id => {
+        const addon = allAddons[id];
+        if (!addon) return '';
+        const price = addon.pricingModel === 'UI' ? `$${(ui * addon.uiRate).toFixed(2)}` : `$${(addon.flatPrice || 0).toFixed(2)}`;
+        return `<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom: 1px dashed rgba(0,0,0,0.04);">
+                  <div style="font-weight:500;">${addon.name}</div>
+                  <div style="color:var(--text-secondary); font-size:13px; display:flex; gap:8px; align-items:center;">
+                    <div>${price}</div>
+                    <button class="btn-secondary" style="padding:4px 8px; font-size:12px;" onclick="(function(id){ const cb = document.getElementById('addon-'+id); if(cb){ cb.checked=false; cb.dispatchEvent(new Event('change',{bubbles:true})); } })('${id}')">Remove</button>
+                  </div>
+                </div>`;
+      }).join('');
+
+      container.innerHTML = html;
+    };
+
     function toggleExtras() {
       const extras = document.getElementById('extras-section');
       const toggle = document.getElementById('extras-toggle');
@@ -801,16 +1049,74 @@
     }
 
     function toggleStructural() {
-      const structural = document.getElementById('structural-section');
-      const toggle = document.getElementById('structural-toggle');
-      if (!structural || !toggle) return;
-      const isHidden = structural.style.display === 'none' || structural.style.display === '';
-      structural.style.display = isHidden ? 'block' : 'none';
-      toggle.textContent = isHidden ? '⧉ Structural (Shown)' : '⧉ Structural';
+      // Open structural options in a modal and sync changes back to the hidden fields
+      const modalHtml = `
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <label style="font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; margin:0;">Structural / Mulling</label>
+          <select id="modal-mull" style="margin-top:4px; padding:8px;">
+            <option value="">None</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+            <option value="center">Center</option>
+            <option value="above">Above</option>
+            <option value="below">Below</option>
+          </select>
+          <div style="display:flex; gap:8px;">
+            <div style="flex:1;">
+              <label style="font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; margin:0;">Hinge Side</label>
+              <select id="modal-hinge" style="margin-top:4px; padding:8px; width:100%;">
+                <option value="">Not Applicable</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+            </div>
+            <div style="flex:1;">
+              <label style="font-size:12px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; margin:0;">Swing</label>
+              <select id="modal-swing" style="margin-top:4px; padding:8px; width:100%;">
+                <option value="">Not Applicable</option>
+                <option value="inswing">Inswing</option>
+                <option value="outswing">Outswing</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const modalId = showModal('Structural / Mulling', modalHtml, [ { label: 'Done', type: 'primary', onclick: () => {} } ]);
+
+      // Wire sync: copy modal values back to main form selects as user changes them
+      setTimeout(() => {
+        const modalEl = document.getElementById(modalId);
+        if (!modalEl) return;
+
+        const mMull = modalEl.querySelector('#modal-mull');
+        const mHinge = modalEl.querySelector('#modal-hinge');
+        const mSwing = modalEl.querySelector('#modal-swing');
+
+        const origMull = document.getElementById('mull-type');
+        const origHinge = document.getElementById('hinge-side');
+        const origSwing = document.getElementById('swing-type');
+
+        if (origMull && mMull) mMull.value = origMull.value || '';
+        if (origHinge && mHinge) mHinge.value = origHinge.value || '';
+        if (origSwing && mSwing) mSwing.value = origSwing.value || '';
+
+        [mMull, mHinge, mSwing].forEach(el => {
+          if (!el) return;
+          el.addEventListener('change', () => {
+            try {
+              const targetId = el.id === 'modal-mull' ? 'mull-type' : (el.id === 'modal-hinge' ? 'hinge-side' : 'swing-type');
+              const orig = document.getElementById(targetId);
+              if (orig) orig.value = el.value;
+            } catch (err) {}
+          });
+        });
+      }, 0);
     }
 
     // Expose UI toggles to inline handlers
     window.openAddonModal = openAddonModal;
+    window.openColorModal = openColorModal;
     window.toggleExtras = toggleExtras;
     window.toggleStructural = toggleStructural;
 
@@ -867,6 +1173,13 @@
         selectedJobAddonIds: []
       };
       document.getElementById('customer-name').value = '';
+      document.getElementById('spouse-name').value = '';
+      document.getElementById('customer-address').value = '';
+      document.getElementById('customer-phone').value = '';
+      document.getElementById('customer-email').value = '';
+      document.getElementById('job-notes').value = '';
+      // Set today's date
+      try { document.getElementById('quote-date').value = new Date().toISOString().split('T')[0]; } catch (e) {}
       document.getElementById('sales-uplift').value = '0';
       updateQuoteDisplay();
     };
@@ -881,6 +1194,12 @@
       }
 
       currentQuote.customerName = customerName;
+      currentQuote.spouseName = document.getElementById('spouse-name').value.trim();
+      currentQuote.address = document.getElementById('customer-address').value.trim();
+      currentQuote.phone = document.getElementById('customer-phone').value.trim();
+      currentQuote.email = document.getElementById('customer-email').value.trim();
+      currentQuote.quoteDate = document.getElementById('quote-date').value;
+      currentQuote.jobNotes = document.getElementById('job-notes').value.trim();
       currentQuote.salesUplift = parseFloat(document.getElementById('sales-uplift').value) || 0;
 
       try {
@@ -979,7 +1298,13 @@
         .map(([id]) => id);
       currentQuote.selectedJobAddonIds = [...new Set([...(currentQuote.selectedJobAddonIds || []), ...mandatoryJobAddonIds])];
       
-      document.getElementById('customer-name').value = quote.customerName;
+      document.getElementById('customer-name').value = quote.customerName || '';
+      document.getElementById('spouse-name').value = quote.spouseName || '';
+      document.getElementById('customer-address').value = quote.address || '';
+      document.getElementById('customer-phone').value = quote.phone || '';
+      document.getElementById('customer-email').value = quote.email || '';
+      document.getElementById('quote-date').value = quote.quoteDate || new Date().toISOString().split('T')[0];
+      document.getElementById('job-notes').value = quote.jobNotes || '';
       document.getElementById('sales-uplift').value = quote.salesUplift || 0;
       
       updateQuoteDisplay();
@@ -1119,14 +1444,26 @@
       
       document.getElementById('addons-list').innerHTML = addonHtml;
       document.getElementById('addons-section').style.display = 'block';
+
+      // Attach change listeners so selected addons render under notes
+      setTimeout(() => {
+        document.querySelectorAll('.product-addon').forEach(cb => {
+          cb.removeEventListener('change', renderSelectedAddons);
+          cb.addEventListener('change', renderSelectedAddons);
+        });
+        renderSelectedAddons();
+      }, 0);
     };
 
     window.addLineItem = () => {
       const roomLabel = document.getElementById('room-label').value.trim();
       const productId = document.getElementById('product').value;
+      const frameColor = document.getElementById('frame-color') ? document.getElementById('frame-color').value : 'white';
       const width = parseFloat(document.getElementById('width').value);
       const height = parseFloat(document.getElementById('height').value);
       const mullType = document.getElementById('mull-type').value;
+      const hingeSide = document.getElementById('hinge-side') ? document.getElementById('hinge-side').value : '';
+      const swingType = document.getElementById('swing-type') ? document.getElementById('swing-type').value : '';
 
       if (!roomLabel || !productId || !width || !height) {
         return showAlert('Please fill all required fields');
@@ -1178,6 +1515,9 @@
           height,
           ui,
           mullType,
+          frameColor,
+          hingeSide,
+          swingType,
           vizType: vizWindowType,
           vizDataUrl,
           ...lineItemCalc
@@ -1191,9 +1531,12 @@
         document.getElementById('height').value = '';
         document.getElementById('total-ui').value = '';
         document.getElementById('mull-type').value = '';
+        if (document.getElementById('hinge-side')) document.getElementById('hinge-side').value = '';
+        if (document.getElementById('swing-type')) document.getElementById('swing-type').value = '';
+        if (document.getElementById('frame-color')) { document.getElementById('frame-color').value = 'white'; updateColorPreview(); }
         document.getElementById('extra-notes').value = '';
-        document.getElementById('extras-section').style.display = 'none';
-        document.getElementById('extras-toggle').textContent = 'Show Notes';
+        // Keep notes visible by design
+        try { renderSelectedAddons(); } catch (e) {}
         const structuralSection = document.getElementById('structural-section');
         if (structuralSection) structuralSection.style.display = 'none';
         const structuralToggle = document.getElementById('structural-toggle');
@@ -1235,10 +1578,13 @@
                 <th style="width:48px;">#</th>
                 <th>Room</th>
                 <th>Product</th>
+                <th>Color</th>
                 <th>Size</th>
                 <th>UI</th>
                 <th>Preview</th>
                 <th>Mulling</th>
+                <th>Hinge</th>
+                <th>Swing</th>
                 <th>Addons</th>
                 <th>Price</th>
                 <th>Actions</th>
@@ -1270,10 +1616,13 @@
                     <td>${index + 1}</td>
                     <td>${item.roomLabel}</td>
                     <td>${productCode} - ${productName}</td>
+                    <td><span class="color-swatch" style="background:${(function(){ const map={white:'#ffffff',tan:'#d6c3a6',adobe:'#c58b68',black:'#222222'}; return map[item.frameColor]||item.frameColor||'#ffffff'; })()}"></span>${item.frameColor ? (item.frameColor.charAt(0).toUpperCase()+item.frameColor.slice(1)) : 'N/A'}</td>
                     <td>${item.width}" × ${item.height}"</td>
                     <td>${item.ui}</td>
                     <td>${previewImg}</td>
                     <td>${mullText}</td>
+                    <td>${item.hingeSide ? (item.hingeSide.charAt(0).toUpperCase() + item.hingeSide.slice(1)) : 'N/A'}</td>
+                    <td>${item.swingType ? (item.swingType === 'inswing' ? 'Inswing' : item.swingType === 'outswing' ? 'Outswing' : item.swingType) : 'N/A'}</td>
                     <td><small>${addonsText}</small></td>
                     <td>$${item.lineItemParTotal.toFixed(2)}</td>
                     <td><button class="btn-danger" onclick="removeLineItem(${index})">Remove</button></td>
@@ -1325,6 +1674,16 @@
         return showAlert('Please enter customer name');
       }
 
+      // Ensure currentQuote captures latest contact/job fields even if not saved
+      try {
+        currentQuote.spouseName = document.getElementById('spouse-name').value.trim();
+        currentQuote.address = document.getElementById('customer-address').value.trim();
+        currentQuote.phone = document.getElementById('customer-phone').value.trim();
+        currentQuote.email = document.getElementById('customer-email').value.trim();
+        currentQuote.quoteDate = document.getElementById('quote-date').value;
+        currentQuote.jobNotes = document.getElementById('job-notes').value.trim();
+      } catch (e) {}
+
       try {
         const salesUplift = parseFloat(document.getElementById('sales-uplift').value) || 0;
         const allAddons = DataStorage.getAddons();
@@ -1353,7 +1712,13 @@
         // Generate simple text quote
         let doc = `QUOTE: ${currentQuote.id}\n`;
         doc += `Customer: ${customerName}\n`;
-        doc += `Date: ${new Date().toLocaleDateString()}\n\n`;
+        if (currentQuote.spouseName) doc += `Co-Owner: ${currentQuote.spouseName}\n`;
+        doc += `Date: ${currentQuote.quoteDate || new Date().toLocaleDateString()}\n`;
+        if (currentQuote.address) doc += `Address: ${currentQuote.address}\n`;
+        if (currentQuote.phone) doc += `Phone: ${currentQuote.phone}\n`;
+        if (currentQuote.email) doc += `Email: ${currentQuote.email}\n`;
+        if (currentQuote.jobNotes) doc += `Job Notes: ${currentQuote.jobNotes}\n`;
+        doc += `\n`;
         doc += `LINE ITEMS:\n`;
         doc += `${'='.repeat(80)}\n`;
 
@@ -1365,6 +1730,9 @@
           
           doc += `${index + 1}. [${item.roomLabel}] ${productCode} - ${productName}\n`;
           doc += `   Size: ${item.width}" × ${item.height}" (${item.ui} UI)\n`;
+            if (item.frameColor) {
+              doc += `   Color: ${item.frameColor.charAt(0).toUpperCase() + item.frameColor.slice(1)}\n`;
+            }
           
           if (item.mullType) {
             const mullLabel = {
@@ -1375,6 +1743,12 @@
               'below': 'Below'
             };
             doc += `   Mulling: ${mullLabel[item.mullType] || item.mullType}\n`;
+          }
+          if (item.hingeSide) {
+            doc += `   Hinge Side: ${item.hingeSide.charAt(0).toUpperCase() + item.hingeSide.slice(1)}\n`;
+          }
+          if (item.swingType) {
+            doc += `   Swing: ${item.swingType === 'inswing' ? 'Inswing' : item.swingType === 'outswing' ? 'Outswing' : item.swingType}\n`;
           }
           
           const visibleAddons = item.appliedAddons.filter(a => !a.hidden);
@@ -1434,6 +1808,22 @@
       // Initialize width/height defaults for visualizer if empty
       if (!widthField.value) widthField.value = vizWidth;
       if (!heightField.value) heightField.value = vizHeight;
+
+      // Ensure quote date defaults to today if not set
+      try {
+        const qd = document.getElementById('quote-date');
+        if (qd && !qd.value) qd.value = new Date().toISOString().split('T')[0];
+      } catch (e) {}
+
+      // Initialize frame color picker
+      try {
+        const fc = document.getElementById('frame-color');
+        if (fc) {
+          if (!fc.value) fc.value = 'white';
+          fc.addEventListener('change', updateColorPreview);
+          updateColorPreview();
+        }
+      } catch (e) {}
 
       renderVisualizer();
       
