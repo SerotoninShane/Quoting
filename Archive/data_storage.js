@@ -58,7 +58,8 @@ export const DataStorage = {
       // Initialize global settings with defaults
       this.set(this.KEYS.GLOBAL_SETTINGS, {
         minimumUI: 65,
-        alertsEnabled: true
+        alertsEnabled: true,
+        rules: []
       });
     }
   },
@@ -67,7 +68,7 @@ export const DataStorage = {
    * Get global settings
    */
   getGlobalSettings() {
-    return this.get(this.KEYS.GLOBAL_SETTINGS, { minimumUI: 65, alertsEnabled: true });
+    return this.get(this.KEYS.GLOBAL_SETTINGS, { minimumUI: 65, alertsEnabled: true, rules: [] });
   },
 
   /**
@@ -184,7 +185,8 @@ export const DataStorage = {
       addons: this.getAddons(),
       quotes: this.get(this.KEYS.QUOTES, {}),
       quoteVersions: this.get(this.KEYS.QUOTE_VERSIONS, {}),
-      pricingVersions: this.getPricingVersions()
+      pricingVersions: this.getPricingVersions(),
+      globalSettings: this.getGlobalSettings()
     };
   },
 
@@ -219,6 +221,7 @@ export const DataStorage = {
     if (data.quotes) this.set(this.KEYS.QUOTES, data.quotes);
     if (data.quoteVersions) this.set(this.KEYS.QUOTE_VERSIONS, data.quoteVersions);
     if (data.pricingVersions) this.set(this.KEYS.PRICING_VERSIONS, data.pricingVersions);
+    if (data.globalSettings) this.set(this.KEYS.GLOBAL_SETTINGS, data.globalSettings);
   },
 
 

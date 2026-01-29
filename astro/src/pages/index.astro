@@ -1,0 +1,43 @@
+---
+import Layout from '../components/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Quoting UI" description="Shared UI components">
+	<div class="container">
+		<PageHeader title="Quoting UI" subtitle="Shared components preview">
+			<Fragment slot="actions">
+				<Button variant="secondary" href="/sales">Sales</Button>
+				<Button variant="primary" href="/admin">Admin</Button>
+			</Fragment>
+		</PageHeader>
+
+		<Card title="Form Example">
+			<div class="form-row">
+				<div class="form-group">
+					<label>Customer Name</label>
+					<input type="text" placeholder="Enter customer name" />
+				</div>
+				<div class="form-group">
+					<label>Quote Date</label>
+					<input type="date" />
+				</div>
+			</div>
+			<div style="margin-top: 12px; display:flex; gap: 8px;">
+				<Button variant="primary">Save</Button>
+				<Button variant="secondary">Cancel</Button>
+			</div>
+		</Card>
+
+		<Card title="Actions">
+			<div style="display:flex; gap: 8px; flex-wrap: wrap;">
+				<Button variant="primary">Primary</Button>
+				<Button variant="secondary">Secondary</Button>
+				<Button variant="success">Success</Button>
+				<Button variant="danger">Danger</Button>
+			</div>
+		</Card>
+	</div>
+</Layout>

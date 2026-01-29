@@ -4,77 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Krasiva Windows & Doors - Admin Control Panel</title>
+  <link rel="stylesheet" href="../shared/shared.css">
   <style>
-    :root {
-      --gap: 0.5rem;
-      --border: 1px solid rgba(0, 0, 0, 0.08);
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-      --shadow: var(--shadow-sm), var(--shadow-md);
-      --bg-surface: #ffffff;
-      --bg-input: #f4f4f5;
-      --bg-header: #fafafa;
-      --color-primary: #27272a;
-      --color-danger: #dc2626;
-      --color-success: #27272a;
-      --text-primary: #18181b;
-      --text-secondary: #71717a;
-      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-      margin: 0;
-      padding: 1.5rem;
-      background: #fafafa;
-      color: var(--text-primary);
-      line-height: 1.5;
-    }
-
     .container {
       max-width: 1400px;
       margin: 0 auto;
-    }
-
-    header {
-      background: var(--bg-surface);
-      padding: 1.5rem;
-      border: var(--border);
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      position: relative;
-    }
-    
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 8px;
-      pointer-events: none;
-    }
-
-    h1 {
-      margin: 0 0 0.5rem 0;
-      color: var(--text-primary);
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
     }
 
     .header-actions {
@@ -83,6 +17,7 @@
       margin-top: 0.5rem;
       flex-wrap: wrap;
     }
+
     .tabs {
       display: flex;
       gap: 0;
@@ -132,119 +67,12 @@
     .tab-content.active {
       display: block;
     }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    h2 {
       margin-top: 1.5rem;
-      background: var(--bg-surface);
-      border-radius: 8px;
-      overflow: hidden;
-      border: var(--border);
-      box-shadow: var(--shadow);
     }
 
-    th, td {
-      padding: 12px;
-      border-bottom: var(--border);
-      text-align: left;
-      font-size: 13px;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    th {
-      background: var(--bg-header);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    input, select {
-      padding: 10px 12px;
-      border: var(--border);
-      border-radius: 6px;
-      font-size: 14px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    input, select, textarea {
       width: 100%;
-      color: var(--text-primary);
-      background: var(--bg-input);
-      transition: all var(--transition);
-    }
-
-    input:hover, select:hover {
-      background: #ffffff;
-      border-color: rgba(0, 0, 0, 0.12);
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      background: #ffffff;
-      border-color: rgba(0, 0, 0, 0.15);
-      box-shadow: 0 0 0 3px rgba(39, 39, 42, 0.1);
-    }
-
-    input[type="number"] {
-      width: 120px;
-    }
-
-    input[type="checkbox"] {
-      width: auto;
-      border: var(--border);
-      padding: 4px;
-      cursor: pointer;
-      accent-color: var(--color-primary);
-    }
-
-    button {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      transition: all var(--transition);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    button:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    .btn-primary {
-      background: var(--color-primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #3f3f46;
-    }
-
-    .btn-success {
-      background: var(--color-success);
-      color: white;
-    }
-
-    .btn-danger {
-      background: var(--color-danger);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #f0f0f0;
-      color: var(--text-primary);
     }
 
     .form-row {
@@ -298,76 +126,6 @@
       font-size: 12px;
       color: var(--text-secondary);
       font-weight: 500;
-    }
-
-    .alert {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      right: 1rem;
-      max-width: 600px;
-      padding: 12px 16px;
-      border-radius: 6px;
-      border: var(--border);
-      font-size: 13px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      z-index: 10000;
-      animation: slideDown 0.3s ease-out;
-      pointer-events: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      backdrop-filter: blur(4px);
-    }
-
-    .alert-close {
-      pointer-events: auto;
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      cursor: pointer;
-      color: inherit;
-      opacity: 0.6;
-      transition: opacity 0.2s;
-      padding: 0;
-      min-width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .alert-close:hover {
-      opacity: 1;
-    }
-
-    .alert-content {
-      flex: 1;
-    }
-
-    @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .alert-success {
-      background: rgba(240, 253, 244, 0.9);
-      color: var(--text-primary);
-      border: 1px solid rgba(34, 197, 94, 0.2);
-    }
-
-    .alert-error {
-      background: rgba(254, 242, 242, 0.9);
-      color: var(--text-primary);
-      border: 1px solid rgba(220, 38, 38, 0.2);
     }
 
     .modal {
@@ -650,18 +408,27 @@
           <small>Show notification messages when actions are completed</small>
         </div>
       </div>
+      <div class="rules-panel">
+        <div style="display:flex; align-items:center; justify-content: space-between; gap: 8px;">
+          <div>
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Rules</h3>
+            <div style="font-size: 12px; color: var(--text-secondary);">Use conditions to auto-apply mandatory addons</div>
+          </div>
+          <button class="btn-secondary" type="button" onclick="addRule()">+ Add Rule</button>
+        </div>
+        <div id="rules-list" style="margin-top: 12px;"></div>
+      </div>
       <button class="btn-primary" onclick="saveGlobalSettings()">Save Settings</button>
       <div id="settings-status"></div>
     </div>
   </div>
 
-  <input type="file" id="import-file" accept=".json" style="display:none;" onchange="handleImport()">
-  <input type="file" id="csv-import-file" style="display:none;" onchange="handleCSVImport()">
   <input type="file" id="version-import-file" accept=".json,.csv" style="display:none;" onchange="handleVersionImport()">
 
   <script type="module">
     import { PricingEngine } from '../pricing_engine.js';
     import { DataStorage } from '../data_storage.js';
+    import { showAlert as showAlertShared, showModal } from '../shared/ui_helpers.js';
 
     // Initialize
     DataStorage.initializeSampleData();
@@ -678,88 +445,11 @@
     };
 
     window.showAlert = (message, type = 'success') => {
-      // Check if alerts are enabled in settings
       const settings = DataStorage.getGlobalSettings();
-      if (settings && settings.alertsEnabled === false) return;
-
-      const alert = document.createElement('div');
-      alert.className = `alert alert-${type}`;
-      
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'alert-content';
-      contentDiv.textContent = message;
-      
-      const closeBtn = document.createElement('button');
-      closeBtn.className = 'alert-close';
-      closeBtn.innerHTML = '✕';
-      closeBtn.onclick = (e) => {
-        e.stopPropagation();
-        alert.style.animation = 'slideDown 0.3s ease-out reverse';
-        setTimeout(() => alert.remove(), 300);
-      };
-      
-      alert.appendChild(contentDiv);
-      alert.appendChild(closeBtn);
-      
-      // Stack alerts on top of each other with higher z-index for newer alerts
-      const existingAlerts = document.querySelectorAll('.alert').length;
-      alert.style.zIndex = 10000 + existingAlerts;
-      
-      document.body.appendChild(alert);
-      
-      setTimeout(() => {
-        alert.style.animation = 'slideDown 0.3s ease-out reverse';
-        setTimeout(() => alert.remove(), 300);
-      }, 5000);
+      const alertsEnabled = settings && settings.alertsEnabled !== false;
+      showAlertShared(message, type, { enabled: alertsEnabled });
     };
-
-    // Generic modal function
-    window.showModal = (title, content, buttons = []) => {
-      const modalId = `modal-${Date.now()}`;
-      let buttonHtml = '';
-      if (buttons.length === 0) {
-        buttonHtml = `<button class="btn-secondary" onclick="document.getElementById('${modalId}').remove()">Close</button>`;
-      } else {
-        buttonHtml = buttons.map((btn, idx) => {
-          const btnClass = btn.type === 'primary' ? 'btn-primary' : btn.type === 'danger' ? 'btn-danger' : 'btn-secondary';
-          const btnId = `btn-${modalId}-${idx}`;
-          return `<button id="${btnId}" class="${btnClass}">${btn.label}</button>`;
-        }).join('');
-      }
-
-      const html = `<div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px);" id="${modalId}" onclick="if(event.target.id === '${modalId}') this.remove()">
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; max-width: 500px; width: 90%; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); max-height: 80vh; overflow-y: auto;">
-          <h2 style="margin-top: 0; margin-bottom: 1rem;">${title}</h2>
-          <div id="modal-content-${Date.now()}">${content}</div>
-          <div style="display: flex; gap: 8px; margin-top: 1.5rem;">
-            ${buttonHtml}
-          </div>
-        </div>
-      </div>`;
-      document.body.insertAdjacentHTML('beforeend', html);
-      
-      // Attach click handlers
-      buttons.forEach((btn, idx) => {
-        const btnId = `btn-${modalId}-${idx}`;
-        const btnElement = document.getElementById(btnId);
-        if (btnElement && btn.onclick) {
-          btnElement.onclick = (e) => {
-            e.preventDefault();
-            // Remove the modal first
-            const modal = document.getElementById(modalId);
-            if (modal) modal.remove();
-            // Then execute the handler
-            if (typeof btn.onclick === 'function') {
-              btn.onclick();
-            } else {
-              eval(btn.onclick);
-            }
-          };
-        }
-      });
-      
-      return modalId;
-    };
+    window.showModal = showModal;
 
     window.togglePricingFields = () => {
       const model = document.getElementById('prod-model').value;
@@ -1018,88 +708,6 @@
       document.getElementById('edit-modal').remove();
       renderAll();
       showAlert('Item updated successfully');
-    };
-
-    // CSV Import
-    window.importCSV = () => {
-      document.getElementById('csv-import-file').click();
-    };
-
-    window.handleCSVImport = () => {
-      const file = document.getElementById('csv-import-file').files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const csv = e.target.result;
-          const lines = csv.trim().split('\n');
-          const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-          
-          const requiredColumns = ['product line name', 'code', 'model', 'rate/price'];
-          const missingColumns = requiredColumns.filter(col => !headers.includes(col));
-          if (missingColumns.length > 0) {
-            return showAlert(`Missing columns: ${missingColumns.join(', ')}`, 'error');
-          }
-
-          const productLines = DataStorage.getProductLines();
-          const products = DataStorage.getProducts();
-          let addedCount = 0;
-
-          for (let i = 1; i < lines.length; i++) {
-            if (!lines[i].trim()) continue;
-
-            const values = lines[i].split(',').map(v => v.trim());
-            const obj = {};
-            headers.forEach((header, idx) => {
-              obj[header] = values[idx] || '';
-            });
-
-            // Find or create product line
-            let productLineId = Object.entries(productLines).find(([id, pl]) => pl.name.toLowerCase() === obj['product line name'].toLowerCase())?.[0];
-            if (!productLineId) {
-              productLineId = `line_${slugify(obj['product line name'])}`;
-              productLines[productLineId] = {
-                id: productLineId,
-                manufacturerId: 'unknown',
-                name: obj['product line name']
-              };
-            }
-
-            // Create product
-            const productId = `prod_${slugify(obj['code'] + '_' + obj['product line name'])}`;
-            const pricingModel = obj['model'].toUpperCase() === 'UI' ? 'UI' : 'FLAT';
-            const product = {
-              id: productId,
-              productLineId,
-              productTypeCode: obj['code'],
-              name: obj['code'],
-              pricingModel,
-              minimumUI: 0,
-              maximumUI: null,
-              allowedAddons: []
-            };
-
-            if (pricingModel === 'UI') {
-              product.uiRate = parseFloat(obj['rate/price']) || 0;
-            } else {
-              product.flatPrice = parseFloat(obj['rate/price']) || 0;
-            }
-
-            products[productId] = product;
-            addedCount++;
-          }
-
-          DataStorage.set(DataStorage.KEYS.PRODUCT_LINES, productLines);
-          DataStorage.set(DataStorage.KEYS.PRODUCTS, products);
-          document.getElementById('csv-import-file').value = '';
-          renderAll();
-          showAlert(`Successfully imported ${addedCount} products`);
-        } catch (error) {
-          showAlert(`Import error: ${error.message}`, 'error');
-        }
-      };
-      reader.readAsText(file);
     };
 
     // Helper function to create human-readable slugs
@@ -1461,37 +1069,6 @@
       document.querySelectorAll('[id^="modal-"]').forEach(m => m.remove());
     };
 
-    window.exportVersionJSON = () => {
-      const versions = DataStorage.getPricingVersions();
-      if (versions.length === 0) {
-        return showAlert('No versions to export', 'error');
-      }
-
-      const versionSelect = versions.map((v, idx) => `<option value="${v.id}">${v.name || v.id} (${new Date(v.timestamp).toLocaleDateString()})</option>`).join('');
-      
-      const html = `<div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px);" id="export-modal" onclick="if(event.target.id === 'export-modal') this.remove()">
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; max-width: 500px; width: 90%; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
-          <h2 style="margin-top: 0;">Export Version</h2>
-          <div class="form-group">
-            <label>Select Version</label>
-            <select id="version-to-export" style="width: 100%;">${versionSelect}</select>
-          </div>
-          <div class="form-group">
-            <label>Export Format</label>
-            <select id="export-format" style="width: 100%;">
-              <option value="json">JSON</option>
-              <option value="csv">CSV</option>
-            </select>
-          </div>
-          <div style="display: flex; gap: 8px; margin-top: 1.5rem;">
-            <button class="btn-primary" onclick="doExportVersion()">Export</button>
-            <button class="btn-secondary" onclick="document.getElementById('export-modal').remove()">Cancel</button>
-          </div>
-        </div>
-      </div>`;
-      document.body.insertAdjacentHTML('beforeend', html);
-    };
-
     window.exportVersionData = () => {
       const versions = DataStorage.getPricingVersions();
       
@@ -1692,11 +1269,6 @@
           };
         }
       }, 10);
-    };
-
-    window.exportVersionCSV = () => {
-      // Kept for backwards compatibility, calls the combined export
-      exportVersionData();
     };
 
     window.importVersionData = () => {
@@ -1916,98 +1488,6 @@
       return true;
     };
 
-    window.exportDataJSON = () => {
-      const data = DataStorage.exportAll();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `pricing-export-${new Date().toISOString()}.json`;
-      a.click();
-      showAlert('JSON data exported successfully');
-    };
-
-    window.exportDataCSV = () => {
-      const data = DataStorage.exportAll();
-      let csv = '';
-      
-      // Export Manufacturers
-      csv += 'MANUFACTURERS\n';
-      csv += 'ID,Name\n';
-      Object.values(data.manufacturers || {}).forEach(m => {
-        csv += `"${m.id}","${m.name}"\n`;
-      });
-      csv += '\n';
-      
-      // Export Product Lines
-      csv += 'PRODUCT LINES\n';
-      csv += 'ID,Manufacturer ID,Name\n';
-      Object.values(data.productLines || {}).forEach(pl => {
-        csv += `"${pl.id}","${pl.manufacturerId}","${pl.name}"\n`;
-      });
-      csv += '\n';
-      
-      // Export Products
-      csv += 'PRODUCTS\n';
-      csv += 'ID,Product Line ID,Product Type,Type Code,Name,Pricing Model,UI Rate,Flat Price,Minimum UI,Maximum UI\n';
-      Object.values(data.products || {}).forEach(p => {
-        const uiRate = p.uiRate || '';
-        const flatPrice = p.flatPrice || '';
-        const maxUI = p.maximumUI || '';
-        csv += `"${p.id}","${p.productLineId}","${p.productType}","${p.productTypeCode}","${p.name}","${p.pricingModel}","${uiRate}","${flatPrice}","${p.minimumUI}","${maxUI}"\n`;
-      });
-      csv += '\n';
-      
-      // Export Addons
-      csv += 'ADDONS\n';
-      csv += 'ID,Name,Pricing Model,UI Rate,Flat Price,Exclusive Group,Mandatory,Hidden From Customer,Job Based,Allowed Product Types,Allowed Product Lines,Min Size,Max Size\n';
-      Object.values(data.addons || {}).forEach(a => {
-        const uiRate = a.uiRate || '';
-        const flatPrice = a.flatPrice || '';
-        const exclusiveGroup = a.exclusiveGroup || '';
-        const minSize = a.minSize || '';
-        const maxSize = a.maxSize || '';
-        const productTypes = (a.allowedProductTypes || []).join('; ');
-        const productLines = (a.allowedProductLines || []).join('; ');
-        csv += `"${a.id}","${a.name}","${a.pricingModel}","${uiRate}","${flatPrice}","${exclusiveGroup}","${a.mandatory ? 'YES' : 'NO'}","${a.hiddenFromCustomer ? 'YES' : 'NO'}","${a.isJobBased ? 'YES' : 'NO'}","${productTypes}","${productLines}","${minSize}","${maxSize}"\n`;
-      });
-      
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `pricing-export-${new Date().toISOString()}.csv`;
-      a.click();
-      showAlert('CSV data exported successfully');
-    };
-
-    window.exportData = () => {
-      // Keep for backwards compatibility
-      exportDataJSON();
-    };
-
-    window.importData = () => {
-      document.getElementById('import-file').click();
-    };
-
-    window.handleImport = () => {
-      const file = document.getElementById('import-file').files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const data = JSON.parse(e.target.result);
-          DataStorage.importAll(data);
-          renderAll();
-          showAlert('Data imported successfully');
-        } catch (error) {
-          showAlert('Import failed: ' + error.message, 'error');
-        }
-      };
-      reader.readAsText(file);
-    };
-
     // Render functions
     function renderAll() {
       renderManufacturers();
@@ -2170,11 +1650,248 @@
       document.getElementById('version-list').innerHTML = html || '<p>No versions published yet.</p>';
     }
 
+    function getRuleTemplate() {
+      return {
+        id: `rule_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+        name: '',
+        appliesTo: 'line',
+        addonId: '',
+        enabled: true,
+        conditions: [getConditionTemplate()]
+      };
+    }
+
+    function getConditionTemplate() {
+      return {
+        id: `cond_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+        type: 'houseAge',
+        operator: '>=',
+        value: ''
+      };
+    }
+
+    function buildOptions(options, selectedValue = '') {
+      return options.map(opt => {
+        const value = typeof opt === 'string' ? opt : opt.value;
+        const label = typeof opt === 'string' ? opt : opt.label;
+        const selected = value === selectedValue ? 'selected' : '';
+        return `<option value="${value}" ${selected}>${label}</option>`;
+      }).join('');
+    }
+
+    function getRulesFromUI() {
+      const ruleElements = Array.from(document.querySelectorAll('.rule-row'));
+      if (ruleElements.length === 0) return null;
+      return ruleElements.map(ruleEl => {
+        const ruleId = ruleEl.getAttribute('data-rule-id');
+        const name = ruleEl.querySelector('.rule-name')?.value?.trim() || '';
+        const appliesTo = ruleEl.querySelector('.rule-applies-to')?.value || 'line';
+        const addonId = ruleEl.querySelector('.rule-addon-id')?.value || '';
+        const enabled = ruleEl.querySelector('.rule-enabled')?.checked !== false;
+        const conditionEls = Array.from(ruleEl.querySelectorAll('.rule-condition'));
+        const conditions = conditionEls.map(condEl => {
+          const type = condEl.querySelector('.rule-condition-type')?.value || 'houseAge';
+          const operator = condEl.querySelector('.rule-condition-operator')?.value || '>=';
+          let value = '';
+          if (type === 'productLine') {
+            value = condEl.querySelector('.rule-condition-value-line')?.value || '';
+          } else if (type === 'product') {
+            value = condEl.querySelector('.rule-condition-value-product')?.value || '';
+          } else if (type === 'addonSelected') {
+            value = condEl.querySelector('.rule-condition-value-addon')?.value || '';
+          } else {
+            value = condEl.querySelector('.rule-condition-value-number')?.value || '';
+          }
+          return {
+            id: condEl.getAttribute('data-condition-id') || `cond_${Date.now()}`,
+            type,
+            operator,
+            value
+          };
+        });
+        return {
+          id: ruleId || `rule_${Date.now()}`,
+          name,
+          appliesTo,
+          addonId,
+          enabled,
+          conditions
+        };
+      });
+    }
+
+    function renderRules(rulesOverride = null) {
+      const settings = DataStorage.getGlobalSettings();
+      const rules = Array.isArray(rulesOverride)
+        ? rulesOverride
+        : (Array.isArray(settings.rules) ? settings.rules : []);
+      const products = DataStorage.getProducts();
+      const lines = DataStorage.getProductLines();
+      const addons = DataStorage.getAddons();
+
+      const lineOptions = [{ value: '', label: 'Select product line...' }].concat(
+        Object.values(lines).map(line => ({ value: line.id, label: line.name }))
+      );
+      const productOptions = [{ value: '', label: 'Select product...' }].concat(
+        Object.values(products).map(product => ({ value: product.id, label: product.name }))
+      );
+      const addonOptions = [{ value: '', label: 'Select addon...' }].concat(
+        Object.values(addons).map(addon => ({ value: addon.id, label: addon.name }))
+      );
+
+      const html = rules.map(rule => {
+        const conditionsHtml = (rule.conditions || []).map(condition => {
+          return `
+            <div class="rule-condition" data-rule-id="${rule.id}" data-condition-id="${condition.id}">
+              <select class="rule-condition-type" onchange="updateConditionVisibility('${rule.id}','${condition.id}')">
+                ${buildOptions([
+                  { value: 'houseAge', label: 'House age (years)' },
+                  { value: 'ui', label: 'Total UI' },
+                  { value: 'area', label: 'Area (sq ft)' },
+                  { value: 'productLine', label: 'Product line' },
+                  { value: 'product', label: 'Product' },
+                  { value: 'addonSelected', label: 'Addon selected' }
+                ], condition.type)}
+              </select>
+              <select class="rule-condition-operator">
+                ${buildOptions([
+                  { value: '>=', label: '>=' },
+                  { value: '>', label: '>' },
+                  { value: '<=', label: '<=' },
+                  { value: '<', label: '<' },
+                  { value: '==', label: '=' },
+                  { value: '!=', label: '≠' }
+                ], condition.operator || '>=')}
+              </select>
+              <input type="number" class="rule-condition-value-number" placeholder="Value" value="${condition.value ?? ''}">
+              <select class="rule-condition-value-line">
+                ${buildOptions(lineOptions, condition.value)}
+              </select>
+              <select class="rule-condition-value-product">
+                ${buildOptions(productOptions, condition.value)}
+              </select>
+              <select class="rule-condition-value-addon">
+                ${buildOptions(addonOptions, condition.value)}
+              </select>
+              <button class="btn-danger" type="button" onclick="removeRuleCondition('${rule.id}','${condition.id}')">Remove</button>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="rule-row" data-rule-id="${rule.id}">
+            <div class="rule-header">
+              <input type="text" class="rule-name" placeholder="Rule name" value="${rule.name || ''}" style="flex: 1; min-width: 180px;">
+              <select class="rule-applies-to">
+                ${buildOptions([
+                  { value: 'line', label: 'Line Item' },
+                  { value: 'job', label: 'Job' }
+                ], rule.appliesTo || 'line')}
+              </select>
+              <select class="rule-addon-id">
+                ${buildOptions(addonOptions, rule.addonId || '')}
+              </select>
+              <label style="display:flex; align-items:center; gap:6px; font-size: 12px; color: var(--text-secondary);">
+                <input type="checkbox" class="rule-enabled" ${rule.enabled !== false ? 'checked' : ''}>
+                Enabled
+              </label>
+              <button class="btn-danger" type="button" onclick="deleteRule('${rule.id}')">Delete</button>
+            </div>
+            <div style="font-size: 12px; color: var(--text-secondary);">All conditions must match (AND)</div>
+            <div class="rule-conditions">
+              ${conditionsHtml || ''}
+            </div>
+            <div style="margin-top: 8px;">
+              <button class="btn-secondary" type="button" onclick="addRuleCondition('${rule.id}')">+ Add Condition</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('rules-list').innerHTML = html || '<p style="color: var(--text-secondary); font-size: 13px;">No rules yet.</p>';
+
+      // Update visibility for all conditions
+      rules.forEach(rule => {
+        (rule.conditions || []).forEach(condition => {
+          updateConditionVisibility(rule.id, condition.id);
+        });
+      });
+    }
+
+    window.addRule = () => {
+      const currentRules = getRulesFromUI();
+      const rules = Array.isArray(currentRules)
+        ? currentRules
+        : (Array.isArray(DataStorage.getGlobalSettings().rules) ? DataStorage.getGlobalSettings().rules : []);
+      rules.push(getRuleTemplate());
+      renderRules(rules);
+    };
+
+    window.addRuleCondition = (ruleId) => {
+      const currentRules = getRulesFromUI();
+      const rules = Array.isArray(currentRules)
+        ? currentRules
+        : (Array.isArray(DataStorage.getGlobalSettings().rules) ? DataStorage.getGlobalSettings().rules : []);
+      const rule = rules.find(r => r.id === ruleId);
+      if (!rule) return;
+      rule.conditions = rule.conditions || [];
+      rule.conditions.push(getConditionTemplate());
+      renderRules(rules);
+    };
+
+    window.removeRuleCondition = (ruleId, conditionId) => {
+      const currentRules = getRulesFromUI();
+      const rules = Array.isArray(currentRules)
+        ? currentRules
+        : (Array.isArray(DataStorage.getGlobalSettings().rules) ? DataStorage.getGlobalSettings().rules : []);
+      const rule = rules.find(r => r.id === ruleId);
+      if (!rule) return;
+      rule.conditions = (rule.conditions || []).filter(c => c.id !== conditionId);
+      if (rule.conditions.length === 0) {
+        rule.conditions.push(getConditionTemplate());
+      }
+      renderRules(rules);
+    };
+
+    window.deleteRule = (ruleId) => {
+      const currentRules = getRulesFromUI();
+      const rules = Array.isArray(currentRules)
+        ? currentRules
+        : (Array.isArray(DataStorage.getGlobalSettings().rules) ? DataStorage.getGlobalSettings().rules : []);
+      const nextRules = rules.filter(r => r.id !== ruleId);
+      renderRules(nextRules);
+    };
+
+    window.updateConditionVisibility = (ruleId, conditionId) => {
+      const row = document.querySelector(`.rule-condition[data-rule-id="${ruleId}"][data-condition-id="${conditionId}"]`);
+      if (!row) return;
+      const typeSelect = row.querySelector('.rule-condition-type');
+      const operatorSelect = row.querySelector('.rule-condition-operator');
+      const numberInput = row.querySelector('.rule-condition-value-number');
+      const lineSelect = row.querySelector('.rule-condition-value-line');
+      const productSelect = row.querySelector('.rule-condition-value-product');
+      const addonSelect = row.querySelector('.rule-condition-value-addon');
+
+      const type = typeSelect ? typeSelect.value : '';
+
+      const isNumeric = type === 'houseAge' || type === 'ui' || type === 'area';
+      const isLine = type === 'productLine';
+      const isProduct = type === 'product';
+      const isAddon = type === 'addonSelected';
+
+      if (operatorSelect) operatorSelect.style.display = isNumeric ? 'inline-block' : 'none';
+      if (numberInput) numberInput.style.display = isNumeric ? 'inline-block' : 'none';
+      if (lineSelect) lineSelect.style.display = isLine ? 'inline-block' : 'none';
+      if (productSelect) productSelect.style.display = isProduct ? 'inline-block' : 'none';
+      if (addonSelect) addonSelect.style.display = isAddon ? 'inline-block' : 'none';
+    };
+
     function renderSettings() {
       const settings = DataStorage.getGlobalSettings();
       const minimumUI = settings.minimumUI !== undefined ? settings.minimumUI : 65;
       document.getElementById('setting-minimum-ui').value = minimumUI;
       document.getElementById('setting-alerts-enabled').checked = settings.alertsEnabled !== false;
+      renderRules();
     }
 
     window.saveGlobalSettings = () => {
@@ -2187,7 +1904,9 @@
       }
 
       try {
-        const settingsToSave = { alertsEnabled };
+        const rules = getRulesFromUI() || [];
+
+        const settingsToSave = { alertsEnabled, rules };
         if (minimumUI !== undefined) {
           settingsToSave.minimumUI = minimumUI;
         }
