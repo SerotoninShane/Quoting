@@ -221,12 +221,12 @@ import TabSection from '../../components/TabSection.astro';
     <div id="alerts"></div>
 
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('manufacturers', event)">Manufacturers</button>
-      <button class="tab" onclick="switchTab('productLines', event)">Product Lines</button>
-      <button class="tab" onclick="switchTab('products', event)">Products</button>
-      <button class="tab" onclick="switchTab('addons', event)">Addons</button>
-      <button class="tab" onclick="switchTab('versions', event)">Version History</button>
-      <button class="tab" onclick="switchTab('settings', event)">Settings</button>
+      <button class="tab active" data-tab="manufacturers">Manufacturers</button>
+      <button class="tab" data-tab="productLines">Product Lines</button>
+      <button class="tab" data-tab="products">Products</button>
+      <button class="tab" data-tab="addons">Addons</button>
+      <button class="tab" data-tab="versions">Version History</button>
+      <button class="tab" data-tab="settings">Settings</button>
     </div>
 
     <TabSection id="manufacturers" title="Manufacturers" active>
@@ -430,14 +430,27 @@ import TabSection from '../../components/TabSection.astro';
     window.engine = PricingEngine;
 
     // Global functions for UI
-    window.switchTab = (tabName, evt) => {
+    const activateTab = (tabName) => {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      const target = evt && (evt.currentTarget || evt.target);
-      if (target && target.classList) target.classList.add('active');
-      document.getElementById(tabName).classList.add('active');
+      const tabButton = document.querySelector(`.tab[data-tab="${tabName}"]`);
+      if (tabButton) tabButton.classList.add('active');
+      const section = document.getElementById(tabName);
+      if (section) section.classList.add('active');
       renderAll();
     };
+
+    window.switchTab = (tabName) => {
+      activateTab(tabName);
+    };
+
+    document.addEventListener('click', (evt) => {
+      const tabButton = evt.target && evt.target.closest ? evt.target.closest('.tab[data-tab]') : null;
+      if (!tabButton) return;
+      const tabName = tabButton.getAttribute('data-tab');
+      if (!tabName) return;
+      activateTab(tabName);
+    });
 
     window.showAlert = (message, type = 'success') => {
       const settings = DataStorage.getGlobalSettings();
@@ -1926,6 +1939,7 @@ import TabSection from '../../components/TabSection.astro';
 
     // Initial render
     renderAll();
+    activateTab('manufacturers');
   </script>
 </body>
 </html>
