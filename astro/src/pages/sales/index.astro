@@ -1,7 +1,5 @@
 ---
-import AppHeader from '../../components/AppHeader.astro';
 import Card from '../../components/Card.astro';
-import '../../styles/sales.css';
 ---
 
 <!DOCTYPE html>
@@ -13,19 +11,12 @@ import '../../styles/sales.css';
   <link rel="stylesheet" href="/styles/shared.css">
   
 </head>
-<body>
+<body class="sales-page">
+  <a class="page-toggle" href="/admin" aria-label="Go to Admin page">Admin</a>
   <div class="container">
-    <AppHeader
-      title="Krasiva Windows & Doors"
-      subtitle="Create customer quotes with live pricing calculation."
-      linkHref="/admin"
-      linkLabel="Admin Panel"
-      actionsStyle="display: flex; gap: 8px; margin-top: 1.5rem; flex-wrap: wrap;"
-    >
-      <button slot="actions" class="btn-secondary" onclick="showSavedQuotes()">Load Quote</button>
-      <button slot="actions" class="btn-secondary" onclick="newQuote()">New Quote</button>
-      <button slot="actions" class="btn-success" onclick="saveQuote()">Save Quote</button>
-    </AppHeader>
+  <button slot="actions" class="btn-secondary" onclick="showSavedQuotes()">Load Quote</button>
+  <button slot="actions" class="btn-secondary" onclick="newQuote()">New Quote</button>
+  <button slot="actions" class="btn-success" onclick="saveQuote()">Save Quote</button>
 
     <div id="alerts"></div>
 

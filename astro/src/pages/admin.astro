@@ -1,5 +1,5 @@
 ---
-import TabSection from '../../components/TabSection.astro';
+import TabSection from '../components/TabSection.astro';
 ---
 
 <!DOCTYPE html>
@@ -11,10 +11,8 @@ import TabSection from '../../components/TabSection.astro';
   <link rel="stylesheet" href="/styles/shared.css">
 </head>
 <body class="admin-page">
-  <a class="page-toggle" href="/sales" aria-label="Go to Sales page">Sales</a>
+  <a class="page-toggle" href="/" aria-label="Go to Sales page">Sales</a>
   <div class="container">
-  <button slot="actions" class="btn-success" onclick="publishVersion()">Publish Pricing Version</button>
-
     <div id="alerts"></div>
 
     <div class="tabs">
@@ -24,6 +22,7 @@ import TabSection from '../../components/TabSection.astro';
       <button class="tab" data-tab="addons">Addons</button>
       <button class="tab" data-tab="versions">Version History</button>
       <button class="tab" data-tab="settings">Settings</button>
+      <button class="tab tab-publish" onclick="publishVersion()">Publish</button>
     </div>
 
     <TabSection id="manufacturers" title="Manufacturers" active>
@@ -33,7 +32,9 @@ import TabSection from '../../components/TabSection.astro';
           <input type="text" id="mfg-name" placeholder="e.g., Andersen Windows">
         </div>
       </div>
-      <button class="btn-primary" onclick="addManufacturer()">+ Add Manufacturer</button>
+      <div class="form-actions">
+        <button class="btn-primary" onclick="addManufacturer()">+ Add Manufacturer</button>
+      </div>
       <div id="mfg-table"></div>
     </TabSection>
 
@@ -48,7 +49,9 @@ import TabSection from '../../components/TabSection.astro';
           <input type="text" id="pl-name" placeholder="e.g., 400 Series">
         </div>
       </div>
-      <button class="btn-primary" onclick="addProductLine()">+ Add Product Line</button>
+      <div class="form-actions">
+        <button class="btn-primary" onclick="addProductLine()">+ Add Product Line</button>
+      </div>
       <div id="pl-table"></div>
     </TabSection>
 
@@ -73,7 +76,7 @@ import TabSection from '../../components/TabSection.astro';
           <label>Type Code</label>
           <input type="text" id="prod-code" placeholder="e.g., SH, DH">
         </div>
-        <div class="form-group">
+        <div class="form-group full-span">
           <label>Name</label>
           <input type="text" id="prod-name" placeholder="e.g., Single Hung">
         </div>
@@ -103,16 +106,24 @@ import TabSection from '../../components/TabSection.astro';
           <input type="number" id="prod-max-ui" placeholder="500">
         </div>
       </div>
-      <button class="btn-primary" onclick="addProduct()">+ Add Product</button>
+      <div class="form-actions">
+        <button class="btn-primary" onclick="addProduct()">+ Add Product</button>
+      </div>
       <div id="prod-table"></div>
     </TabSection>
 
     <TabSection id="addons" title="Addons">
       <div class="form-row">
-        <div class="form-group">
+        <div class="form-group full-span">
           <label>Name</label>
           <input type="text" id="addon-name" placeholder="e.g., Colonial Grids">
         </div>
+        <div class="form-group full-span">
+          <label>Exclusive Group (optional)</label>
+          <input type="text" id="addon-exclusive" placeholder="e.g., glass_type">
+        </div>
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label>Pricing Model</label>
           <select id="addon-model" onchange="toggleAddonPricingFields()">
@@ -129,31 +140,26 @@ import TabSection from '../../components/TabSection.astro';
           <input type="number" id="addon-flat-price" step="0.01" placeholder="350">
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Exclusive Group (optional)</label>
-          <input type="text" id="addon-exclusive" placeholder="e.g., glass_type">
-        </div>
-        <div class="form-group">
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="checkbox" id="addon-mandatory" style="width: auto;">
+      <div class="checkbox-section">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="addon-mandatory">
             Mandatory
           </label>
         </div>
-        <div class="form-group">
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="checkbox" id="addon-hidden" style="width: auto;">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="addon-hidden">
             Hidden from Customer
           </label>
         </div>
-        <div class="form-group">
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="checkbox" id="addon-job-based" style="width: auto;">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="addon-job-based">
             Job Based (Global - apply to all quotes)
           </label>
         </div>
       </div>
-      <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Restrictions (Optional)</h3>
       <div class="form-row">
         <div class="form-group">
           <label>Allowed Product Types (leave blank for all)</label>
@@ -172,7 +178,9 @@ import TabSection from '../../components/TabSection.astro';
           <input type="number" id="addon-min-size" step="0.01" placeholder="0">
         </div>
       </div>
-      <button class="btn-primary" onclick="addAddon()">+ Add Addon</button>
+      <div class="form-actions">
+        <button class="btn-primary" onclick="addAddon()">+ Add Addon</button>
+      </div>
       <div id="addon-table"></div>
     </TabSection>
 
@@ -191,9 +199,11 @@ import TabSection from '../../components/TabSection.astro';
           <input type="number" id="setting-minimum-ui" min="0" step="1" placeholder="65">
           <small>All windows must have at least this many united inches (width + height)</small>
         </div>
-        <div class="form-group">
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="checkbox" id="setting-alerts-enabled" style="width: auto;">
+      </div>
+      <div class="checkbox-section">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="setting-alerts-enabled">
             Enable Success Alerts
           </label>
           <small>Show notification messages when actions are completed</small>
@@ -209,7 +219,9 @@ import TabSection from '../../components/TabSection.astro';
         </div>
         <div id="rules-list" style="margin-top: 12px;"></div>
       </div>
-      <button class="btn-primary" onclick="saveGlobalSettings()">Save Settings</button>
+      <div class="form-actions">
+        <button class="btn-primary" onclick="saveGlobalSettings()">Save Settings</button>
+      </div>
       <div id="settings-status"></div>
     </TabSection>
   </div>
@@ -676,8 +688,8 @@ import TabSection from '../../components/TabSection.astro';
                 <td>${m.id}</td>
                 <td>${m.name}</td>
                 <td>
-                  <button class="btn-primary" onclick="openEditModal('mfg', '${m.id}')">Edit</button>
-                  <button class="btn-danger" onclick="deleteItem('manufacturer', '${m.id}')">Delete</button>
+                  <button class="btn-primary" title="Edit" aria-label="Edit" onclick="openEditModal('mfg', '${m.id}')">Edit</button>
+                  <button class="btn-danger" title="Delete" aria-label="Delete" onclick="deleteItem('manufacturer', '${m.id}')">X</button>
                 </td>
               </tr>
             `).join('')}
@@ -699,8 +711,8 @@ import TabSection from '../../components/TabSection.astro';
                 <td>${manufacturers[l.manufacturerId]?.name || 'N/A'}</td>
                 <td>${l.name}</td>
                 <td>
-                  <button class="btn-primary" onclick="openEditModal('line', '${l.id}')">Edit</button>
-                  <button class="btn-danger" onclick="deleteItem('productLine', '${l.id}')">Delete</button>
+                  <button class="btn-primary" title="Edit" aria-label="Edit" onclick="openEditModal('line', '${l.id}')">Edit</button>
+                  <button class="btn-danger" title="Delete" aria-label="Delete" onclick="deleteItem('productLine', '${l.id}')">X</button>
                 </td>
               </tr>
             `).join('')}
@@ -728,8 +740,8 @@ import TabSection from '../../components/TabSection.astro';
                 <td>${p.minimumUI}</td>
                 <td>${p.maximumUI || 'Unlimited'}</td>
                 <td>
-                  <button class="btn-primary" onclick="openEditModal('prod', '${p.id}')">Edit</button>
-                  <button class="btn-danger" onclick="deleteItem('product', '${p.id}')">Delete</button>
+                  <button class="btn-primary" title="Edit" aria-label="Edit" onclick="openEditModal('prod', '${p.id}')">Edit</button>
+                  <button class="btn-danger" title="Delete" aria-label="Delete" onclick="deleteItem('product', '${p.id}')">X</button>
                 </td>
               </tr>
             `).join('')}
@@ -756,8 +768,8 @@ import TabSection from '../../components/TabSection.astro';
                 <td>${a.hiddenFromCustomer ? '✓' : ''}</td>
                 <td>${a.isJobBased ? '✓' : ''}</td>
                 <td>
-                  <button class="btn-primary" onclick="openEditModal('addon', '${a.id}')">Edit</button>
-                  <button class="btn-danger" onclick="deleteItem('addon', '${a.id}')">Delete</button>
+                  <button class="btn-primary" title="Edit" aria-label="Edit" onclick="openEditModal('addon', '${a.id}')">Edit</button>
+                  <button class="btn-danger" title="Delete" aria-label="Delete" onclick="deleteItem('addon', '${a.id}')">X</button>
                 </td>
               </tr>
             `).join('')}
@@ -778,7 +790,7 @@ import TabSection from '../../components/TabSection.astro';
             </div>
             <div style="display: flex; gap: 6px; flex-wrap: wrap;">
               <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="loadVersion('${v.id}')">Load</button>
-              <button class="btn-danger" style="padding: 6px 12px; font-size: 12px;" onclick="deleteVersion('${v.id}')">Delete</button>
+              <button class="btn-danger" title="Delete" aria-label="Delete" style="padding: 6px 12px; font-size: 12px;" onclick="deleteVersion('${v.id}')">X</button>
             </div>
           </div>
         </div>
@@ -819,6 +831,35 @@ import TabSection from '../../components/TabSection.astro';
     // Initial render
     renderAll();
     activateTab('manufacturers');
+
+    // Tab hover dimming effect
+    const tabs = document.querySelectorAll('.admin-page .tab:not(.tab-publish)');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('mouseenter', function() {
+        tabs.forEach(otherTab => {
+          if (otherTab !== tab && !otherTab.classList.contains('active')) {
+            otherTab.classList.add('dimmed');
+          }
+        });
+      });
+      
+      tab.addEventListener('mouseleave', function() {
+        tabs.forEach(otherTab => {
+          otherTab.classList.remove('dimmed');
+        });
+      });
+    });
+    
+    // Also handle when leaving the entire tabs container
+    const tabsContainer = document.querySelector('.admin-page .tabs');
+    if (tabsContainer) {
+      tabsContainer.addEventListener('mouseleave', function() {
+        tabs.forEach(tab => {
+          tab.classList.remove('dimmed');
+        });
+      });
+    }
   </script>
 </body>
 </html>

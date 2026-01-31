@@ -4,7 +4,6 @@ const className = active ? 'tab-content active' : 'tab-content';
 ---
 
 <div id={id} class={className}>
-  {title && <h2>{title}</h2>}
   {description && <p>{description}</p>}
   <slot />
 </div>
