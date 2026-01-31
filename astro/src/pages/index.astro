@@ -20,44 +20,19 @@ import Card from '../components/Card.astro';
 
     <div id="alerts"></div>
 
-    <Card title="Quote Information">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Quote ID</label>
-          <input type="text" id="quote-id" readonly>
-        </div>
-        <div class="form-group">
-          <label>Date</label>
-          <input type="date" id="quote-date">
-        </div>
-        <div class="form-group">
-          <label>Customer Name <span style="color:#dc2626;">*</span></label>
-          <input type="text" id="customer-name" placeholder="Enter customer name">
-        </div>
-        <div class="form-group">
-          <label>Spouse / Co-Owner</label>
-          <input type="text" id="spouse-name" placeholder="Optional">
-        </div>
-        <div class="form-group">
-          <label>Address</label>
-          <textarea id="customer-address" rows="2" style="padding:10px 12px; border: var(--border); border-radius:6px; background: var(--bg-input);"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" id="customer-phone" placeholder="Primary phone">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="customer-email" placeholder="Primary email">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>House Age (years)</label>
-          <input type="number" id="house-age" min="0" step="1" placeholder="e.g., 25">
-        </div>
-      </div>
-    </Card>
+    <!-- Hidden fields for quote data -->
+    <input type="hidden" id="quote-id">
+    <input type="hidden" id="quote-date">
+    <input type="hidden" id="customer-name">
+    <input type="hidden" id="spouse-name">
+    <input type="hidden" id="customer-address">
+    <input type="hidden" id="customer-phone">
+    <input type="hidden" id="customer-email">
+    <input type="hidden" id="house-age">
+
+    <div style="margin-bottom: 1.5rem;">
+      <button class="btn-secondary" onclick="showQuoteInfo()">Quote Information</button>
+    </div>
 
     <Card title="Add Item">
       
@@ -849,16 +824,83 @@ import Card from '../components/Card.astro';
       updateQuoteDisplay();
     };
 
+    window.showQuoteInfo = () => {
+      const quoteId = document.getElementById('quote-id').value || '';
+      const quoteDate = document.getElementById('quote-date').value || '';
+      const customerName = document.getElementById('customer-name').value || '';
+      const spouseName = document.getElementById('spouse-name').value || '';
+      const address = document.getElementById('customer-address').value || '';
+      const phone = document.getElementById('customer-phone').value || '';
+      const email = document.getElementById('customer-email').value || '';
+      const houseAge = document.getElementById('house-age').value || '';
+      
+      const content = `
+        <div class="form-row">
+          <div class="form-group">
+            <label>Quote ID</label>
+            <input type="text" id="modal-quote-id" readonly value="${quoteId}">
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="modal-quote-date" value="${quoteDate}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" id="modal-customer-name" placeholder="Enter customer name" value="${customerName}">
+          </div>
+          <div class="form-group">
+            <label>Spouse / Co-Owner</label>
+            <input type="text" id="modal-spouse-name" placeholder="Optional" value="${spouseName}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Address</label>
+            <textarea id="modal-customer-address" rows="2" style="padding:10px 12px; border: var(--border); border-radius:6px; background: var(--bg-input);">${address}</textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="modal-customer-phone" placeholder="Primary phone" value="${phone}">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="modal-customer-email" placeholder="Primary email" value="${email}">
+          </div>
+          <div class="form-group">
+            <label>House Age (years)</label>
+            <input type="number" id="modal-house-age" min="0" step="1" placeholder="e.g., 25" value="${houseAge}">
+          </div>
+        </div>
+      `;
+      
+      showModal('Quote Information', content, [
+        {
+          label: 'Save',
+          type: 'primary',
+          onclick: () => {
+            document.getElementById('quote-date').value = document.getElementById('modal-quote-date').value;
+            document.getElementById('customer-name').value = document.getElementById('modal-customer-name').value;
+            document.getElementById('spouse-name').value = document.getElementById('modal-spouse-name').value;
+            document.getElementById('customer-address').value = document.getElementById('modal-customer-address').value;
+            document.getElementById('customer-phone').value = document.getElementById('modal-customer-phone').value;
+            document.getElementById('customer-email').value = document.getElementById('modal-customer-email').value;
+            document.getElementById('house-age').value = document.getElementById('modal-house-age').value;
+          }
+        },
+        { label: 'Cancel', onclick: () => {} }
+      ]);
+    };
+
     window.saveQuote = () => {
-      const customerName = document.getElementById('customer-name').value.trim();
-      if (!customerName) {
-        return showAlert('Please enter customer name');
-      }
       if (currentQuote.lineItems.length === 0) {
         return showAlert('Quote must have at least one line item');
       }
 
-      currentQuote.customerName = customerName;
+      currentQuote.customerName = document.getElementById('customer-name').value.trim();
       currentQuote.spouseName = document.getElementById('spouse-name').value.trim();
       currentQuote.address = document.getElementById('customer-address').value.trim();
       currentQuote.phone = document.getElementById('customer-phone').value.trim();

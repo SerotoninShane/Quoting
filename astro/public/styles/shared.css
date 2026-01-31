@@ -24,6 +24,9 @@ body {
   background: #fafafa;
   color: var(--text-primary);
   line-height: 1.5;
+}
+
+body.admin-page {
   height: 100vh;
   overflow: hidden;
   display: flex;

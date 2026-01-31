@@ -101,9 +101,23 @@ import TabSection from '../components/TabSection.astro';
     </TabSection>
 
     <TabSection id="versions" title="Pricing Version History" description="Manage and export previous pricing configurations.">
-      <div id="version-inputs" class="input-section" style="display: flex; gap: 8px; margin-bottom: 1.5rem;">
-        <button class="btn-secondary" onclick="exportVersionData()">Export Version</button>
-        <button class="btn-secondary" onclick="importVersionData()">Import Version</button>
+      <div class="section-actions">
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-secondary" onclick="exportVersionData()">Export Version</button>
+          <button class="btn-secondary" onclick="importVersionData()">Import Version</button>
+        </div>
+        <div class="filter-wrap">
+          <div class="filter-toggle-row">
+            <button class="btn-secondary filter-toggle" type="button" aria-expanded="false" aria-controls="version-filters" onclick="toggleFilterRow('version-filters', this)">Filters ▾</button>
+          </div>
+          <div id="version-filters" class="filter-row is-hidden">
+            <input type="text" id="version-filter-name" placeholder="Filter by name" oninput="renderVersions()">
+            <input type="month" id="version-filter-month" onchange="renderVersions()">
+            <select id="version-filter-year" onchange="renderVersions()">
+              <option value="">All years</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="version-history" id="version-list"></div>
     </TabSection>
@@ -767,21 +781,42 @@ import TabSection from '../components/TabSection.astro';
     // VERSION MANAGEMENT (SIMPLIFIED)
     // ============================================================================
 
-    window.publishVersion = () => {
-      const name = prompt('Version name (optional):') || '';
-      const notes = prompt('Version notes (optional):') || '';
-      const version = DataStorage.publishPricingVersion(notes);
-      if (name) {
-        version.name = name;
-        const versions = DataStorage.getPricingVersions();
-        const idx = versions.findIndex(v => v.id === version.id);
-        if (idx !== -1) {
-          versions[idx].name = name;
-          DataStorage.set(DataStorage.KEYS.PRICING_VERSIONS, versions);
-        }
-      }
-      renderAll();
-      showAlert(`Version ${name || version.id} published successfully`);
+    window.publishVersion = (callback) => {
+      showModal(
+        'Publish Version',
+        `<div class="form-group">
+          <label>Version Name (optional)</label>
+          <input type="text" id="publish-version-name" placeholder="e.g., Spring 2026 Pricing">
+        </div>
+        <div class="form-group">
+          <label>Notes (optional)</label>
+          <textarea id="publish-version-notes" rows="3" placeholder="Describe what changed in this version..."></textarea>
+        </div>`,
+        [
+          {
+            label: 'Publish',
+            type: 'primary',
+            onclick: () => {
+              const name = document.getElementById('publish-version-name').value.trim();
+              const notes = document.getElementById('publish-version-notes').value.trim();
+              const version = DataStorage.publishPricingVersion(notes);
+              if (name) {
+                version.name = name;
+                const versions = DataStorage.getPricingVersions();
+                const idx = versions.findIndex(v => v.id === version.id);
+                if (idx !== -1) {
+                  versions[idx].name = name;
+                  DataStorage.set(DataStorage.KEYS.PRICING_VERSIONS, versions);
+                }
+              }
+              renderAll();
+              showAlert(`Version ${name || version.id} published successfully`);
+              if (callback) callback();
+            }
+          },
+          { label: 'Cancel', onclick: () => {} }
+        ]
+      );
     };
 
     window.exportVersionData = () => {
@@ -834,7 +869,28 @@ import TabSection from '../components/TabSection.astro';
     };
 
     window.importVersionData = () => {
-      document.getElementById('version-import-file').click();
+      showModal(
+        'Import Version',
+        '<p>Do you want to save your current version before importing?</p>',
+        [
+          {
+            label: 'Save & Import',
+            type: 'primary',
+            onclick: () => {
+              publishVersion(() => {
+                document.getElementById('version-import-file').click();
+              });
+            }
+          },
+          {
+            label: 'Import Without Saving',
+            onclick: () => {
+              document.getElementById('version-import-file').click();
+            }
+          },
+          { label: 'Cancel', onclick: () => {} }
+        ]
+      );
     };
 
     window.handleVersionImport = () => {
@@ -1060,10 +1116,41 @@ import TabSection from '../components/TabSection.astro';
     window.renderProductLines = renderProductLines;
     window.renderProducts = renderProducts;
     window.renderAddons = renderAddons;
+    window.renderVersions = renderVersions;
 
     function renderVersions() {
       const versions = DataStorage.getPricingVersions();
-      document.getElementById('version-list').innerHTML = versions.reverse().map(v => `
+      const filterName = (document.getElementById('version-filter-name')?.value || '').toLowerCase();
+      const filterMonth = document.getElementById('version-filter-month')?.value;
+      const filterYear = document.getElementById('version-filter-year')?.value;
+      
+      // Populate year dropdown with available years
+      const years = [...new Set(versions.map(v => new Date(v.timestamp).getFullYear()))].sort((a, b) => b - a);
+      const yearSelect = document.getElementById('version-filter-year');
+      if (yearSelect && yearSelect.options.length === 1) {
+        years.forEach(year => {
+          const option = document.createElement('option');
+          option.value = year;
+          option.textContent = year;
+          yearSelect.appendChild(option);
+        });
+      }
+      
+      const filtered = versions.filter(v => {
+        if (filterName && !(v.name || v.id).toLowerCase().includes(filterName)) return false;
+        
+        const versionDate = new Date(v.timestamp);
+        if (filterMonth) {
+          const versionMonth = versionDate.toISOString().slice(0, 7);
+          if (versionMonth !== filterMonth) return false;
+        }
+        if (filterYear) {
+          if (versionDate.getFullYear().toString() !== filterYear) return false;
+        }
+        return true;
+      });
+      
+      document.getElementById('version-list').innerHTML = filtered.reverse().map(v => `
         <div class="version-item">
           <div style="display: flex; justify-content: space-between; align-items: start; gap: 12px;">
             <div style="flex: 1;">
