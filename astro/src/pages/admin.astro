@@ -26,166 +26,82 @@ import TabSection from '../components/TabSection.astro';
     </div>
 
     <TabSection id="manufacturers" title="Manufacturers" active>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" id="mfg-name" placeholder="e.g., Andersen Windows">
+      <div class="section-actions">
+        <button class="btn-primary" onclick="openAddModal('mfg')">+ Add Manufacturer</button>
+        <div class="filter-wrap">
+          <div class="filter-toggle-row">
+            <button class="btn-secondary filter-toggle" type="button" aria-expanded="false" aria-controls="mfg-filters" onclick="toggleFilterRow('mfg-filters', this)">Filters ▾</button>
+          </div>
+          <div id="mfg-filters" class="filter-row is-hidden">
+            <input type="text" id="mfg-filter" placeholder="Filter by ID or name" oninput="renderManufacturers()">
+          </div>
         </div>
-      </div>
-      <div class="form-actions">
-        <button class="btn-primary" onclick="addManufacturer()">+ Add Manufacturer</button>
       </div>
       <div id="mfg-table"></div>
     </TabSection>
 
     <TabSection id="productLines" title="Product Lines">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Manufacturer</label>
-          <select id="pl-manufacturer"></select>
+      <div class="section-actions">
+        <button class="btn-primary" onclick="openAddModal('line')">+ Add Product Line</button>
+        <div class="filter-wrap">
+          <div class="filter-toggle-row">
+            <button class="btn-secondary filter-toggle" type="button" aria-expanded="false" aria-controls="pl-filters" onclick="toggleFilterRow('pl-filters', this)">Filters ▾</button>
+          </div>
+          <div id="pl-filters" class="filter-row is-hidden">
+            <select id="pl-filter-mfg" onchange="renderProductLines()"></select>
+            <input type="text" id="pl-filter-text" placeholder="Filter by name" oninput="renderProductLines()">
+          </div>
         </div>
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" id="pl-name" placeholder="e.g., 400 Series">
-        </div>
-      </div>
-      <div class="form-actions">
-        <button class="btn-primary" onclick="addProductLine()">+ Add Product Line</button>
       </div>
       <div id="pl-table"></div>
     </TabSection>
 
     <TabSection id="products" title="Products">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Product Type</label>
-          <select id="prod-type">
-            <option value="Window">Window</option>
-            <option value="Door">Door</option>
-            <option value="Sliding Door">Sliding Door</option>
-            <option value="Bifold Door">Bifold Door</option>
-            <option value="Sidelite">Sidelite</option>
-            <option value="French Door">French Door</option>
-          </select>
+      <div class="section-actions">
+        <button class="btn-primary" onclick="openAddModal('prod')">+ Add Product</button>
+        <div class="filter-wrap">
+          <div class="filter-toggle-row">
+            <button class="btn-secondary filter-toggle" type="button" aria-expanded="false" aria-controls="prod-filters" onclick="toggleFilterRow('prod-filters', this)">Filters ▾</button>
+          </div>
+          <div id="prod-filters" class="filter-row is-hidden">
+            <select id="prod-filter-type" onchange="renderProducts()"></select>
+            <select id="prod-filter-line" onchange="renderProducts()"></select>
+            <select id="prod-filter-model" onchange="renderProducts()">
+              <option value="">All models</option>
+              <option value="UI">UI-Based</option>
+              <option value="FLAT">Flat Price</option>
+            </select>
+            <input type="text" id="prod-filter-text" placeholder="Filter by code or name" oninput="renderProducts()">
+          </div>
         </div>
-        <div class="form-group">
-          <label>Product Line</label>
-          <select id="prod-line"></select>
-        </div>
-        <div class="form-group">
-          <label>Type Code</label>
-          <input type="text" id="prod-code" placeholder="e.g., SH, DH">
-        </div>
-        <div class="form-group full-span">
-          <label>Name</label>
-          <input type="text" id="prod-name" placeholder="e.g., Single Hung">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Pricing Model</label>
-          <select id="prod-model" onchange="togglePricingFields()">
-            <option value="UI">UI-Based</option>
-            <option value="FLAT">Flat Price</option>
-          </select>
-        </div>
-        <div class="form-group" id="prod-ui-rate-group">
-          <label>UI Rate ($)</label>
-          <input type="number" id="prod-ui-rate" step="0.01" placeholder="12.50">
-        </div>
-        <div class="form-group" id="prod-flat-price-group" style="display:none;">
-          <label>Flat Price ($)</label>
-          <input type="number" id="prod-flat-price" step="0.01" placeholder="2500">
-        </div>
-        <div class="form-group">
-          <label>Minimum UI</label>
-          <input type="number" id="prod-min-ui" placeholder="100">
-        </div>
-        <div class="form-group">
-          <label>Maximum UI (blank = unlimited)</label>
-          <input type="number" id="prod-max-ui" placeholder="500">
-        </div>
-      </div>
-      <div class="form-actions">
-        <button class="btn-primary" onclick="addProduct()">+ Add Product</button>
       </div>
       <div id="prod-table"></div>
     </TabSection>
 
     <TabSection id="addons" title="Addons">
-      <div class="form-row">
-        <div class="form-group full-span">
-          <label>Name</label>
-          <input type="text" id="addon-name" placeholder="e.g., Colonial Grids">
+      <div class="section-actions">
+        <button class="btn-primary" onclick="openAddModal('addon')">+ Add Addon</button>
+        <div class="filter-wrap">
+          <div class="filter-toggle-row">
+            <button class="btn-secondary filter-toggle" type="button" aria-expanded="false" aria-controls="addon-filters" onclick="toggleFilterRow('addon-filters', this)">Filters ▾</button>
+          </div>
+          <div id="addon-filters" class="filter-row is-hidden">
+            <select id="addon-filter-model" onchange="renderAddons()">
+              <option value="">All models</option>
+              <option value="UI">UI-Based</option>
+              <option value="FLAT">Flat Price</option>
+            </select>
+            <select id="addon-filter-line" onchange="renderAddons()"></select>
+            <select id="addon-filter-type" onchange="renderAddons()"></select>
+            <input type="text" id="addon-filter-text" placeholder="Filter by name or group" oninput="renderAddons()">
+          </div>
         </div>
-        <div class="form-group full-span">
-          <label>Exclusive Group (optional)</label>
-          <input type="text" id="addon-exclusive" placeholder="e.g., glass_type">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Pricing Model</label>
-          <select id="addon-model" onchange="toggleAddonPricingFields()">
-            <option value="UI">UI-Based</option>
-            <option value="FLAT">Flat Price</option>
-          </select>
-        </div>
-        <div class="form-group" id="addon-ui-rate-group">
-          <label>UI Rate ($)</label>
-          <input type="number" id="addon-ui-rate" step="0.01" placeholder="2.00">
-        </div>
-        <div class="form-group" id="addon-flat-price-group" style="display:none;">
-          <label>Flat Price ($)</label>
-          <input type="number" id="addon-flat-price" step="0.01" placeholder="350">
-        </div>
-      </div>
-      <div class="checkbox-section">
-        <div class="checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" id="addon-mandatory">
-            Mandatory
-          </label>
-        </div>
-        <div class="checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" id="addon-hidden">
-            Hidden from Customer
-          </label>
-        </div>
-        <div class="checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" id="addon-job-based">
-            Job Based (Global - apply to all quotes)
-          </label>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Allowed Product Types (leave blank for all)</label>
-          <input type="text" id="addon-product-types" placeholder="e.g., Window, Door (comma-separated)">
-        </div>
-        <div class="form-group">
-          <label>Allowed Product Lines (leave blank for all)</label>
-          <input type="text" id="addon-product-lines" placeholder="e.g., Premium, Standard (comma-separated)">
-        </div>
-        <div class="form-group">
-          <label>Max Size (sq ft, leave blank for unlimited)</label>
-          <input type="number" id="addon-max-size" step="0.01" placeholder="21">
-        </div>
-        <div class="form-group">
-          <label>Min Size (sq ft, leave blank for no minimum)</label>
-          <input type="number" id="addon-min-size" step="0.01" placeholder="0">
-        </div>
-      </div>
-      <div class="form-actions">
-        <button class="btn-primary" onclick="addAddon()">+ Add Addon</button>
       </div>
       <div id="addon-table"></div>
     </TabSection>
 
     <TabSection id="versions" title="Pricing Version History" description="Manage and export previous pricing configurations.">
-      <div style="display: flex; gap: 8px; margin-bottom: 1.5rem;">
+      <div id="version-inputs" class="input-section" style="display: flex; gap: 8px; margin-bottom: 1.5rem;">
         <button class="btn-secondary" onclick="exportVersionData()">Export Version</button>
         <button class="btn-secondary" onclick="importVersionData()">Import Version</button>
       </div>
@@ -193,11 +109,12 @@ import TabSection from '../components/TabSection.astro';
     </TabSection>
 
     <TabSection id="settings" title="Global Settings" description="Configure global rules that apply to all quotes.">
+      <div id="settings-inputs" class="input-section">
       <div class="form-row">
         <div class="form-group">
-          <label>Minimum Window UI (inches)</label>
+          <label>Minimum Billable Window UI (inches)</label>
           <input type="number" id="setting-minimum-ui" min="0" step="1" placeholder="65">
-          <small>All windows must have at least this many united inches (width + height)</small>
+          <small>Windows can be smaller, but pricing uses at least this many united inches (width + height).</small>
         </div>
       </div>
       <div class="checkbox-section">
@@ -215,7 +132,7 @@ import TabSection from '../components/TabSection.astro';
             <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">Rules</h3>
             <div style="font-size: 12px; color: var(--text-secondary);">Use conditions to auto-apply mandatory addons</div>
           </div>
-          <button class="btn-secondary" type="button" onclick="addRule()">+ Add Rule</button>
+          <button class="btn-secondary" type="button" onclick="openAddRuleModal()">+ Add Rule</button>
         </div>
         <div id="rules-list" style="margin-top: 12px;"></div>
       </div>
@@ -223,6 +140,7 @@ import TabSection from '../components/TabSection.astro';
         <button class="btn-primary" onclick="saveGlobalSettings()">Save Settings</button>
       </div>
       <div id="settings-status"></div>
+      </div>
     </TabSection>
   </div>
 
@@ -251,6 +169,16 @@ import TabSection from '../components/TabSection.astro';
     };
     window.showModal = showModal;
 
+    window.toggleFilterRow = (rowId, buttonEl) => {
+      const row = document.getElementById(rowId);
+      if (!row) return;
+      const isHidden = row.classList.toggle('is-hidden');
+      if (buttonEl) {
+        buttonEl.textContent = isHidden ? 'Filters ▾' : 'Filters ▴';
+        buttonEl.setAttribute('aria-expanded', (!isHidden).toString());
+      }
+    };
+
     const activateTab = (tabName) => {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -259,6 +187,252 @@ import TabSection from '../components/TabSection.astro';
       const section = document.getElementById(tabName);
       if (section) section.classList.add('active');
       renderAll();
+    };
+
+    const PRODUCT_TYPES = ['Window', 'Door', 'Sliding Door', 'Bifold Door', 'Sidelite', 'French Door'];
+
+    const setSelectOptions = (selectId, options, allLabel) => {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      const currentValue = select.value;
+      const opts = [{ value: '', label: allLabel }].concat(options);
+      select.innerHTML = opts.map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+      const hasCurrent = opts.some(o => o.value === currentValue);
+      select.value = hasCurrent ? currentValue : '';
+    };
+
+    const buildOptionsHtml = (options) => options.map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+
+    window.toggleAddPricingFields = () => togglePricingGroup('add-prod-model', 'add-prod-rate-group', 'add-prod-price-group');
+    window.toggleAddAddonPricingFields = () => togglePricingGroup('add-addon-model', 'add-addon-rate-group', 'add-addon-price-group');
+
+    window.openAddModal = (type) => {
+      const manufacturers = DataStorage.getManufacturers();
+      const lines = DataStorage.getProductLines();
+      const manufacturerOptions = Object.values(manufacturers).map(m => ({ value: m.id, label: m.name }));
+      const lineOptions = Object.values(lines).map(l => ({ value: l.id, label: l.name }));
+
+      if (type === 'mfg') {
+        const content = `
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="add-mfg-name" placeholder="e.g., Andersen Windows">
+          </div>
+        `;
+        showModal('Add Manufacturer', content, [
+          { label: 'Add', type: 'primary', onclick: () => addManufacturer({ name: document.getElementById('add-mfg-name').value }) },
+          { label: 'Cancel', type: 'secondary', onclick: () => {} }
+        ]);
+        return;
+      }
+
+      if (type === 'line') {
+        const content = `
+          <div class="form-group">
+            <label>Manufacturer</label>
+            <select id="add-line-mfg">
+              ${buildOptionsHtml(manufacturerOptions)}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="add-line-name" placeholder="e.g., 400 Series">
+          </div>
+        `;
+        showModal('Add Product Line', content, [
+          { label: 'Add', type: 'primary', onclick: () => addProductLine({ manufacturerId: document.getElementById('add-line-mfg').value, name: document.getElementById('add-line-name').value }) },
+          { label: 'Cancel', type: 'secondary', onclick: () => {} }
+        ]);
+        return;
+      }
+
+      if (type === 'prod') {
+        const content = `
+          <div class="form-row">
+            <div class="form-group">
+              <label>Product Type</label>
+              <select id="add-prod-type">
+                ${buildOptionsHtml(PRODUCT_TYPES.map(t => ({ value: t, label: t })))}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Product Line</label>
+              <select id="add-prod-line">
+                ${buildOptionsHtml(lineOptions)}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Type Code</label>
+              <input type="text" id="add-prod-code" placeholder="e.g., SH, DH">
+            </div>
+            <div class="form-group full-span">
+              <label>Name</label>
+              <input type="text" id="add-prod-name" placeholder="e.g., Single Hung">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pricing Model</label>
+              <select id="add-prod-model" onchange="toggleAddPricingFields()">
+                <option value="UI">UI-Based</option>
+                <option value="FLAT">Flat Price</option>
+              </select>
+            </div>
+            <div class="form-group" id="add-prod-rate-group">
+              <label>UI Rate ($)</label>
+              <input type="number" id="add-prod-ui-rate" step="0.01" placeholder="12.50">
+            </div>
+            <div class="form-group" id="add-prod-price-group" style="display:none;">
+              <label>Flat Price ($)</label>
+              <input type="number" id="add-prod-flat-price" step="0.01" placeholder="2500">
+            </div>
+            <div class="form-group">
+              <label>Minimum UI</label>
+              <input type="number" id="add-prod-min-ui" placeholder="100">
+            </div>
+            <div class="form-group">
+              <label>Maximum UI (blank = unlimited)</label>
+              <input type="number" id="add-prod-max-ui" placeholder="500">
+            </div>
+          </div>
+        `;
+        showModal('Add Product', content, [
+          { label: 'Add', type: 'primary', onclick: () => addProduct({
+            productType: document.getElementById('add-prod-type').value,
+            productLineId: document.getElementById('add-prod-line').value,
+            productTypeCode: document.getElementById('add-prod-code').value,
+            name: document.getElementById('add-prod-name').value,
+            pricingModel: document.getElementById('add-prod-model').value,
+            uiRate: document.getElementById('add-prod-ui-rate').value,
+            flatPrice: document.getElementById('add-prod-flat-price').value,
+            minimumUI: document.getElementById('add-prod-min-ui').value,
+            maximumUI: document.getElementById('add-prod-max-ui').value
+          }) },
+          { label: 'Cancel', type: 'secondary', onclick: () => {} }
+        ]);
+        return;
+      }
+
+      if (type === 'addon') {
+        const content = `
+          <div class="form-row">
+            <div class="form-group full-span">
+              <label>Name</label>
+              <input type="text" id="add-addon-name" placeholder="e.g., Colonial Grids">
+            </div>
+            <div class="form-group full-span">
+              <label>Exclusive Group (optional)</label>
+              <input type="text" id="add-addon-exclusive" placeholder="e.g., glass_type">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pricing Model</label>
+              <select id="add-addon-model" onchange="toggleAddAddonPricingFields()">
+                <option value="UI">UI-Based</option>
+                <option value="FLAT">Flat Price</option>
+              </select>
+            </div>
+            <div class="form-group" id="add-addon-rate-group">
+              <label>UI Rate ($)</label>
+              <input type="number" id="add-addon-ui-rate" step="0.01" placeholder="2.00">
+            </div>
+            <div class="form-group" id="add-addon-price-group" style="display:none;">
+              <label>Flat Price ($)</label>
+              <input type="number" id="add-addon-flat-price" step="0.01" placeholder="350">
+            </div>
+          </div>
+          <div class="checkbox-section">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-addon-mandatory">
+                Mandatory
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-addon-hidden">
+                Hidden from Customer
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-addon-job-based">
+                Job Based (Global - apply to all quotes)
+              </label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Allowed Product Types (leave blank for all)</label>
+              <input type="text" id="add-addon-product-types" placeholder="e.g., Window, Door (comma-separated)">
+            </div>
+            <div class="form-group">
+              <label>Allowed Product Lines (leave blank for all)</label>
+              <input type="text" id="add-addon-product-lines" placeholder="e.g., Premium, Standard (comma-separated)">
+            </div>
+            <div class="form-group">
+              <label>Max Size (sq ft, leave blank for unlimited)</label>
+              <input type="number" id="add-addon-max-size" step="0.01" placeholder="21">
+            </div>
+            <div class="form-group">
+              <label>Min Size (sq ft, leave blank for no minimum)</label>
+              <input type="number" id="add-addon-min-size" step="0.01" placeholder="0">
+            </div>
+          </div>
+        `;
+        showModal('Add Addon', content, [
+          { label: 'Add', type: 'primary', onclick: () => addAddon({
+            name: document.getElementById('add-addon-name').value,
+            pricingModel: document.getElementById('add-addon-model').value,
+            exclusiveGroup: document.getElementById('add-addon-exclusive').value,
+            mandatory: document.getElementById('add-addon-mandatory').checked,
+            hiddenFromCustomer: document.getElementById('add-addon-hidden').checked,
+            isJobBased: document.getElementById('add-addon-job-based').checked,
+            uiRate: document.getElementById('add-addon-ui-rate').value,
+            flatPrice: document.getElementById('add-addon-flat-price').value,
+            allowedProductTypes: document.getElementById('add-addon-product-types').value,
+            allowedProductLines: document.getElementById('add-addon-product-lines').value,
+            maxSize: document.getElementById('add-addon-max-size').value,
+            minSize: document.getElementById('add-addon-min-size').value
+          }) },
+          { label: 'Cancel', type: 'secondary', onclick: () => {} }
+        ]);
+      }
+    };
+
+    window.openAddRuleModal = () => {
+      const addons = DataStorage.getAddons();
+      const addonOptions = Object.values(addons).map(a => ({ value: a.id, label: a.name }));
+      const content = `
+        <div class="form-group">
+          <label>Rule Name</label>
+          <input type="text" id="add-rule-name" placeholder="e.g., Mandatory tempered glass">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Apply To</label>
+            <select id="add-rule-applies">
+              <option value="lineItem">Line Item</option>
+              <option value="job">Job</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Addon</label>
+            <select id="add-rule-addon">
+              ${buildOptionsHtml(addonOptions)}
+            </select>
+          </div>
+        </div>
+      `;
+      showModal('Add Rule', content, [
+        { label: 'Add', type: 'primary', onclick: () => addRule({
+          name: document.getElementById('add-rule-name').value,
+          appliesTo: document.getElementById('add-rule-applies').value,
+          addonId: document.getElementById('add-rule-addon').value
+        }) },
+        { label: 'Cancel', type: 'secondary', onclick: () => {} }
+      ]);
     };
 
     document.addEventListener('click', (evt) => {
@@ -308,22 +482,90 @@ import TabSection from '../components/TabSection.astro';
         context.productLineName = lines[item.productLineId]?.name || 'N/A';
       }
 
-      const fieldsHtml = schema.fields.map(f => buildFieldHtml(f, item, context)).join('');
-
-      const html = `
-        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px);" id="edit-modal" onclick="if(event.target.id === 'edit-modal') this.remove()">
-          <div style="background: white; padding: 1.5rem; border-radius: 8px; max-width: 500px; width: 90%; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
-            <h2>${schema.title}</h2>
-            ${fieldsHtml}
-            <div style="display: flex; gap: 8px; margin-top: 1.5rem;">
-              <button class="btn-primary" onclick="saveEditedItem('${type}', '${id}')">Save</button>
-              <button class="btn-secondary" onclick="document.getElementById('edit-modal').remove()">Cancel</button>
+      if (type === 'addon') {
+        const uiDisplay = item.pricingModel === 'UI' ? '' : 'none';
+        const flatDisplay = item.pricingModel === 'FLAT' ? '' : 'none';
+        const allowedTypes = Array.isArray(item.allowedProductTypes) ? item.allowedProductTypes.join(', ') : '';
+        const allowedLines = Array.isArray(item.allowedProductLines) ? item.allowedProductLines.join(', ') : '';
+        const content = `
+          <div class="form-row">
+            <div class="form-group full-span">
+              <label>Name</label>
+              <input type="text" id="edit-addon-name" value="${item.name || ''}" placeholder="e.g., Colonial Grids">
+            </div>
+            <div class="form-group full-span">
+              <label>Exclusive Group (optional)</label>
+              <input type="text" id="edit-addon-exclusive" value="${item.exclusiveGroup || ''}" placeholder="e.g., glass_type">
             </div>
           </div>
-        </div>
-      `;
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pricing Model</label>
+              <select id="edit-addon-model" onchange="toggleEditAddonPricingFields()">
+                <option value="UI" ${item.pricingModel === 'UI' ? 'selected' : ''}>UI-Based</option>
+                <option value="FLAT" ${item.pricingModel === 'FLAT' ? 'selected' : ''}>Flat Price</option>
+              </select>
+            </div>
+            <div class="form-group" id="edit-addon-rate-group" style="display:${uiDisplay};">
+              <label>UI Rate ($)</label>
+              <input type="number" id="edit-addon-ui-rate" step="0.01" value="${item.uiRate ?? ''}" placeholder="2.00">
+            </div>
+            <div class="form-group" id="edit-addon-price-group" style="display:${flatDisplay};">
+              <label>Flat Price ($)</label>
+              <input type="number" id="edit-addon-flat-price" step="0.01" value="${item.flatPrice ?? ''}" placeholder="350">
+            </div>
+          </div>
+          <div class="checkbox-section">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="edit-addon-mandatory" ${item.mandatory ? 'checked' : ''}>
+                Mandatory
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="edit-addon-hidden" ${item.hiddenFromCustomer ? 'checked' : ''}>
+                Hidden from Customer
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="edit-addon-job-based" ${item.isJobBased ? 'checked' : ''}>
+                Job Based (Global - apply to all quotes)
+              </label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Allowed Product Types (leave blank for all)</label>
+              <input type="text" id="edit-addon-product-types" value="${allowedTypes}" placeholder="e.g., Window, Door (comma-separated)">
+            </div>
+            <div class="form-group">
+              <label>Allowed Product Lines (leave blank for all)</label>
+              <input type="text" id="edit-addon-product-lines" value="${allowedLines}" placeholder="e.g., Premium, Standard (comma-separated)">
+            </div>
+            <div class="form-group">
+              <label>Max Size (sq ft, leave blank for unlimited)</label>
+              <input type="number" id="edit-addon-max-size" step="0.01" value="${item.maxSize ?? ''}" placeholder="21">
+            </div>
+            <div class="form-group">
+              <label>Min Size (sq ft, leave blank for no minimum)</label>
+              <input type="number" id="edit-addon-min-size" step="0.01" value="${item.minSize ?? ''}" placeholder="0">
+            </div>
+          </div>
+        `;
+        showModal('Edit Addon', content, [
+          { label: 'Save', type: 'primary', onclick: () => saveEditedItem(type, id) },
+          { label: 'Cancel', type: 'secondary', onclick: () => {} }
+        ]);
+        return;
+      }
 
-      document.body.insertAdjacentHTML('beforeend', html);
+      const fieldsHtml = schema.fields.map(f => buildFieldHtml(f, item, context)).join('');
+      showModal(schema.title, fieldsHtml, [
+        { label: 'Save', type: 'primary', onclick: () => saveEditedItem(type, id) },
+        { label: 'Cancel', type: 'secondary', onclick: () => {} }
+      ]);
     };
 
     window.saveEditedItem = (type, id) => {
@@ -397,7 +639,6 @@ import TabSection from '../components/TabSection.astro';
         }
         DataStorage.set(DataStorage.KEYS.ADDONS, addons);
       }
-      document.getElementById('edit-modal').remove();
       renderAll();
       showAlert('Item updated successfully');
     };
@@ -409,39 +650,39 @@ import TabSection from '../components/TabSection.astro';
     const slugify = (text) => text.toLowerCase().trim()
       .replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').substring(0, 20);
 
-    window.addManufacturer = () => {
-      const name = document.getElementById('mfg-name').value.trim();
+    window.addManufacturer = (payload = {}) => {
+      const name = (payload.name || '').trim();
       if (!name) return showAlert('Please enter a name', 'error');
       const manufacturers = DataStorage.getManufacturers();
       const id = `mfg_${slugify(name)}`;
       manufacturers[id] = { id, name };
       DataStorage.set(DataStorage.KEYS.MANUFACTURERS, manufacturers);
-      document.getElementById('mfg-name').value = '';
       renderAll();
       showAlert('Manufacturer added');
     };
 
-    window.addProductLine = () => {
-      const manufacturerId = document.getElementById('pl-manufacturer').value;
-      const name = document.getElementById('pl-name').value.trim();
+    window.addProductLine = (payload = {}) => {
+      const manufacturerId = payload.manufacturerId || '';
+      const name = (payload.name || '').trim();
       if (!manufacturerId || !name) return showAlert('Please fill all fields', 'error');
       const lines = DataStorage.getProductLines();
       const id = `line_${slugify(name)}`;
       lines[id] = { id, manufacturerId, name };
       DataStorage.set(DataStorage.KEYS.PRODUCT_LINES, lines);
-      document.getElementById('pl-name').value = '';
       renderAll();
       showAlert('Product line added');
     };
 
-    window.addProduct = () => {
-      const productType = document.getElementById('prod-type').value;
-      const productLineId = document.getElementById('prod-line').value;
-      const productTypeCode = document.getElementById('prod-code').value.trim();
-      const name = document.getElementById('prod-name').value.trim();
-      const pricingModel = document.getElementById('prod-model').value;
-      const minimumUI = parseInt(document.getElementById('prod-min-ui').value) || 0;
-      const maximumUI = parseInt(document.getElementById('prod-max-ui').value) || null;
+    window.addProduct = (payload = {}) => {
+      const productType = payload.productType || '';
+      const productLineId = payload.productLineId || '';
+      const productTypeCode = (payload.productTypeCode || '').trim();
+      const name = (payload.name || '').trim();
+      const pricingModel = payload.pricingModel || 'UI';
+      const minimumUI = parseInt(payload.minimumUI) || 0;
+      const maximumUI = payload.maximumUI === '' || payload.maximumUI === null || payload.maximumUI === undefined
+        ? null
+        : parseInt(payload.maximumUI);
 
       if (!productType || !productLineId || !productTypeCode || !name) {
         return showAlert('Please fill all required fields', 'error');
@@ -454,40 +695,35 @@ import TabSection from '../components/TabSection.astro';
       };
 
       if (pricingModel === 'UI') {
-        product.uiRate = parseFloat(document.getElementById('prod-ui-rate').value) || 0;
+        product.uiRate = parseFloat(payload.uiRate) || 0;
       } else {
-        product.flatPrice = parseFloat(document.getElementById('prod-flat-price').value) || 0;
+        product.flatPrice = parseFloat(payload.flatPrice) || 0;
       }
 
       products[id] = product;
       DataStorage.set(DataStorage.KEYS.PRODUCTS, products);
-      
-      ['prod-code', 'prod-name', 'prod-ui-rate', 'prod-flat-price', 'prod-min-ui', 'prod-max-ui']
-        .forEach(id => document.getElementById(id).value = '');
       renderAll();
       showAlert('Product added');
     };
 
-    window.addAddon = () => {
-      const name = document.getElementById('addon-name').value.trim();
-      const pricingModel = document.getElementById('addon-model').value;
-      const exclusiveGroup = document.getElementById('addon-exclusive').value.trim() || null;
-      const mandatory = document.getElementById('addon-mandatory').checked;
-      const hiddenFromCustomer = document.getElementById('addon-hidden').checked;
-      const isJobBased = document.getElementById('addon-job-based').checked;
+    window.addAddon = (payload = {}) => {
+      const name = (payload.name || '').trim();
+      const pricingModel = payload.pricingModel || 'UI';
+      const exclusiveGroup = (payload.exclusiveGroup || '').trim() || null;
+      const mandatory = !!payload.mandatory;
+      const hiddenFromCustomer = !!payload.hiddenFromCustomer;
+      const isJobBased = !!payload.isJobBased;
       
-      const productTypesStr = document.getElementById('addon-product-types').value.trim();
+      const productTypesStr = (payload.allowedProductTypes || '').trim();
       const allowedProductTypes = productTypesStr 
         ? productTypesStr.split(',').map(t => t.trim()).filter(t => t) : null;
       
-      const productLinesStr = document.getElementById('addon-product-lines').value.trim();
+      const productLinesStr = (payload.allowedProductLines || '').trim();
       const allowedProductLines = productLinesStr
         ? productLinesStr.split(',').map(l => l.trim()).filter(l => l) : null;
       
-      const maxSize = document.getElementById('addon-max-size').value ? 
-        parseFloat(document.getElementById('addon-max-size').value) : null;
-      const minSize = document.getElementById('addon-min-size').value ?
-        parseFloat(document.getElementById('addon-min-size').value) : null;
+      const maxSize = payload.maxSize ? parseFloat(payload.maxSize) : null;
+      const minSize = payload.minSize ? parseFloat(payload.minSize) : null;
 
       if (!name) return showAlert('Please enter a name', 'error');
 
@@ -499,19 +735,13 @@ import TabSection from '../components/TabSection.astro';
       };
 
       if (pricingModel === 'UI') {
-        addon.uiRate = parseFloat(document.getElementById('addon-ui-rate').value) || 0;
+        addon.uiRate = parseFloat(payload.uiRate) || 0;
       } else {
-        addon.flatPrice = parseFloat(document.getElementById('addon-flat-price').value) || 0;
+        addon.flatPrice = parseFloat(payload.flatPrice) || 0;
       }
 
       addons[id] = addon;
       DataStorage.set(DataStorage.KEYS.ADDONS, addons);
-      
-      ['addon-name', 'addon-ui-rate', 'addon-flat-price', 'addon-exclusive', 
-       'addon-product-types', 'addon-product-lines', 'addon-max-size', 'addon-min-size']
-        .forEach(id => document.getElementById(id).value = '');
-      ['addon-mandatory', 'addon-hidden', 'addon-job-based']
-        .forEach(id => document.getElementById(id).checked = false);
       renderAll();
       showAlert('Addon added');
     };
@@ -679,11 +909,16 @@ import TabSection from '../components/TabSection.astro';
 
     function renderManufacturers() {
       const manufacturers = DataStorage.getManufacturers();
+      const filterText = (document.getElementById('mfg-filter')?.value || '').toLowerCase();
+      const filtered = Object.values(manufacturers).filter(m => {
+        if (!filterText) return true;
+        return m.id.toLowerCase().includes(filterText) || m.name.toLowerCase().includes(filterText);
+      });
       document.getElementById('mfg-table').innerHTML = `
         <table>
-          <thead><tr><th>ID</th><th>Name</th><th>Actions</th></tr></thead>
+          <thead><tr><th>ID</th><th>Name</th><th></th></tr></thead>
           <tbody>
-            ${Object.values(manufacturers).map(m => `
+            ${filtered.map(m => `
               <tr>
                 <td>${m.id}</td>
                 <td>${m.name}</td>
@@ -701,11 +936,18 @@ import TabSection from '../components/TabSection.astro';
     function renderProductLines() {
       const lines = DataStorage.getProductLines();
       const manufacturers = DataStorage.getManufacturers();
+      const filterMfg = document.getElementById('pl-filter-mfg')?.value || '';
+      const filterText = (document.getElementById('pl-filter-text')?.value || '').toLowerCase();
+      const filtered = Object.values(lines).filter(l => {
+        if (filterMfg && l.manufacturerId !== filterMfg) return false;
+        if (!filterText) return true;
+        return l.name.toLowerCase().includes(filterText);
+      });
       document.getElementById('pl-table').innerHTML = `
         <table>
-          <thead><tr><th>ID</th><th>Manufacturer</th><th>Name</th><th>Actions</th></tr></thead>
+          <thead><tr><th>ID</th><th>Manufacturer</th><th>Name</th><th></th></tr></thead>
           <tbody>
-            ${Object.values(lines).map(l => `
+            ${filtered.map(l => `
               <tr>
                 <td>${l.id}</td>
                 <td>${manufacturers[l.manufacturerId]?.name || 'N/A'}</td>
@@ -724,13 +966,24 @@ import TabSection from '../components/TabSection.astro';
     function renderProducts() {
       const products = DataStorage.getProducts();
       const lines = DataStorage.getProductLines();
+      const filterType = document.getElementById('prod-filter-type')?.value || '';
+      const filterLine = document.getElementById('prod-filter-line')?.value || '';
+      const filterModel = document.getElementById('prod-filter-model')?.value || '';
+      const filterText = (document.getElementById('prod-filter-text')?.value || '').toLowerCase();
+      const filtered = Object.values(products).filter(p => {
+        if (filterType && p.productType !== filterType) return false;
+        if (filterLine && p.productLineId !== filterLine) return false;
+        if (filterModel && p.pricingModel !== filterModel) return false;
+        if (!filterText) return true;
+        return p.productTypeCode.toLowerCase().includes(filterText) || p.name.toLowerCase().includes(filterText);
+      });
       document.getElementById('prod-table').innerHTML = `
         <table>
           <thead>
-            <tr><th>Code</th><th>Product Line</th><th>Name</th><th>Model</th><th>Rate/Price</th><th>Min UI</th><th>Max UI</th><th>Actions</th></tr>
+            <tr><th>Code</th><th>Product Line</th><th>Name</th><th>Model</th><th>Rate/Price</th><th>Min UI</th><th>Max UI</th><th></th></tr>
           </thead>
           <tbody>
-            ${Object.values(products).map(p => `
+            ${filtered.map(p => `
               <tr>
                 <td>${p.productTypeCode}</td>
                 <td>${lines[p.productLineId]?.name || 'N/A'}</td>
@@ -752,13 +1005,38 @@ import TabSection from '../components/TabSection.astro';
 
     function renderAddons() {
       const addons = DataStorage.getAddons();
+      const filterModel = document.getElementById('addon-filter-model')?.value || '';
+      const filterLine = document.getElementById('addon-filter-line')?.value || '';
+      const filterType = document.getElementById('addon-filter-type')?.value || '';
+      const filterText = (document.getElementById('addon-filter-text')?.value || '').toLowerCase();
+      const filtered = Object.values(addons).filter(a => {
+        if (filterModel && a.pricingModel !== filterModel) return false;
+
+        if (filterLine) {
+          if (Array.isArray(a.allowedProductLines) && a.allowedProductLines.length > 0) {
+            const match = a.allowedProductLines.some(l => l.toLowerCase() === filterLine.toLowerCase());
+            if (!match) return false;
+          }
+        }
+
+        if (filterType) {
+          if (Array.isArray(a.allowedProductTypes) && a.allowedProductTypes.length > 0) {
+            const match = a.allowedProductTypes.some(t => t.toLowerCase() === filterType.toLowerCase());
+            if (!match) return false;
+          }
+        }
+
+        if (!filterText) return true;
+        const group = a.exclusiveGroup || '';
+        return a.name.toLowerCase().includes(filterText) || group.toLowerCase().includes(filterText);
+      });
       document.getElementById('addon-table').innerHTML = `
         <table>
           <thead>
-            <tr><th>Name</th><th>Model</th><th>Rate/Price</th><th>Exclusive Group</th><th>Mandatory</th><th>Hidden</th><th>Job Based</th><th>Actions</th></tr>
+            <tr><th>Name</th><th>Model</th><th>Rate/Price</th><th>Exclusive Group</th><th>Mandatory</th><th>Hidden</th><th>Job Based</th><th></th></tr>
           </thead>
           <tbody>
-            ${Object.values(addons).map(a => `
+            ${filtered.map(a => `
               <tr>
                 <td>${a.name}</td>
                 <td>${a.pricingModel}</td>
@@ -777,6 +1055,11 @@ import TabSection from '../components/TabSection.astro';
         </table>
       `;
     }
+
+    window.renderManufacturers = renderManufacturers;
+    window.renderProductLines = renderProductLines;
+    window.renderProducts = renderProducts;
+    window.renderAddons = renderAddons;
 
     function renderVersions() {
       const versions = DataStorage.getPricingVersions();
@@ -801,8 +1084,33 @@ import TabSection from '../components/TabSection.astro';
       const settings = DataStorage.getGlobalSettings();
       document.getElementById('setting-minimum-ui').value = settings.minimumUI ?? 65;
       document.getElementById('setting-alerts-enabled').checked = settings.alertsEnabled !== false;
-      document.getElementById('rules-list').innerHTML = '<p style="color: var(--text-secondary); font-size: 13px;">Rules feature coming soon...</p>';
+      const rules = Array.isArray(settings.rules) ? settings.rules : [];
+      document.getElementById('rules-list').innerHTML = rules.length
+        ? rules.map(rule => `
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+            <div>
+              <strong>${rule.name || 'Rule'}</strong>
+              <div style="font-size: 12px; color: var(--text-secondary);">Applies to ${rule.appliesTo || 'lineItem'}</div>
+            </div>
+          </div>
+        `).join('')
+        : '<p style="color: var(--text-secondary); font-size: 13px;">No rules yet.</p>';
     }
+
+    window.addRule = (payload = {}) => {
+      const name = (payload.name || '').trim();
+      const appliesTo = payload.appliesTo || 'lineItem';
+      const addonId = payload.addonId || '';
+      if (!name || !addonId) return showAlert('Please fill all fields', 'error');
+
+      const settings = DataStorage.getGlobalSettings();
+      const rules = Array.isArray(settings.rules) ? settings.rules : [];
+      const rule = { id: `rule_${Date.now()}`, name, appliesTo, addonId, enabled: true };
+      rules.push(rule);
+      DataStorage.updateGlobalSettings({ rules });
+      renderSettings();
+      showAlert('Rule added');
+    };
 
     window.saveGlobalSettings = () => {
       const minimumUI = parseInt(document.getElementById('setting-minimum-ui').value);
@@ -820,12 +1128,17 @@ import TabSection from '../components/TabSection.astro';
     function populateDropdowns() {
       const manufacturers = DataStorage.getManufacturers();
       const lines = DataStorage.getProductLines();
-      
-      document.getElementById('pl-manufacturer').innerHTML = 
-        Object.values(manufacturers).map(m => `<option value="${m.id}">${m.name}</option>`).join('');
-      
-      document.getElementById('prod-line').innerHTML = 
-        Object.values(lines).map(l => `<option value="${l.id}">${l.name}</option>`).join('');
+
+      const mfgOptions = Object.values(manufacturers).map(m => ({ value: m.id, label: m.name }));
+      const lineOptions = Object.values(lines).map(l => ({ value: l.id, label: l.name }));
+      const lineNameOptions = Object.values(lines).map(l => ({ value: l.name, label: l.name }));
+      const typeOptions = PRODUCT_TYPES.map(t => ({ value: t, label: t }));
+
+      setSelectOptions('pl-filter-mfg', mfgOptions, 'All manufacturers');
+      setSelectOptions('prod-filter-line', lineOptions, 'All product lines');
+      setSelectOptions('prod-filter-type', typeOptions, 'All product types');
+      setSelectOptions('addon-filter-line', lineNameOptions, 'All product lines');
+      setSelectOptions('addon-filter-type', typeOptions, 'All product types');
     }
 
     // Initial render

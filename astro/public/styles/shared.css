@@ -198,7 +198,6 @@ button:active {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
   background: var(--bg-surface);
   border-radius: 8px;
   overflow: hidden;
@@ -405,6 +404,127 @@ th {
   flex-wrap: wrap;
 }
 
+.admin-page .input-row-with-toggle {
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.admin-page .input-toggle-row {
+  display: flex;
+  justify-content: flex-start;
+  margin: 4px 0 12px;
+}
+
+.admin-page .filter-row {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  border: var(--border);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow);
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  transition: max-height 160ms ease, opacity 140ms ease, transform 160ms ease;
+  z-index: 20;
+}
+
+.admin-page .filter-row.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  margin-bottom: 0;
+}
+
+.admin-page .filter-toggle-row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.admin-page .filter-wrap {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.admin-page .section-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 10px;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Admin modal polish */
+.admin-page [id^="modal-"] {
+  animation: adminModalFadeIn 140ms ease-out;
+}
+
+.admin-page [id^="modal-"] > div {
+  animation: adminModalPopIn 160ms ease-out;
+}
+
+@keyframes adminModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes adminModalPopIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Tab content transitions */
+.admin-page .tab-content {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 140ms ease, transform 160ms ease;
+}
+
+.admin-page .tab-content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-page [id^="modal-"] ,
+  .admin-page [id^="modal-"] > div,
+  .admin-page .filter-row,
+  .admin-page .tab-content {
+    animation: none;
+    transition: none;
+  }
+}
+
+.admin-page .filter-row input,
+.admin-page .filter-row select {
+  min-width: 160px;
+}
+
+.admin-page .collapse-toggle {
+  padding: 2px 8px;
+  min-width: 28px;
+  height: 28px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 2px;
+}
+
+.admin-page .input-section.collapsed {
+  display: none;
+}
+
 .admin-page .tabs {
   display: flex;
   gap: 0;
@@ -583,6 +703,25 @@ th {
   display: table;
   width: 100%;
   table-layout: fixed;
+}
+
+.admin-page #mfg-table th:last-child,
+.admin-page #pl-table th:last-child,
+.admin-page #prod-table th:last-child,
+.admin-page #addon-table th:last-child,
+.admin-page #mfg-table td:last-child,
+.admin-page #pl-table td:last-child,
+.admin-page #prod-table td:last-child,
+.admin-page #addon-table td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.admin-page #mfg-table td:last-child,
+.admin-page #pl-table td:last-child,
+.admin-page #prod-table td:last-child,
+.admin-page #addon-table td:last-child {
+  padding-right: 16px;
 }
 
 .admin-page .version-item {
